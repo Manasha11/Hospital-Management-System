@@ -1,0 +1,137 @@
+drop database hms;
+create database hms;
+use hms;
+
+create table Ward(
+	WardID varchar(10) not null,
+	WardName varchar(50),
+	constraint primary key (WardID)
+);
+
+create table Employee(
+	EmployeeID varchar(10) not null,
+	EmployeeType varchar(100),
+	constraint primary key (EmployeeID)
+);
+
+create table Doctor(
+	DoctorID varchar(10) not null,
+	EmployeeID varchar(10),
+	DoctorFirstName varchar(50),
+	DoctorLastName varchar(200),
+	DoctorNIC varchar(10),
+	DoctorDOB varchar(20),
+	DoctorGender varchar(5),
+	Specialization varchar(50),
+	Degrees varchar(100),
+	RegistrationNo varchar(10),
+	Title varchar(20),
+	DoctorContactNo varchar(20),
+	DoctorPostalCode varchar(10),
+	DoctorStreet varchar(200),
+	DoctorCity varchar(50),
+	DoctorDistrict varchar(50),
+	DoctorEmail varchar(200),
+	constraint primary key (DoctorID),
+	constraint foreign key (EmployeeID) references Employee (EmployeeID)
+	on update cascade on delete cascade
+);
+
+create table Patient(
+	PatientID varchar(10) not null,
+	PatientFirstName varchar(50),
+	PatientLastName varchar(200),
+	PatientNIC varchar(10),
+	PatientDOB varchar(20),
+	PatientGender varchar(5),
+	AlergyDetails varchar(500),
+	SpecialNotes varchar(500),
+	constraint primary key (PatientID)
+);
+
+create table Nurse(
+	NurseID varchar(10),
+	EmployeeID varchar(10),
+	NurseFirstName varchar(50),
+	NurseLastName varchar(200),
+	NurseNIC varchar(10),
+	NurseDOB varchar(20),
+	NurseGender varchar(5),
+	constraint primary key (NurseID),
+	constraint foreign key (EmployeeID) references Employee (EmployeeID)
+	on update cascade on delete cascade
+);
+
+create table Pharmacist(
+	PharmacistID varchar(10),
+	EmployeeID varchar(10),
+	PharmacistFirstName varchar(50),
+	PharmacistLastName varchar(200),
+	PharmacistNIC varchar(10),
+	PharmacistDOB varchar(20),
+	PharmacistGender varchar(5),
+	constraint primary key (PharmacistID),
+	constraint foreign key (EmployeeID) references Employee (EmployeeID)
+	on update cascade on delete cascade
+);
+
+create table MaintenanceStaff(
+	MStaffID varchar(10),
+	EmployeeID varchar(10),
+	MStaffFirstName varchar(50),
+	MStaffLastName varchar(200),
+	MStafftNIC varchar(10),
+	MStaffDOB varchar(20),
+	MStaffGender varchar(5),
+	constraint primary key (MStaffID),
+	constraint foreign key (EmployeeID) references Employee (EmployeeID)
+	on update cascade on delete cascade	
+);
+
+create table Admission(
+	AdmissionID varchar(10),
+	PatientID varchar(10),
+	WardID varchar(10),
+	DoctorID varchar(10),
+	RecommendedBy varchar(200),
+	ConfirmedBy varchar(200),
+	LeadingConsultant varchar(200),
+	constraint primary key (AdmissionID),
+	constraint foreign key (PatientID) references Patient (PatientID)
+	on update cascade on delete cascade,
+	constraint foreign key (WardID) references Ward (WardID)
+	on update cascade on delete cascade,
+	constraint foreign key (DoctorID) references Doctor (DoctorID)
+	on update cascade on delete cascade
+);
+
+create table Test(
+	TestID varchar(10),
+	TeatName varchar(10),
+	constraint primary key (TestID)
+);
+
+create table TestResult(
+	ResultID varchar(10),
+	TestID varchar(10),
+	PatientID varchar(10),
+	AdmissionID varchar(10),
+	ResultDescription varchar(10000),
+	constraint primary key (ResultID),
+	constraint foreign key (TestID) references Test (TestID)
+	on update cascade on delete cascade,
+	constraint foreign key (PatientID) references Patient (PatientID)
+	on update cascade on delete cascade,
+	constraint foreign key (AdmissionID) references Admission (AdmissionID)
+	on update cascade on delete cascade
+);
+
+create table Payment(
+	PaymentID varchar(10),
+	AdmissionID varchar(10),
+	PaymentDate varchar(10),
+	Amount decimal (10,2),
+	constraint primary key (PaymentID),
+	constraint foreign key (AdmissionID) references Admission (AdmissionID)
+	on update cascade on delete cascade
+);
