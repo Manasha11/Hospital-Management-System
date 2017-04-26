@@ -318,7 +318,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton doctorButton;
     private javax.swing.JPanel green;
     private javax.swing.JPanel header;
-    private javax.swing.JPanel homePanel;
+    public static javax.swing.JPanel homePanel;
     private javax.swing.JPanel navBar;
     private javax.swing.JButton patientButton;
     // End of variables declaration//GEN-END:variables

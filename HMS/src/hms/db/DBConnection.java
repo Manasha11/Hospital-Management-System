@@ -19,7 +19,7 @@ public class DBConnection {
 
     private DBConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/DoctorChanneling", "root", "mysql");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost/hms", "root", "mysql");
     }
 
     public static DBConnection getDBConnection() throws ClassNotFoundException, SQLException {
