@@ -21,7 +21,7 @@ create table Doctor(
 	DoctorLastName varchar(200),
 	DoctorNIC varchar(10),
 	DoctorDOB varchar(20),
-	DoctorGender varchar(5),
+	DoctorGender varchar(10),
 	Specialization varchar(50),
 	Degrees varchar(100),
 	RegistrationNo varchar(10),
@@ -43,7 +43,7 @@ create table Patient(
 	PatientLastName varchar(200),
 	PatientNIC varchar(10),
 	PatientDOB varchar(20),
-	PatientGender varchar(5),
+	PatientGender varchar(10),
 	AlergyDetails varchar(500),
 	SpecialNotes varchar(500),
 	constraint primary key (PatientID)
@@ -56,7 +56,7 @@ create table Nurse(
 	NurseLastName varchar(200),
 	NurseNIC varchar(10),
 	NurseDOB varchar(20),
-	NurseGender varchar(5),
+	NurseGender varchar(10),
 	constraint primary key (NurseID),
 	constraint foreign key (EmployeeID) references Employee (EmployeeID)
 	on update cascade on delete cascade
@@ -69,7 +69,7 @@ create table Pharmacist(
 	PharmacistLastName varchar(200),
 	PharmacistNIC varchar(10),
 	PharmacistDOB varchar(20),
-	PharmacistGender varchar(5),
+	PharmacistGender varchar(10),
 	constraint primary key (PharmacistID),
 	constraint foreign key (EmployeeID) references Employee (EmployeeID)
 	on update cascade on delete cascade
@@ -82,7 +82,7 @@ create table MaintenanceStaff(
 	MStaffLastName varchar(200),
 	MStafftNIC varchar(10),
 	MStaffDOB varchar(20),
-	MStaffGender varchar(5),
+	MStaffGender varchar(10),
 	constraint primary key (MStaffID),
 	constraint foreign key (EmployeeID) references Employee (EmployeeID)
 	on update cascade on delete cascade	
@@ -135,3 +135,8 @@ create table Payment(
 	constraint foreign key (AdmissionID) references Admission (AdmissionID)
 	on update cascade on delete cascade
 );
+
+insert into Employee values("E001","Doctor");
+insert into Employee values("E002","Nurse");
+insert into Employee values("E003","Pharmacist");
+insert into Employee values("E004","Maintenance Staff");
