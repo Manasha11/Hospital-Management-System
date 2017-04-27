@@ -5,6 +5,11 @@
  */
 package hms.view.admin;
 
+import hms.other.IDGenerator;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Manasha
@@ -16,6 +21,13 @@ public class AddDoctor extends javax.swing.JPanel {
      */
     public AddDoctor() {
         initComponents();
+        try {
+            fillDoctorIdText();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -43,7 +55,7 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        lastNameText7 = new javax.swing.JTextField();
+        doctorIdText = new javax.swing.JTextField();
         lastNameText11 = new javax.swing.JTextField();
         lastNameText12 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -193,10 +205,10 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(57, 67, 92));
         jLabel21.setText("Doctor ID: ");
 
-        lastNameText7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText7.addActionListener(new java.awt.event.ActionListener() {
+        doctorIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        doctorIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText7ActionPerformed(evt);
+                doctorIdTextActionPerformed(evt);
             }
         });
 
@@ -242,7 +254,7 @@ public class AddDoctor extends javax.swing.JPanel {
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lastNameText7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lastNameText11, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91)
@@ -263,7 +275,7 @@ public class AddDoctor extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(lastNameText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -478,9 +490,9 @@ public class AddDoctor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameText10ActionPerformed
 
-    private void lastNameText7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText7ActionPerformed
+    private void doctorIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText7ActionPerformed
+    }//GEN-LAST:event_doctorIdTextActionPerformed
 
     private void lastNameText11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText11ActionPerformed
         // TODO add your handling code here:
@@ -520,6 +532,7 @@ public class AddDoctor extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField doctorIdText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -553,8 +566,12 @@ public class AddDoctor extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameText3;
     private javax.swing.JTextField lastNameText4;
     private javax.swing.JTextField lastNameText6;
-    private javax.swing.JTextField lastNameText7;
     private javax.swing.JTextField lastNameText8;
     private javax.swing.JTextField lastNameText9;
     // End of variables declaration//GEN-END:variables
+
+    private void fillDoctorIdText() throws ClassNotFoundException, SQLException{
+        String newId = IDGenerator.getNewId("doctor", "doctorId", "D");
+        doctorIdText.setText(newId);
+    }
 }
