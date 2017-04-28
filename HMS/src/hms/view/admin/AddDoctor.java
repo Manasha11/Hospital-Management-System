@@ -5,10 +5,13 @@
  */
 package hms.view.admin;
 
+import hms.controller.DoctorController;
+import hms.model.Doctor;
 import hms.other.IDGenerator;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,9 +26,7 @@ public class AddDoctor extends javax.swing.JPanel {
         initComponents();
         try {
             fillDoctorIdText();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -42,39 +43,47 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        lastNameText4 = new javax.swing.JTextField();
-        lastNameText1 = new javax.swing.JTextField();
+        regNumText = new javax.swing.JTextField();
+        specialtyText = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        lastNameText3 = new javax.swing.JTextField();
-        lastNameText15 = new javax.swing.JTextField();
+        titleText = new javax.swing.JTextField();
+        degreesText = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        lastNameText10 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        doctorIdText = new javax.swing.JTextField();
-        lastNameText11 = new javax.swing.JTextField();
-        lastNameText12 = new javax.swing.JTextField();
+        firstNameText = new javax.swing.JTextField();
+        nicText = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        lastNameText13 = new javax.swing.JTextField();
+        lastNameText = new javax.swing.JTextField();
+        doctorIdText = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        yearComboBox = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        monthComboBox = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        dateComboBox = new javax.swing.JComboBox<>();
+        genderComboBox = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        contactNoText = new javax.swing.JTextField();
+        emailText = new javax.swing.JTextField();
+        cityText = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        lastNameText6 = new javax.swing.JTextField();
-        lastNameText8 = new javax.swing.JTextField();
-        lastNameText9 = new javax.swing.JTextField();
-        lastNameText14 = new javax.swing.JTextField();
-        lastNameText16 = new javax.swing.JTextField();
-        lastNameText17 = new javax.swing.JTextField();
+        codeText = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        streetText = new javax.swing.JTextField();
+        districtText = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        addDoctor = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -90,17 +99,17 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(57, 67, 92));
         jLabel16.setText("Registration number:");
 
-        lastNameText4.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText4.addActionListener(new java.awt.event.ActionListener() {
+        regNumText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        regNumText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText4ActionPerformed(evt);
+                regNumTextActionPerformed(evt);
             }
         });
 
-        lastNameText1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText1.addActionListener(new java.awt.event.ActionListener() {
+        specialtyText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        specialtyText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText1ActionPerformed(evt);
+                specialtyTextActionPerformed(evt);
             }
         });
 
@@ -116,17 +125,17 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(57, 67, 92));
         jLabel17.setText("Degrees:");
 
-        lastNameText3.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText3.addActionListener(new java.awt.event.ActionListener() {
+        titleText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        titleText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText3ActionPerformed(evt);
+                titleTextActionPerformed(evt);
             }
         });
 
-        lastNameText15.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText15.addActionListener(new java.awt.event.ActionListener() {
+        degreesText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        degreesText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText15ActionPerformed(evt);
+                degreesTextActionPerformed(evt);
             }
         });
 
@@ -139,55 +148,50 @@ public class AddDoctor extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addComponent(jLabel14))
-                .addGap(37, 37, 37)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(regNumText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specialtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lastNameText4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(lastNameText3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lastNameText1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lastNameText15, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel17))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titleText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(degreesText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(lastNameText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(lastNameText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(regNumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(titleText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel17)
-                                .addComponent(lastNameText15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lastNameText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(degreesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(specialtyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel14)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personel Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cuprum", 0, 18), new java.awt.Color(57, 67, 92))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(57, 67, 92));
-
-        lastNameText10.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText10ActionPerformed(evt);
-            }
-        });
 
         jLabel18.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(57, 67, 92));
@@ -205,24 +209,17 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(57, 67, 92));
         jLabel21.setText("Doctor ID: ");
 
-        doctorIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        doctorIdText.addActionListener(new java.awt.event.ActionListener() {
+        firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        firstNameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doctorIdTextActionPerformed(evt);
+                firstNameTextActionPerformed(evt);
             }
         });
 
-        lastNameText11.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText11.addActionListener(new java.awt.event.ActionListener() {
+        nicText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nicText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText11ActionPerformed(evt);
-            }
-        });
-
-        lastNameText12.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText12ActionPerformed(evt);
+                nicTextActionPerformed(evt);
             }
         });
 
@@ -234,10 +231,61 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel23.setForeground(new java.awt.Color(57, 67, 92));
         jLabel23.setText("Last name: ");
 
-        lastNameText13.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText13.addActionListener(new java.awt.event.ActionListener() {
+        lastNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        lastNameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText13ActionPerformed(evt);
+                lastNameTextActionPerformed(evt);
+            }
+        });
+
+        doctorIdText.setEditable(false);
+        doctorIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        doctorIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorIdTextActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel25.setText("Year: ");
+
+        yearComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
+        yearComboBox.setBorder(null);
+
+        jLabel26.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel26.setText("Month: ");
+
+        monthComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        monthComboBox.setBorder(null);
+        monthComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel27.setText("Date: ");
+
+        dateComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        dateComboBox.setBorder(null);
+        dateComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateComboBoxActionPerformed(evt);
+            }
+        });
+
+        genderComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        genderComboBox.setBorder(null);
+        genderComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderComboBoxActionPerformed(evt);
             }
         });
 
@@ -247,27 +295,39 @@ public class AddDoctor extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel22))
+                .addGap(71, 71, 71)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lastNameText11, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel23))
-                    .addComponent(lastNameText10, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel18))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lastNameText12, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel22))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(lastNameText13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addComponent(jLabel25)
+                        .addGap(1, 1, 1)
+                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,25 +336,29 @@ public class AddDoctor extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(lastNameText11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(lastNameText12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22))
-                .addGap(7, 7, 7)
+                    .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lastNameText13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lastNameText10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel25)
+                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel27)
+                        .addComponent(dateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel26)
+                        .addComponent(jLabel22)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -305,21 +369,34 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(57, 67, 92));
         jLabel8.setText("Email:");
 
-        jLabel11.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel11.setText("Contact number:");
-
         jLabel9.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(57, 67, 92));
         jLabel9.setText("Address:");
 
-        jLabel10.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel10.setText("Discrict:");
+        jLabel11.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel11.setText("Contact number:");
 
-        jLabel13.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel13.setText("Street:");
+        contactNoText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        contactNoText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactNoTextActionPerformed(evt);
+            }
+        });
+
+        emailText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        emailText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTextActionPerformed(evt);
+            }
+        });
+
+        cityText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        cityText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityTextActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(57, 67, 92));
@@ -329,210 +406,278 @@ public class AddDoctor extends javax.swing.JPanel {
         jLabel24.setForeground(new java.awt.Color(57, 67, 92));
         jLabel24.setText("Postal Code:");
 
-        lastNameText6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText6.addActionListener(new java.awt.event.ActionListener() {
+        codeText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        codeText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText6ActionPerformed(evt);
+                codeTextActionPerformed(evt);
             }
         });
 
-        lastNameText8.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText8.addActionListener(new java.awt.event.ActionListener() {
+        jLabel13.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel13.setText("Street:");
+
+        streetText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        streetText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText8ActionPerformed(evt);
+                streetTextActionPerformed(evt);
             }
         });
 
-        lastNameText9.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText9.addActionListener(new java.awt.event.ActionListener() {
+        districtText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        districtText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText9ActionPerformed(evt);
+                districtTextActionPerformed(evt);
             }
         });
 
-        lastNameText14.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText14ActionPerformed(evt);
-            }
-        });
-
-        lastNameText16.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText16ActionPerformed(evt);
-            }
-        });
-
-        lastNameText17.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        lastNameText17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameText17ActionPerformed(evt);
-            }
-        });
+        jLabel10.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel10.setText("Discrict:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
-                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel9))
+                .addGap(54, 54, 54)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(contactNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lastNameText8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addComponent(cityText))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lastNameText6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                        .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(72, 72, 72)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
-                        .addComponent(lastNameText9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lastNameText14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lastNameText17, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameText16, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel10))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(districtText)
+                    .addComponent(streetText)
+                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel13)
-                    .addComponent(lastNameText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameText9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameText16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel8)
+                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contactNoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel15)
-                        .addComponent(jLabel10)
-                        .addComponent(lastNameText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lastNameText14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8))
-                    .addComponent(lastNameText17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(streetText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(districtText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(cityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
+
+        addDoctor.setBackground(new java.awt.Color(36, 208, 124));
+        addDoctor.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        addDoctor.setForeground(new java.awt.Color(255, 255, 255));
+        addDoctor.setText("Add");
+        addDoctor.setBorder(null);
+        addDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDoctorActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addDoc.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 361, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(37, 37, 37)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(346, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 59, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(addDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(75, 75, 75))))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(222, 222, 222)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(371, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 16, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(25, 25, 25)
+                        .addComponent(addDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lastNameText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText1ActionPerformed
+    private void specialtyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText1ActionPerformed
+    }//GEN-LAST:event_specialtyTextActionPerformed
 
-    private void lastNameText3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText3ActionPerformed
+    private void titleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText3ActionPerformed
+    }//GEN-LAST:event_titleTextActionPerformed
 
-    private void lastNameText4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText4ActionPerformed
+    private void regNumTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNumTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText4ActionPerformed
+    }//GEN-LAST:event_regNumTextActionPerformed
 
-    private void lastNameText6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText6ActionPerformed
+    private void codeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText6ActionPerformed
+    }//GEN-LAST:event_codeTextActionPerformed
 
-    private void lastNameText10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText10ActionPerformed
+    private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText10ActionPerformed
+    }//GEN-LAST:event_firstNameTextActionPerformed
+
+    private void nicTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nicTextActionPerformed
+
+    private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityTextActionPerformed
+
+    private void streetTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_streetTextActionPerformed
+
+    private void districtTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_districtTextActionPerformed
+
+    private void degreesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_degreesTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_degreesTextActionPerformed
+
+    private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactNoTextActionPerformed
+
+    private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextActionPerformed
+
+    private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastNameTextActionPerformed
 
     private void doctorIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorIdTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_doctorIdTextActionPerformed
 
-    private void lastNameText11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText11ActionPerformed
+    private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText11ActionPerformed
+    }//GEN-LAST:event_monthComboBoxActionPerformed
 
-    private void lastNameText12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText12ActionPerformed
+    private void dateComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText12ActionPerformed
+    }//GEN-LAST:event_dateComboBoxActionPerformed
 
-    private void lastNameText13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText13ActionPerformed
+    private void addDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorActionPerformed
+        
+        String doctorId = doctorIdText.getText();
+        String employeeId = "E001";
+        String firstName = firstNameText.getText();
+        String lastName = lastNameText.getText();
+        String nic = nicText.getText();
+        String dob = (String) yearComboBox.getSelectedItem()+"-"+ (String) monthComboBox.getSelectedItem() +"-"+ (String) dateComboBox.getSelectedItem();
+        String gender = (String)genderComboBox.getSelectedItem();
+        String specialty = specialtyText.getText();
+        String degree = degreesText.getText();
+        String regNum = regNumText.getText();
+        String title = titleText.getText();
+        String contactNo = contactNoText.getText();
+        String postalCode = codeText.getText();
+        String street = streetText.getText();
+        String city = cityText.getText();
+        String district = degreesText.getText();
+        String email = emailText.getText();
+        
+        Doctor doctor = new Doctor(doctorId, employeeId, firstName, lastName, nic, dob, gender, specialty, degree, regNum, title, contactNo, postalCode, street, city, district, email);
+        try {
+            boolean addDoctor = DoctorController.addDoctor(doctor);
+            if(addDoctor){
+                JOptionPane.showMessageDialog(this, "Successful");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            fillDoctorIdText();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_addDoctorActionPerformed
 
-    private void lastNameText8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText8ActionPerformed
+    private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText8ActionPerformed
-
-    private void lastNameText9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText9ActionPerformed
-
-    private void lastNameText14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText14ActionPerformed
-
-    private void lastNameText15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText15ActionPerformed
-
-    private void lastNameText16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText16ActionPerformed
-
-    private void lastNameText17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameText17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameText17ActionPerformed
+    }//GEN-LAST:event_genderComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addDoctor;
+    private javax.swing.JTextField cityText;
+    private javax.swing.JTextField codeText;
+    private javax.swing.JTextField contactNoText;
+    private javax.swing.JComboBox<String> dateComboBox;
+    private javax.swing.JTextField degreesText;
+    private javax.swing.JTextField districtText;
     private javax.swing.JTextField doctorIdText;
+    private javax.swing.JTextField emailText;
+    private javax.swing.JTextField firstNameText;
+    private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -544,30 +689,28 @@ public class AddDoctor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField lastNameText1;
-    private javax.swing.JTextField lastNameText10;
-    private javax.swing.JTextField lastNameText11;
-    private javax.swing.JTextField lastNameText12;
-    private javax.swing.JTextField lastNameText13;
-    private javax.swing.JTextField lastNameText14;
-    private javax.swing.JTextField lastNameText15;
-    private javax.swing.JTextField lastNameText16;
-    private javax.swing.JTextField lastNameText17;
-    private javax.swing.JTextField lastNameText3;
-    private javax.swing.JTextField lastNameText4;
-    private javax.swing.JTextField lastNameText6;
-    private javax.swing.JTextField lastNameText8;
-    private javax.swing.JTextField lastNameText9;
+    private javax.swing.JTextField lastNameText;
+    private javax.swing.JComboBox<String> monthComboBox;
+    private javax.swing.JTextField nicText;
+    private javax.swing.JTextField regNumText;
+    private javax.swing.JTextField specialtyText;
+    private javax.swing.JTextField streetText;
+    private javax.swing.JTextField titleText;
+    private javax.swing.JComboBox<String> yearComboBox;
     // End of variables declaration//GEN-END:variables
 
     private void fillDoctorIdText() throws ClassNotFoundException, SQLException{

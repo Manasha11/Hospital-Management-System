@@ -21,9 +21,9 @@ public class IDController {
         String sql = " select "+columnName+" from "+tableName+" order by 1 desc limit 1";
         Connection connection = DBConnection.getDBConnection().getConnection();
         Statement stm = connection.createStatement();
-        ResultSet rst = stm.executeQuery(sql);
-        if(rst.next()){
-            return rst.getString(1);
+        ResultSet resultSet = stm.executeQuery(sql);
+        if(resultSet.next()){
+            return resultSet.getString(1);
         }
         return null;
     }

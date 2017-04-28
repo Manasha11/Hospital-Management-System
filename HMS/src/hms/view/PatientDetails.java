@@ -7,6 +7,7 @@ package hms.view;
 
 import hms.controller.PatientController;
 import hms.model.Patient;
+import hms.other.IDGenerator;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,11 @@ public class PatientDetails extends javax.swing.JPanel {
      */
     public PatientDetails() {
         initComponents();
+        try {
+            fillPatientIdText();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -48,7 +54,7 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        patientIdText = new javax.swing.JTextField();
         firstNameText = new javax.swing.JTextField();
         lastNameText = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -121,11 +127,11 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(57, 67, 92));
         jLabel13.setText("Date: ");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        patientIdText.setEditable(false);
+        patientIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        patientIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                patientIdTextActionPerformed(evt);
             }
         });
 
@@ -254,7 +260,7 @@ public class PatientDetails extends javax.swing.JPanel {
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(1, 1, 1)
@@ -303,7 +309,7 @@ public class PatientDetails extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -361,9 +367,9 @@ public class PatientDetails extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_patientIdTextActionPerformed
 
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
         // TODO add your handling code here:
@@ -410,9 +416,7 @@ public class PatientDetails extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Adding Failed");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -445,11 +449,16 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField lastNameText;
+    private javax.swing.JTextField patientIdText;
     // End of variables declaration//GEN-END:variables
+
+    private void fillPatientIdText() throws SQLException, ClassNotFoundException {
+        String newId = IDGenerator.getNewId("Patient", "PatientID", "P");
+        patientIdText.setText(newId);
+    }
 }
