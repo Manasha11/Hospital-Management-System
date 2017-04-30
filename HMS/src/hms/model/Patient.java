@@ -10,43 +10,156 @@ package hms.model;
  * @author Manasha
  */
 public class Patient {
-    private String id;
-    private String name;
+    private String patientId;
+    private String firstName;
+    private String lastName;
+    private String nic;
+    private String dob;
+    private String gender;
+    private String contactNo;
+    private String alergyDetails;
+    private String specialNotes;
 
     public Patient() {
     }
 
-    public Patient(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public Patient(String patientId, String firstName, String lastName, String nic, String dob, String gender, String contactNo, String alergyDetails, String specialNotes) {
+        this.patientId = patientId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nic = nic;
+        this.dob = dob;
+        this.gender = gender;
+        this.contactNo = contactNo;
+        this.alergyDetails = alergyDetails;
+        this.specialNotes = specialNotes;
     }
 
     /**
-     * @return the id
+     * @return the patientId
      */
-    public String getId() {
-        return id;
+    public String getPatientId() {
+        return patientId;
     }
 
     /**
-     * @param id the id to set
+     * @param patientId the patientId to set
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
     /**
-     * @return the name
+     * @return the firstName
      */
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
-     * @param name the name to set
+     * @param firstName the firstName to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    /**
+     * @return the lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * @return the nic
+     */
+    public String getNic() {
+        return nic;
+    }
+
+    /**
+     * @param nic the nic to set
+     */
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    /**
+     * @return the dob
+     */
+    public String getDob() {
+        return dob;
+    }
+
+    /**
+     * @param dob the dob to set
+     */
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the contactNo
+     */
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    /**
+     * @param contactNo the contactNo to set
+     */
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    /**
+     * @return the alergyDetails
+     */
+    public String getAlergyDetails() {
+        return alergyDetails;
+    }
+
+    /**
+     * @param alergyDetails the alergyDetails to set
+     */
+    public void setAlergyDetails(String alergyDetails) {
+        this.alergyDetails = alergyDetails;
+    }
+
+    /**
+     * @return the specialNotes
+     */
+    public String getSpecialNotes() {
+        return specialNotes;
+    }
+
+    /**
+     * @param specialNotes the specialNotes to set
+     */
+    public void setSpecialNotes(String specialNotes) {
+        this.specialNotes = specialNotes;
+    }
+
     
 }

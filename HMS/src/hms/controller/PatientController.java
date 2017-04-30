@@ -18,14 +18,19 @@ import java.sql.SQLException;
 public class PatientController {
 
     public static boolean addPatient(Patient patient) throws ClassNotFoundException, SQLException {
-        String sql = "Insert into patient values(?, ?)";
+        String sql = "Insert into patient values(?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DBConnection.getDBConnection().getConnection();
         //connection.setAutoCommit(false);
 
         PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setObject(1, patient.getId());
-        System.out.print(patient.getId());
-        stm.setObject(2, patient.getName());
+        stm.setObject(1, patient.getPatientId());
+        stm.setObject(2, patient.getFirstName());
+        stm.setObject(3, patient.getLastName());
+        stm.setObject(4, patient.getNic());
+        stm.setObject(5, patient.getDob());
+        stm.setObject(6, patient.getGender());
+        stm.setObject(7, patient.getAlergyDetails());
+        stm.setObject(8, patient.getSpecialNotes());
 
         int res = stm.executeUpdate();
         if (res > 0) {

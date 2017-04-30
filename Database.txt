@@ -44,6 +44,7 @@ create table Patient(
 	PatientNIC varchar(10),
 	PatientDOB varchar(20),
 	PatientGender varchar(10),
+	PatientContactNo varchar(20),
 	AlergyDetails varchar(500),
 	SpecialNotes varchar(500),
 	constraint primary key (PatientID)
@@ -57,6 +58,12 @@ create table Nurse(
 	NurseNIC varchar(10),
 	NurseDOB varchar(20),
 	NurseGender varchar(10),
+	NurseContactNo varchar(20),
+	NursePostalCode varchar(10),
+	NurseStreet varchar(200),
+	NurseCity varchar(50),
+	NurseDistrict varchar(50),
+	NurseEmail varchar(200),
 	constraint primary key (NurseID),
 	constraint foreign key (EmployeeID) references Employee (EmployeeID)
 	on update cascade on delete cascade
@@ -70,6 +77,12 @@ create table Pharmacist(
 	PharmacistNIC varchar(10),
 	PharmacistDOB varchar(20),
 	PharmacistGender varchar(10),
+	PharmacistContactNo varchar(20),
+	PharmacistPostalCode varchar(10),
+	PharmacistStreet varchar(200),
+	PharmacistCity varchar(50),
+	PharmacistDistrict varchar(50),
+	PharmacistEmail varchar(200),
 	constraint primary key (PharmacistID),
 	constraint foreign key (EmployeeID) references Employee (EmployeeID)
 	on update cascade on delete cascade
@@ -83,6 +96,12 @@ create table MaintenanceStaff(
 	MStafftNIC varchar(10),
 	MStaffDOB varchar(20),
 	MStaffGender varchar(10),
+	MStaffContactNo varchar(20),
+	MStaffPostalCode varchar(10),
+	MStaffStreet varchar(200),
+	MStaffCity varchar(50),
+	MStaffDistrict varchar(50),
+	MStaffEmail varchar(200),
 	constraint primary key (MStaffID),
 	constraint foreign key (EmployeeID) references Employee (EmployeeID)
 	on update cascade on delete cascade	
