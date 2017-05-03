@@ -44,7 +44,6 @@ create table Patient(
 	PatientNIC varchar(10),
 	PatientDOB varchar(20),
 	PatientGender varchar(10),
-	PatientContactNo varchar(20),
 	AlergyDetails varchar(500),
 	SpecialNotes varchar(500),
 	constraint primary key (PatientID)
@@ -153,6 +152,15 @@ create table Payment(
 	constraint primary key (PaymentID),
 	constraint foreign key (AdmissionID) references Admission (AdmissionID)
 	on update cascade on delete cascade
+);
+
+create table PatientContact(
+	PatientID varchar(10),
+	Residence varchar(15),
+	Mobile varchar(15),
+	constraint primary key (PatientID),
+	constraint foreign key (PatientID) references Patient (PatientID)
+	on delete cascade on update cascade
 );
 
 insert into Employee values("E001","Doctor");
