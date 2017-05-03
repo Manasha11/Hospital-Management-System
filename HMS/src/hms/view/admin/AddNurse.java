@@ -26,9 +26,7 @@ public class AddNurse extends javax.swing.JPanel {
         initComponents();
         try {
             fillNurseIdText();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -476,25 +474,21 @@ public class AddNurse extends javax.swing.JPanel {
         String email = emailText.getText();
         
         Nurse nurse = new Nurse(nurseId, employeeId, firstName, lastName, nic, dob, gender, contatctNo, postalCode, street, city, district, email);
-        boolean addNurse;
+        
         try {
-            addNurse = NurseController.addNurse(nurse);
+            boolean addNurse = NurseController.addNurse(nurse);
             if(addNurse){
                 JOptionPane.showMessageDialog(this, "Successfull!");
             }else{
                 JOptionPane.showMessageDialog(this, "Failed");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
             fillNurseIdText();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addNurseActionPerformed
