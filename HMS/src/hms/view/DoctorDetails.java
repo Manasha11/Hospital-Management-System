@@ -24,11 +24,7 @@ public class DoctorDetails extends javax.swing.JPanel {
      */
     public DoctorDetails() {
         initComponents();
-        try {
-            fillDoctorIdText();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(DoctorDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -77,7 +73,6 @@ public class DoctorDetails extends javax.swing.JPanel {
         streetText = new javax.swing.JTextField();
         districtText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        updateDoctor = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -446,17 +441,6 @@ public class DoctorDetails extends javax.swing.JPanel {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        updateDoctor.setBackground(new java.awt.Color(36, 208, 124));
-        updateDoctor.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        updateDoctor.setForeground(new java.awt.Color(255, 255, 255));
-        updateDoctor.setText("Update");
-        updateDoctor.setBorder(null);
-        updateDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateDoctorActionPerformed(evt);
-            }
-        });
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addDoc.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -472,14 +456,9 @@ public class DoctorDetails extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 68, Short.MAX_VALUE)
-                                .addComponent(updateDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(45, 45, 45))))
         );
@@ -498,9 +477,7 @@ public class DoctorDetails extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(25, 25, 25)
-                .addComponent(updateDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(109, 109, 109))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -577,54 +554,29 @@ public class DoctorDetails extends javax.swing.JPanel {
                 cityText.setText(doctor.getCity());
                 districtText.setText(doctor.getDistrict());
                 emailText.setText(doctor.getEmail());
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DoctorDetails.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DoctorDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_doctorIdTextActionPerformed
-
-    private void updateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDoctorActionPerformed
-
-        String doctorId = doctorIdText.getText();
-        String employeeId = "E001";
-        String firstName = firstNameText.getText();
-        String lastName = lastNameText.getText();
-        String nic = nicText.getText();
-        String dob = dobText.getText();
-        String gender = genderText.getText();
-        String specialty = specialtyText.getText();
-        String degree = degreesText.getText();
-        String regNum = regNumText.getText();
-        String title = titleText.getText();
-        String contactNo = contactNoText.getText();
-        String postalCode = codeText.getText();
-        String street = streetText.getText();
-        String city = cityText.getText();
-        String district = degreesText.getText();
-        String email = emailText.getText();
-
-        Doctor doctor = new Doctor(doctorId, employeeId, firstName, lastName, nic, dob, gender, specialty, degree, regNum, title, contactNo, postalCode, street, city, district, email);
-        try {
-            boolean addDoctor = DoctorController.addDoctor(doctor);
-            if (addDoctor) {
-                JOptionPane.showMessageDialog(this, "Successful");
             } else {
-                JOptionPane.showMessageDialog(this, "Failed");
+                JOptionPane.showMessageDialog(this, "No doctor found!");
+                firstNameText.setText("");
+                lastNameText.setText("");
+                nicText.setText("");
+                dobText.setText("");
+                genderText.setText("");
+                specialtyText.setText("");
+                degreesText.setText("");
+                regNumText.setText("");
+                titleText.setText("");
+                contactNoText.setText("");
+                codeText.setText("");
+                streetText.setText("");
+                cityText.setText("");
+                districtText.setText("");
+                emailText.setText("");
             }
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(DoctorDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            fillDoctorIdText();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DoctorDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_updateDoctorActionPerformed
+    }//GEN-LAST:event_doctorIdTextActionPerformed
 
     private void genderTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderTextActionPerformed
         // TODO add your handling code here:
@@ -674,11 +626,7 @@ public class DoctorDetails extends javax.swing.JPanel {
     private javax.swing.JTextField specialtyText;
     private javax.swing.JTextField streetText;
     private javax.swing.JTextField titleText;
-    private javax.swing.JButton updateDoctor;
     // End of variables declaration//GEN-END:variables
 
-    private void fillDoctorIdText() throws ClassNotFoundException, SQLException {
-        String newId = IDGenerator.getNewId("doctor", "doctorId", "D");
-        doctorIdText.setText(newId);
-    }
+    
 }
