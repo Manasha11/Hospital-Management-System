@@ -410,8 +410,19 @@ public class NurseDetails extends javax.swing.JPanel {
                 cityText.setText(nurse.getCity());
                 districtText.setText(nurse.getDistrict());
                 emailText.setText(nurse.getEmail());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "No nurse found!");
+                firstNameText.setText("");
+                lastNameText.setText("");
+                dobText.setText("");
+                nicText.setText("");
+                genderText.setText("");
+                contactNoText.setText("");
+                emailText.setText("");
+                codeText.setText("");
+                streetText.setText("");
+                cityText.setText("");
+                districtText.setText("");
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(NurseDetails.class.getName()).log(Level.SEVERE, null, ex);
