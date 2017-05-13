@@ -46,7 +46,12 @@ public class Home extends javax.swing.JFrame {
         departmentButton = new javax.swing.JButton();
         doctorButton = new javax.swing.JButton();
         dashboardButton = new javax.swing.JButton();
+        nurseButton = new javax.swing.JButton();
+        pharmacistButton = new javax.swing.JButton();
+        mStaffButton = new javax.swing.JButton();
+        reportButton = new javax.swing.JButton();
         patientButton = new javax.swing.JButton();
+        admissionButton = new javax.swing.JButton();
         homePanel = new javax.swing.JPanel();
         green = new javax.swing.JPanel();
 
@@ -95,7 +100,7 @@ public class Home extends javax.swing.JFrame {
                 departmentButtonActionPerformed(evt);
             }
         });
-        navBar.add(departmentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 250, 40));
+        navBar.add(departmentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 250, 40));
 
         doctorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doctorDefault.png"))); // NOI18N
         doctorButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -111,7 +116,12 @@ public class Home extends javax.swing.JFrame {
                 doctorButtonMouseExited(evt);
             }
         });
-        navBar.add(doctorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 250, 40));
+        doctorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorButtonActionPerformed(evt);
+            }
+        });
+        navBar.add(doctorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 40));
 
         dashboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashboardDefault.png"))); // NOI18N
         dashboardButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -134,6 +144,90 @@ public class Home extends javax.swing.JFrame {
         });
         navBar.add(dashboardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 250, 40));
 
+        nurseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NurseDefault.png"))); // NOI18N
+        nurseButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        nurseButton.setPreferredSize(new java.awt.Dimension(250, 40));
+        nurseButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nurseButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nurseButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nurseButtonMouseExited(evt);
+            }
+        });
+        nurseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nurseButtonActionPerformed(evt);
+            }
+        });
+        navBar.add(nurseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 250, 40));
+
+        pharmacistButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PharmacistDefault.png"))); // NOI18N
+        pharmacistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pharmacistButton.setPreferredSize(new java.awt.Dimension(250, 40));
+        pharmacistButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pharmacistButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pharmacistButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pharmacistButtonMouseExited(evt);
+            }
+        });
+        pharmacistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pharmacistButtonActionPerformed(evt);
+            }
+        });
+        navBar.add(pharmacistButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 250, 40));
+
+        mStaffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MstaffDefault.png"))); // NOI18N
+        mStaffButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mStaffButton.setPreferredSize(new java.awt.Dimension(250, 40));
+        mStaffButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mStaffButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mStaffButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mStaffButtonMouseExited(evt);
+            }
+        });
+        mStaffButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mStaffButtonActionPerformed(evt);
+            }
+        });
+        navBar.add(mStaffButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 250, 40));
+
+        reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TestReportDefault.png"))); // NOI18N
+        reportButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        reportButton.setPreferredSize(new java.awt.Dimension(250, 40));
+        reportButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                reportButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                reportButtonMouseExited(evt);
+            }
+        });
+        reportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportButtonActionPerformed(evt);
+            }
+        });
+        navBar.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 250, 40));
+
         patientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PatientDefault.png"))); // NOI18N
         patientButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         patientButton.setPreferredSize(new java.awt.Dimension(250, 40));
@@ -153,7 +247,28 @@ public class Home extends javax.swing.JFrame {
                 patientButtonActionPerformed(evt);
             }
         });
-        navBar.add(patientButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 40));
+        navBar.add(patientButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 250, 40));
+
+        admissionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PatientDefault.png"))); // NOI18N
+        admissionButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        admissionButton.setPreferredSize(new java.awt.Dimension(250, 40));
+        admissionButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admissionButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                admissionButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                admissionButtonMouseExited(evt);
+            }
+        });
+        admissionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admissionButtonActionPerformed(evt);
+            }
+        });
+        navBar.add(admissionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 250, 40));
 
         background.add(navBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 250, 690));
 
@@ -254,6 +369,104 @@ public class Home extends javax.swing.JFrame {
         homePanel.repaint();
     }//GEN-LAST:event_dashboardButtonActionPerformed
 
+    private void nurseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nurseButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nurseButtonMouseClicked
+
+    private void nurseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nurseButtonMouseEntered
+        nurseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NurseClicked.png")));
+    }//GEN-LAST:event_nurseButtonMouseEntered
+
+    private void nurseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nurseButtonMouseExited
+        nurseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NurseDefault.png")));
+    }//GEN-LAST:event_nurseButtonMouseExited
+
+    private void nurseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nurseButtonActionPerformed
+        NurseDetails nurseDetails = new NurseDetails();
+        nurseDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(nurseDetails);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_nurseButtonActionPerformed
+
+    private void doctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorButtonActionPerformed
+        DoctorDetails doctorDetails = new DoctorDetails();
+        doctorDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(doctorDetails);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_doctorButtonActionPerformed
+
+    private void pharmacistButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacistButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pharmacistButtonMouseClicked
+
+    private void pharmacistButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacistButtonMouseEntered
+        pharmacistButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PharmacistClicked.png")));
+    }//GEN-LAST:event_pharmacistButtonMouseEntered
+
+    private void pharmacistButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacistButtonMouseExited
+        pharmacistButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PharmacistDefault.png")));
+    }//GEN-LAST:event_pharmacistButtonMouseExited
+
+    private void pharmacistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacistButtonActionPerformed
+        PharmacistDetails pharmacistDetails = new PharmacistDetails();
+        pharmacistDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(pharmacistDetails);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_pharmacistButtonActionPerformed
+
+    private void mStaffButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mStaffButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mStaffButtonMouseClicked
+
+    private void mStaffButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mStaffButtonMouseEntered
+        mStaffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MstaffClicked.png")));
+    }//GEN-LAST:event_mStaffButtonMouseEntered
+
+    private void mStaffButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mStaffButtonMouseExited
+        mStaffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MstaffDefault.png")));
+    }//GEN-LAST:event_mStaffButtonMouseExited
+
+    private void mStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mStaffButtonActionPerformed
+        MaintenanceStaffDetails staffDetails = new MaintenanceStaffDetails();
+        staffDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(staffDetails);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_mStaffButtonActionPerformed
+
+    private void reportButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportButtonMouseClicked
+
+    private void reportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseEntered
+        reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TestReportClicked.png")));
+    }//GEN-LAST:event_reportButtonMouseEntered
+
+    private void reportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseExited
+        reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TestReportDefault.png")));
+    }//GEN-LAST:event_reportButtonMouseExited
+
+    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
+        ViewTestResults testResults = new ViewTestResults();
+        testResults.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(testResults);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_reportButtonActionPerformed
+
     private void patientButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientButtonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_patientButtonMouseClicked
@@ -267,14 +480,30 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_patientButtonMouseExited
 
     private void patientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientButtonActionPerformed
-        PatientDetails patientDetails = new PatientDetails();
-        patientDetails.setVisible(true);
+        ViewPatientProfile patientProfile = new ViewPatientProfile();
+        patientProfile.setVisible(true);
         homePanel.setLayout(new BorderLayout());
         homePanel.removeAll();
-        homePanel.add(patientDetails);
+        homePanel.add(patientProfile);
         homePanel.validate();
         homePanel.repaint();
     }//GEN-LAST:event_patientButtonActionPerformed
+
+    private void admissionButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admissionButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admissionButtonMouseClicked
+
+    private void admissionButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admissionButtonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admissionButtonMouseEntered
+
+    private void admissionButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admissionButtonMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admissionButtonMouseExited
+
+    private void admissionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admissionButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,6 +541,7 @@ public class Home extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admissionButton;
     private javax.swing.JPanel background;
     private javax.swing.JButton dashboardButton;
     private javax.swing.JButton departmentButton;
@@ -319,7 +549,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel green;
     private javax.swing.JPanel header;
     public static javax.swing.JPanel homePanel;
+    private javax.swing.JButton mStaffButton;
     private javax.swing.JPanel navBar;
+    private javax.swing.JButton nurseButton;
     private javax.swing.JButton patientButton;
+    private javax.swing.JButton pharmacistButton;
+    private javax.swing.JButton reportButton;
     // End of variables declaration//GEN-END:variables
 }

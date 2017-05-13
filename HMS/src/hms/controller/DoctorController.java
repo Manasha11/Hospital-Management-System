@@ -7,8 +7,10 @@ package hms.controller;
 
 import hms.db.DBConnection;
 import hms.model.Doctor;
+import hms.model.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -46,5 +48,26 @@ public class DoctorController {
         return false;
         
     }
-    
+
+    public static Doctor searchDoctor(String doctorId) throws ClassNotFoundException, SQLException {
+        String sql = "Select * from Doctor where DoctorID = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, doctorId);
+        
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            Doctor doctor = new Doctor(resultSet.getString("DoctorID"), resultSet.getString("EmployeeID"), 
+                    resultSet.getString("DoctorFirstName"), resultSet.getString("DoctorLastName"), resultSet.getString("DoctorNIC"), 
+                    resultSet.getString("DoctorDOB"), resultSet.getString("DoctorGender"), resultSet.getString("Title"), 
+                    resultSet.getString("Degrees"), resultSet.getString("RegistrationNo"), resultSet.getString("DoctorID"), 
+                    resultSet.getString("DoctorContactNo"), resultSet.getString("DoctorPostalCode"), 
+                    resultSet.getString("DoctorStreet"), resultSet.getString("DoctorCity"), resultSet.getString("DoctorDistrict"), 
+                    resultSet.getString("DoctorEmail"));
+            return doctor;
+        } else {
+            return null;
+        }
+    }
+
 }

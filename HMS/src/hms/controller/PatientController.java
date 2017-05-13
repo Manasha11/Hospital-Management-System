@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -20,46 +19,6 @@ import java.util.ArrayList;
  */
 public class PatientController {
 
-//    public static boolean addPatient(Patient patient) throws ClassNotFoundException, SQLException {
-//        String sql = "Insert into patient values(?, ?, ?, ?, ?, ?, ?, ?)";
-//        Connection connection = DBConnection.getDBConnection().getConnection();
-//        //connection.setAutoCommit(false);
-//
-//        PreparedStatement stm = connection.prepareStatement(sql);
-//        stm.setObject(1, patient.getPatientId());
-//        stm.setObject(2, patient.getFirstName());
-//        stm.setObject(3, patient.getLastName());
-//        stm.setObject(4, patient.getNic());
-//        stm.setObject(5, patient.getDob());
-//        stm.setObject(6, patient.getGender());
-//        stm.setObject(7, patient.getAlergyDetails());
-//        stm.setObject(8, patient.getSpecialNotes());
-//
-//        int res = stm.executeUpdate();
-//        if (res > 0) {
-//            return true;
-//
-//        }
-//        return false;
-//
-//    }
-//
-//    public static boolean addPatientContact(PatientContact patientContact) throws ClassNotFoundException, SQLException {
-//        String sql = "Insert into PatientContact values(?, ?, ?)";
-//        Connection connection = DBConnection.getDBConnection().getConnection();
-//        
-//        PreparedStatement statement = connection.prepareStatement(sql);
-//        statement.setObject(1, patientContact.getPatientID());
-//        statement.setObject(2, patientContact.getResidence());
-//        statement.setObject(3, patientContact.getMobile());
-//        
-//        int res = statement.executeUpdate();
-//        if(res > 0){
-//            
-//            return true;
-//        }
-//        return false;
-//    }
     public static boolean addPatient(Patient patient, PatientContact patientContact) throws ClassNotFoundException, SQLException {
         String sql = "Insert into patient values(?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DBConnection.getDBConnection().getConnection();
@@ -138,42 +97,3 @@ public class PatientController {
         }
     }
 }
-
-
-//public static boolean UpdateDoctor(Doctor doctor, ArrayList<WorkPlace> hospitalList, ArrayList<Shift> shiftList) throws SQLException, ClassNotFoundException {
-//        String sql = "Update doctor set docFirstName = ?, docLastName = ?, specialty = ?, degree = ?, docNic = ?, docAddress = ?, docContactNo =? where doctorId = ?";
-//        Connection connection = DBConnection.getDBConnection().getConnection();
-//        connection.setAutoCommit(false);
-//
-//        try {
-//            PreparedStatement stm = connection.prepareStatement(sql);
-//            stm.setObject(8, doctor.getDoctorId());
-//            stm.setObject(1, doctor.getDocFirstName());
-//            stm.setObject(2, doctor.getDocLastName());
-//            stm.setObject(3, doctor.getSpecialty());
-//            stm.setObject(4, doctor.getDegree());
-//            stm.setObject(5, doctor.getDocNic());
-//            stm.setObject(6, doctor.getDocAddress());
-//            stm.setObject(7, doctor.getDocContactNo());
-//
-//            int res = stm.executeUpdate();
-//            if (res > 0) {
-//                boolean updateWorkPlace = WorkPlaceController.updateWorkPlace(hospitalList);
-//                if (updateWorkPlace) {
-//                    boolean updateShift = ShiftController.updateShift(shiftList);
-//                    if (updateShift) {
-//                        connection.commit();
-//                        return true;
-//                    } else {
-//                        connection.rollback();
-//                    }
-//                } else {
-//                    connection.rollback();
-//                }
-//            }
-//            return false;
-//        } finally {
-//            connection.setAutoCommit(true);
-//
-//        }
-//    }
