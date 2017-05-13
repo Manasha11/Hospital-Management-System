@@ -76,7 +76,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="7c" green="d0" red="24" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Update Pharmacist"/>
+        <Property name="text" type="java.lang.String" value="Pharmacist Details"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel5">

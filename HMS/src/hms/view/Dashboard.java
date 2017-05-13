@@ -12,6 +12,7 @@ import static hms.view.Home.homePanel;
 import hms.view.admin.AddMaintenanceStaff;
 import hms.view.admin.AddNurse;
 import hms.view.admin.AddPharmacist;
+import hms.view.admin.UpdateMaintenanceStaff;
 import hms.view.admin.UpdateNurse;
 import hms.view.admin.UpdatePharmacist;
 
@@ -46,6 +47,7 @@ public class Dashboard extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -102,6 +104,13 @@ public class Dashboard extends javax.swing.JPanel {
             }
         });
 
+        jButton10.setText("Update Maintenance Staff");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,11 +131,12 @@ public class Dashboard extends javax.swing.JPanel {
                             .addComponent(jButton5))
                         .addGap(36, 36, 36)))
                 .addGap(111, 111, 111)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton7)
                     .addComponent(jButton9)
-                    .addComponent(jButton8))
-                .addContainerGap(195, Short.MAX_VALUE))
+                    .addComponent(jButton8)
+                    .addComponent(jButton10))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +155,9 @@ public class Dashboard extends javax.swing.JPanel {
                     .addComponent(jButton5)
                     .addComponent(jButton7))
                 .addGap(49, 49, 49)
-                .addComponent(jButton6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton10))
                 .addGap(113, 113, 113)
                 .addComponent(jButton2))
         );
@@ -221,9 +233,20 @@ public class Dashboard extends javax.swing.JPanel {
         homePanel.repaint();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        UpdateMaintenanceStaff updateMaintenanceStaff = new UpdateMaintenanceStaff();
+        updateMaintenanceStaff.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(updateMaintenanceStaff);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

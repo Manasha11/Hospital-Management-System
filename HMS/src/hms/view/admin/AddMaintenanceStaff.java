@@ -6,10 +6,7 @@
 package hms.view.admin;
 
 import hms.controller.MaintenanceStaffController;
-import hms.controller.NurseController;
 import hms.model.MaintenanceStaff;
-import hms.model.Nurse;
-import hms.other.IDController;
 import hms.other.IDGenerator;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -467,7 +464,7 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
         String nic = nicText.getText();
-        String dob = (String) yearComboBox.getSelectedItem()+"-"+ (String) monthComboBox.getSelectedItem() +"-"+ (String) dateComboBox.getSelectedItem();
+        String dob = (String) yearComboBox.getSelectedItem() + "-" + (String) monthComboBox.getSelectedItem() + "-" + (String) dateComboBox.getSelectedItem();
         String gender = (String) genderComboBox.getSelectedItem();
         String contatctNo = contactNoText.getText();
         String postalCode = codeText.getText();
@@ -475,13 +472,13 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         String city = cityText.getText();
         String district = districtText.getText();
         String email = emailText.getText();
-        
+
         MaintenanceStaff maintenanceStaff = new MaintenanceStaff(mStaffId, employeeId, firstName, lastName, nic, dob, gender, contatctNo, postalCode, street, city, district, email);
         try {
             boolean addmStaff = MaintenanceStaffController.addMaintenanceStaff(maintenanceStaff);
-            if(addmStaff){
+            if (addmStaff) {
                 JOptionPane.showMessageDialog(this, "Successfull!");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
         } catch (ClassNotFoundException ex) {
@@ -489,7 +486,7 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             fillMaintenanceStaffId();
         } catch (SQLException ex) {
@@ -497,7 +494,17 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddMaintenanceStaff.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        firstNameText.setText("");
+        lastNameText.setText("");
+        nicText.setText("");
+        contactNoText.setText("");
+        emailText.setText("");
+        codeText.setText("");
+        streetText.setText("");
+        cityText.setText("");
+        districtText.setText("");
+
     }//GEN-LAST:event_addMaintenantActionPerformed
 
 

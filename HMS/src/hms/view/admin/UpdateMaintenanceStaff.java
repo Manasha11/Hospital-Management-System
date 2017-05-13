@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hms.view;
+package hms.view.admin;
 
-import hms.controller.PharmacistController;
-import hms.model.Pharmacist;
+import hms.controller.MaintenanceStaffController;
+import hms.model.MaintenanceStaff;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author Manasha
  */
-public class PharmacistDetails extends javax.swing.JPanel {
+public class UpdateMaintenanceStaff extends javax.swing.JPanel {
 
     /**
-     * Creates new form AddPharmacist
+     * Creates new form AddMaintenanceStaff
      */
-    public PharmacistDetails() {
+    public UpdateMaintenanceStaff() {
         initComponents();
-        
+
     }
 
     /**
@@ -36,19 +36,7 @@ public class PharmacistDetails extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        pharmacistIdText = new javax.swing.JTextField();
-        lastNameText = new javax.swing.JTextField();
-        firstNameText = new javax.swing.JTextField();
-        nicText = new javax.swing.JTextField();
-        dobText = new javax.swing.JTextField();
-        genderText = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -63,122 +51,28 @@ public class PharmacistDetails extends javax.swing.JPanel {
         streetText = new javax.swing.JTextField();
         districtText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        updatePharmacist = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        mStaffIdText = new javax.swing.JTextField();
+        lastNameText = new javax.swing.JTextField();
+        firstNameText = new javax.swing.JTextField();
+        nicText = new javax.swing.JTextField();
+        dobText = new javax.swing.JTextField();
+        genderText = new javax.swing.JTextField();
+        updateMaintenant = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Cuprum", 1, 34)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(36, 208, 124));
-        jLabel1.setText("Pharmacist Details");
+        jLabel1.setText("Maintenance Staff Details");
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cuprum", 0, 18), new java.awt.Color(57, 67, 92))); // NOI18N
-        jPanel5.setForeground(new java.awt.Color(57, 67, 92));
-
-        jLabel16.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel16.setText("Gender");
-
-        jLabel17.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel17.setText("Date of birth: ");
-
-        jLabel18.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel18.setText("Last name: ");
-
-        jLabel19.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel19.setText("NIC: ");
-
-        jLabel20.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel20.setText("First name: ");
-
-        jLabel21.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel21.setText("Pharmacist ID: ");
-
-        pharmacistIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        pharmacistIdText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pharmacistIdTextActionPerformed(evt);
-            }
-        });
-
-        lastNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-
-        firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-
-        nicText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-
-        dobText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        dobText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobTextActionPerformed(evt);
-            }
-        });
-
-        genderText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        genderText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genderTextActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel17))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pharmacistIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(firstNameText)
-                    .addComponent(dobText))
-                .addGap(99, 99, 99)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel16))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 16, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(pharmacistIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/maintenant_2.png"))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cuprum", 0, 18), new java.awt.Color(57, 67, 92))); // NOI18N
@@ -321,16 +215,122 @@ public class PharmacistDetails extends javax.swing.JPanel {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pharmacist-slider-trans_2.png"))); // NOI18N
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cuprum", 0, 18), new java.awt.Color(57, 67, 92))); // NOI18N
+        jPanel5.setForeground(new java.awt.Color(57, 67, 92));
 
-        updatePharmacist.setBackground(new java.awt.Color(36, 208, 124));
-        updatePharmacist.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        updatePharmacist.setForeground(new java.awt.Color(255, 255, 255));
-        updatePharmacist.setText("Update");
-        updatePharmacist.setBorder(null);
-        updatePharmacist.addActionListener(new java.awt.event.ActionListener() {
+        jLabel16.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel16.setText("Gender");
+
+        jLabel17.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel17.setText("Date of birth: ");
+
+        jLabel18.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel18.setText("Last name: ");
+
+        jLabel19.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel19.setText("NIC: ");
+
+        jLabel20.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel20.setText("First name: ");
+
+        jLabel21.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel21.setText("Maintenant ID: ");
+
+        mStaffIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        mStaffIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updatePharmacistActionPerformed(evt);
+                mStaffIdTextActionPerformed(evt);
+            }
+        });
+
+        lastNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+
+        firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+
+        nicText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+
+        dobText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dobText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dobTextActionPerformed(evt);
+            }
+        });
+
+        genderText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        genderText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderTextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel17))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mStaffIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                    .addComponent(firstNameText)
+                    .addComponent(dobText, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(99, 99, 99)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(mStaffIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        updateMaintenant.setBackground(new java.awt.Color(36, 208, 124));
+        updateMaintenant.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        updateMaintenant.setForeground(new java.awt.Color(255, 255, 255));
+        updateMaintenant.setText("Update");
+        updateMaintenant.setBorder(null);
+        updateMaintenant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateMaintenantActionPerformed(evt);
             }
         });
 
@@ -338,21 +338,23 @@ public class PharmacistDetails extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(updatePharmacist, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107))))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(updateMaintenant, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(104, 104, 104))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,13 +366,13 @@ public class PharmacistDetails extends javax.swing.JPanel {
                         .addGap(46, 46, 46)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(updatePharmacist, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(updateMaintenant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -398,8 +400,8 @@ public class PharmacistDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_districtTextActionPerformed
 
-    private void updatePharmacistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePharmacistActionPerformed
-        String pharmacistId = pharmacistIdText.getText();
+    private void updateMaintenantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMaintenantActionPerformed
+        String mStaffId = mStaffIdText.getText();
         String employeeId = "E002";
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
@@ -412,20 +414,19 @@ public class PharmacistDetails extends javax.swing.JPanel {
         String city = cityText.getText();
         String district = districtText.getText();
         String email = emailText.getText();
-        
-        Pharmacist pharmacist = new Pharmacist(pharmacistId, employeeId, firstName, lastName, nic, dob, gender, contatctNo, postalCode, street, city, district, email);
-        
+
+        MaintenanceStaff maintenanceStaff = new MaintenanceStaff(mStaffId, employeeId, firstName, lastName, nic, dob, gender, contatctNo, postalCode, street, city, district, email);
         try {
-            boolean updatePharmacist = PharmacistController.updatePharmacist(pharmacist);
-            if(updatePharmacist){
+            boolean addmStaff = MaintenanceStaffController.updateMaintenanceStaff(maintenanceStaff);
+            if (addmStaff) {
                 JOptionPane.showMessageDialog(this, "Successfull!");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PharmacistDetails.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
         firstNameText.setText("");
         lastNameText.setText("");
         dobText.setText("");
@@ -437,8 +438,9 @@ public class PharmacistDetails extends javax.swing.JPanel {
         streetText.setText("");
         cityText.setText("");
         districtText.setText("");
-        
-    }//GEN-LAST:event_updatePharmacistActionPerformed
+
+
+    }//GEN-LAST:event_updateMaintenantActionPerformed
 
     private void dobTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTextActionPerformed
         // TODO add your handling code here:
@@ -448,26 +450,25 @@ public class PharmacistDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderTextActionPerformed
 
-    private void pharmacistIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacistIdTextActionPerformed
-        String pharmacistId = pharmacistIdText.getText();
-        Pharmacist pharmacist;
-        
+    private void mStaffIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mStaffIdTextActionPerformed
+        String mStaffId = mStaffIdText.getText();
+        MaintenanceStaff maintenanceStaff;
         try {
-            pharmacist = PharmacistController.searchPharmacist(pharmacistId);
-            if (pharmacist != null) {
-                firstNameText.setText(pharmacist.getFirstName());
-                lastNameText.setText(pharmacist.getLastName());
-                nicText.setText(pharmacist.getNic());
-                dobText.setText(pharmacist.getDob());
-                genderText.setText(pharmacist.getGender());
-                contactNoText.setText(pharmacist.getContatctNo());
-                codeText.setText(pharmacist.getPostalCode());
-                streetText.setText(pharmacist.getStreet());
-                cityText.setText(pharmacist.getCity());
-                districtText.setText(pharmacist.getDistrict());
-                emailText.setText(pharmacist.getEmail());
+            maintenanceStaff = MaintenanceStaffController.searchMStaff(mStaffId);
+            if (maintenanceStaff != null) {
+                firstNameText.setText(maintenanceStaff.getFirstName());
+                lastNameText.setText(maintenanceStaff.getLastName());
+                nicText.setText(maintenanceStaff.getNic());
+                dobText.setText(maintenanceStaff.getDob());
+                genderText.setText(maintenanceStaff.getGender());
+                contactNoText.setText(maintenanceStaff.getContatctNo());
+                codeText.setText(maintenanceStaff.getPostalCode());
+                streetText.setText(maintenanceStaff.getStreet());
+                cityText.setText(maintenanceStaff.getCity());
+                districtText.setText(maintenanceStaff.getDistrict());
+                emailText.setText(maintenanceStaff.getEmail());
             } else {
-                JOptionPane.showMessageDialog(this, "No pharmacist found!");
+                JOptionPane.showMessageDialog(this, "No maintenant found!");
                 firstNameText.setText("");
                 lastNameText.setText("");
                 dobText.setText("");
@@ -481,11 +482,10 @@ public class PharmacistDetails extends javax.swing.JPanel {
                 districtText.setText("");
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PharmacistDetails.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateMaintenanceStaff.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-        
-    }//GEN-LAST:event_pharmacistIdTextActionPerformed
+    }//GEN-LAST:event_mStaffIdTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -515,11 +515,10 @@ public class PharmacistDetails extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField lastNameText;
+    private javax.swing.JTextField mStaffIdText;
     private javax.swing.JTextField nicText;
-    private javax.swing.JTextField pharmacistIdText;
     private javax.swing.JTextField streetText;
-    private javax.swing.JButton updatePharmacist;
+    private javax.swing.JButton updateMaintenant;
     // End of variables declaration//GEN-END:variables
 
-    
 }
