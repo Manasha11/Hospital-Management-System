@@ -60,7 +60,7 @@ public class DoctorController {
             Doctor doctor = new Doctor(resultSet.getString("DoctorID"), resultSet.getString("EmployeeID"), 
                     resultSet.getString("DoctorFirstName"), resultSet.getString("DoctorLastName"), resultSet.getString("DoctorNIC"), 
                     resultSet.getString("DoctorDOB"), resultSet.getString("DoctorGender"), resultSet.getString("Title"), 
-                    resultSet.getString("Degrees"), resultSet.getString("RegistrationNo"), resultSet.getString("DoctorID"), 
+                    resultSet.getString("Degrees"), resultSet.getString("RegistrationNo"), resultSet.getString("Specialization"), 
                     resultSet.getString("DoctorContactNo"), resultSet.getString("DoctorPostalCode"), 
                     resultSet.getString("DoctorStreet"), resultSet.getString("DoctorCity"), resultSet.getString("DoctorDistrict"), 
                     resultSet.getString("DoctorEmail"));

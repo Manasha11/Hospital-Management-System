@@ -7,7 +7,6 @@ package hms.view.admin;
 
 import hms.controller.NurseController;
 import hms.model.Nurse;
-import hms.other.IDGenerator;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,11 +23,7 @@ public class UpdateNurse extends javax.swing.JPanel {
      */
     public UpdateNurse() {
         initComponents();
-        try {
-            fillNurseIdText();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(UpdateNurse.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     /**
@@ -48,17 +43,12 @@ public class UpdateNurse extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        nurseIdText = new javax.swing.JTextField();
         lastNameText = new javax.swing.JTextField();
         firstNameText = new javax.swing.JTextField();
         nicText = new javax.swing.JTextField();
-        genderComboBox = new javax.swing.JComboBox<>();
-        jLabel25 = new javax.swing.JLabel();
-        yearComboBox = new javax.swing.JComboBox<>();
-        jLabel26 = new javax.swing.JLabel();
-        monthComboBox = new javax.swing.JComboBox<>();
-        jLabel27 = new javax.swing.JLabel();
-        dateComboBox = new javax.swing.JComboBox<>();
+        dobText = new javax.swing.JTextField();
+        genderText = new javax.swing.JTextField();
+        nurseIdText = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -74,13 +64,13 @@ public class UpdateNurse extends javax.swing.JPanel {
         districtText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        addNurse = new javax.swing.JButton();
+        updateNurse = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Cuprum", 1, 34)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(36, 208, 124));
-        jLabel1.setText("Add Nurse");
+        jLabel1.setText("Nurse Details");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cuprum", 0, 18), new java.awt.Color(57, 67, 92))); // NOI18N
@@ -110,49 +100,30 @@ public class UpdateNurse extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(57, 67, 92));
         jLabel21.setText("Nurse ID: ");
 
-        nurseIdText.setEditable(false);
-        nurseIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-
         lastNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
 
         firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
 
         nicText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
 
-        genderComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-
-        jLabel25.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel25.setText("Year: ");
-
-        yearComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
-        yearComboBox.setBorder(null);
-
-        jLabel26.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel26.setText("Month: ");
-
-        monthComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
-        monthComboBox.setBorder(null);
-        monthComboBox.addActionListener(new java.awt.event.ActionListener() {
+        dobText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dobText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monthComboBoxActionPerformed(evt);
+                dobTextActionPerformed(evt);
             }
         });
 
-        jLabel27.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel27.setText("Date: ");
-
-        dateComboBox.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        dateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        dateComboBox.setBorder(null);
-        dateComboBox.addActionListener(new java.awt.event.ActionListener() {
+        genderText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        genderText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateComboBoxActionPerformed(evt);
+                genderTextActionPerformed(evt);
+            }
+        });
+
+        nurseIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nurseIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nurseIdTextActionPerformed(evt);
             }
         });
 
@@ -171,29 +142,18 @@ public class UpdateNurse extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nurseIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                            .addComponent(firstNameText))
+                            .addComponent(firstNameText)
+                            .addComponent(dobText))
                         .addGap(99, 99, 99)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(jLabel16))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
-                        .addGap(1, 1, 1)
-                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(nurseIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 34, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -214,18 +174,12 @@ public class UpdateNurse extends javax.swing.JPanel {
                     .addComponent(jLabel19)
                     .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel25)
-                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel27)
-                        .addComponent(dateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -371,14 +325,14 @@ public class UpdateNurse extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Picture2.png"))); // NOI18N
 
-        addNurse.setBackground(new java.awt.Color(36, 208, 124));
-        addNurse.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        addNurse.setForeground(new java.awt.Color(255, 255, 255));
-        addNurse.setText("Add");
-        addNurse.setBorder(null);
-        addNurse.addActionListener(new java.awt.event.ActionListener() {
+        updateNurse.setBackground(new java.awt.Color(36, 208, 124));
+        updateNurse.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        updateNurse.setForeground(new java.awt.Color(255, 255, 255));
+        updateNurse.setText("Update");
+        updateNurse.setBorder(null);
+        updateNurse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNurseActionPerformed(evt);
+                updateNurseActionPerformed(evt);
             }
         });
 
@@ -396,11 +350,11 @@ public class UpdateNurse extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(112, 112, 112)
-                                .addComponent(addNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(updateNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(109, 109, 109)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 113, Short.MAX_VALUE))
+                        .addGap(0, 70, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,18 +375,10 @@ public class UpdateNurse extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(updateNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_monthComboBoxActionPerformed
-
-    private void dateComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateComboBoxActionPerformed
 
     private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
         // TODO add your handling code here:
@@ -458,52 +404,106 @@ public class UpdateNurse extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_districtTextActionPerformed
 
-    private void addNurseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNurseActionPerformed
+    private void updateNurseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateNurseActionPerformed
         String nurseId = nurseIdText.getText();
         String employeeId = "E002";
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
         String nic = nicText.getText();
-        String dob = (String) yearComboBox.getSelectedItem()+"-"+ (String) monthComboBox.getSelectedItem() +"-"+ (String) dateComboBox.getSelectedItem();
-        String gender = (String) genderComboBox.getSelectedItem();
+        String dob = dobText.getText();
+        String gender = genderText.getText();
         String contatctNo = contactNoText.getText();
         String postalCode = codeText.getText();
         String street = streetText.getText();
         String city = cityText.getText();
         String district = districtText.getText();
         String email = emailText.getText();
-        
+
         Nurse nurse = new Nurse(nurseId, employeeId, firstName, lastName, nic, dob, gender, contatctNo, postalCode, street, city, district, email);
-        
+
         try {
-            boolean addNurse = NurseController.addNurse(nurse);
-            if(addNurse){
+            boolean updateNurse = NurseController.updateNurse(nurse);
+            if (updateNurse) {
                 JOptionPane.showMessageDialog(this, "Successfull!");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UpdateNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        firstNameText.setText("");
+        lastNameText.setText("");
+        dobText.setText("");
+        nicText.setText("");
+        genderText.setText("");
+        contactNoText.setText("");
+        emailText.setText("");
+        codeText.setText("");
+        streetText.setText("");
+        cityText.setText("");
+        districtText.setText("");
+
+    }//GEN-LAST:event_updateNurseActionPerformed
+
+    private void dobTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobTextActionPerformed
+
+    private void genderTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genderTextActionPerformed
+
+    private void nurseIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nurseIdTextActionPerformed
+        String nurseId = nurseIdText.getText();
+        Nurse nurse;
         try {
-            fillNurseIdText();
-        } catch (SQLException | ClassNotFoundException ex) {
+            nurse = NurseController.searchNurse(nurseId);
+            if (nurse != null) {
+                firstNameText.setText(nurse.getFirstName());
+                lastNameText.setText(nurse.getLastName());
+                nicText.setText(nurse.getNic());
+                dobText.setText(nurse.getDob());
+                genderText.setText(nurse.getGender());
+                contactNoText.setText(nurse.getContatctNo());
+                codeText.setText(nurse.getPostalCode());
+                streetText.setText(nurse.getStreet());
+                cityText.setText(nurse.getCity());
+                districtText.setText(nurse.getDistrict());
+                emailText.setText(nurse.getEmail());
+            } else {
+                JOptionPane.showMessageDialog(this, "No nurse found!");
+                firstNameText.setText("");
+                lastNameText.setText("");
+                dobText.setText("");
+                nicText.setText("");
+                genderText.setText("");
+                contactNoText.setText("");
+                emailText.setText("");
+                codeText.setText("");
+                streetText.setText("");
+                cityText.setText("");
+                districtText.setText("");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UpdateNurse.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(UpdateNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_addNurseActionPerformed
+
+
+    }//GEN-LAST:event_nurseIdTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addNurse;
     private javax.swing.JTextField cityText;
     private javax.swing.JTextField codeText;
     private javax.swing.JTextField contactNoText;
-    private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JTextField districtText;
+    private javax.swing.JTextField dobText;
     private javax.swing.JTextField emailText;
     private javax.swing.JTextField firstNameText;
-    private javax.swing.JComboBox<String> genderComboBox;
+    private javax.swing.JTextField genderText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -517,23 +517,15 @@ public class UpdateNurse extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField lastNameText;
-    private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField nurseIdText;
     private javax.swing.JTextField streetText;
-    private javax.swing.JComboBox<String> yearComboBox;
+    private javax.swing.JButton updateNurse;
     // End of variables declaration//GEN-END:variables
 
-    private void fillNurseIdText() throws SQLException, ClassNotFoundException {
-        String newId = IDGenerator.getNewId("Nurse", "NurseID", "N");
-        nurseIdText.setText(newId);
-    }
 }

@@ -317,7 +317,8 @@ public class ViewPatientProfile extends javax.swing.JPanel {
         String patientId = patientIdText.getText();
         try {
             Patient patient = PatientController.searchPatient(patientId);
-            if(patient != null){
+            PatientContact patientContact = PatientContactController.searchPatientContact(patientId);
+            if(patient != null && patientContact != null){
                 firstNameText.setText(patient.getFirstName());
                 lastNameText.setText(patient.getLastName());
                 dobText.setText(patient.getDob());
@@ -325,15 +326,13 @@ public class ViewPatientProfile extends javax.swing.JPanel {
                 nicText.setText(patient.getNic());
                 alergyDetailsText.setText(patient.getAlergyDetails());
                 specialNotesText.setText(patient.getSpecialNotes());
-            }
-            PatientContact patientContact = PatientContactController.searchPatientContact(patientId);
-            if(patientContact != null){
                 residenceText.setText(patientContact.getResidence());
                 mobileText.setText(patientContact.getMobile());
+            }else{
+                JOptionPane.showMessageDialog(this, "No patient found!");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewPatientProfile.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ViewPatientProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_patientIdTextActionPerformed
@@ -368,9 +367,7 @@ public class ViewPatientProfile extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(this, "Failed!");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewPatientProfile.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ViewPatientProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
         
