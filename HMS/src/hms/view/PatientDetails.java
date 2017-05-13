@@ -403,7 +403,7 @@ public class PatientDetails extends javax.swing.JPanel {
         String residence = residenceText.getText();
         String mobile = mobileText.getText();
         
-        Patient patient = new Patient(patientID, firstName, lastName, nic, dob, gender, nic, alergyDetails, specialNotes);
+        Patient patient = new Patient(patientID, firstName, lastName, nic, dob, gender, alergyDetails, specialNotes);
         PatientContact patientContact = new PatientContact(patientID, residence, mobile);
         
         try {
@@ -424,6 +424,15 @@ public class PatientDetails extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        firstNameText.setText("");
+        lastNameText.setText("");
+        nicText.setText("");
+        specialNotesText.setText("");
+        alergyDetailsText.setText("");
+        residenceText.setText("");
+        mobileText.setText("");
+        
     }//GEN-LAST:event_addPatientActionPerformed
 
 

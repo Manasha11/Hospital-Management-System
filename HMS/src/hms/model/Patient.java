@@ -16,21 +16,19 @@ public class Patient {
     private String nic;
     private String dob;
     private String gender;
-    private String contactNo;
     private String alergyDetails;
     private String specialNotes;
 
     public Patient() {
     }
 
-    public Patient(String patientId, String firstName, String lastName, String nic, String dob, String gender, String contactNo, String alergyDetails, String specialNotes) {
+    public Patient(String patientId, String firstName, String lastName, String nic, String dob, String gender, String alergyDetails, String specialNotes) {
         this.patientId = patientId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nic = nic;
         this.dob = dob;
         this.gender = gender;
-        this.contactNo = contactNo;
         this.alergyDetails = alergyDetails;
         this.specialNotes = specialNotes;
     }
@@ -117,20 +115,6 @@ public class Patient {
      */
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    /**
-     * @return the contactNo
-     */
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    /**
-     * @param contactNo the contactNo to set
-     */
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
     }
 
     /**
