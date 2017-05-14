@@ -5,6 +5,7 @@
  */
 package hms.view;
 
+import hms.view.admin.AddWard;
 import java.awt.BorderLayout;
 
 /**
@@ -43,7 +44,7 @@ public class Home extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
         navBar = new javax.swing.JPanel();
-        departmentButton = new javax.swing.JButton();
+        dischargeButton = new javax.swing.JButton();
         doctorButton = new javax.swing.JButton();
         dashboardButton = new javax.swing.JButton();
         nurseButton = new javax.swing.JButton();
@@ -81,26 +82,26 @@ public class Home extends javax.swing.JFrame {
         navBar.setBackground(new java.awt.Color(57, 67, 92));
         navBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        departmentButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/departmentDefault.png"))); // NOI18N
-        departmentButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        departmentButton.setPreferredSize(new java.awt.Dimension(250, 40));
-        departmentButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        dischargeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DischargeDefault.png"))); // NOI18N
+        dischargeButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        dischargeButton.setPreferredSize(new java.awt.Dimension(250, 40));
+        dischargeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                departmentButtonMouseClicked(evt);
+                dischargeButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                departmentButtonMouseEntered(evt);
+                dischargeButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                departmentButtonMouseExited(evt);
+                dischargeButtonMouseExited(evt);
             }
         });
-        departmentButton.addActionListener(new java.awt.event.ActionListener() {
+        dischargeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                departmentButtonActionPerformed(evt);
+                dischargeButtonActionPerformed(evt);
             }
         });
-        navBar.add(departmentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 250, 40));
+        navBar.add(dischargeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 250, 40));
 
         doctorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doctorDefault.png"))); // NOI18N
         doctorButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -318,18 +319,18 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void departmentButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentButtonMouseEntered
-        departmentButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/departmentClicked.png")));
+    private void dischargeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dischargeButtonMouseEntered
+        dischargeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DischargeClicked.png")));
         
-    }//GEN-LAST:event_departmentButtonMouseEntered
+    }//GEN-LAST:event_dischargeButtonMouseEntered
 
-    private void departmentButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentButtonMouseExited
-        departmentButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/departmentDefault.png")));
-    }//GEN-LAST:event_departmentButtonMouseExited
+    private void dischargeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dischargeButtonMouseExited
+        dischargeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DischargeDefault.png")));
+    }//GEN-LAST:event_dischargeButtonMouseExited
 
-    private void departmentButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentButtonMouseClicked
+    private void dischargeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dischargeButtonMouseClicked
         //dashboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jbuttoncli.png")));
-    }//GEN-LAST:event_departmentButtonMouseClicked
+    }//GEN-LAST:event_dischargeButtonMouseClicked
 
     private void doctorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doctorButtonMouseClicked
         // TODO add your handling code here:
@@ -355,9 +356,15 @@ public class Home extends javax.swing.JFrame {
         dashboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashboardDefault.png")));
     }//GEN-LAST:event_dashboardButtonMouseExited
 
-    private void departmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departmentButtonActionPerformed
+    private void dischargeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dischargeButtonActionPerformed
+        Discharge discharge = new Discharge();
+        discharge.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(discharge);
+        homePanel.validate();
+        homePanel.repaint();
+    }//GEN-LAST:event_dischargeButtonActionPerformed
 
     private void dashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardButtonActionPerformed
         Dashboard dashboard = new Dashboard();
@@ -550,7 +557,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton admissionButton;
     private javax.swing.JPanel background;
     private javax.swing.JButton dashboardButton;
-    private javax.swing.JButton departmentButton;
+    private javax.swing.JButton dischargeButton;
     private javax.swing.JButton doctorButton;
     private javax.swing.JPanel green;
     private javax.swing.JPanel header;
