@@ -4,7 +4,8 @@ use hms;
 
 create table Ward(
 	WardID varchar(10) not null,
-	WardName varchar(50),
+	WardType varchar(50),
+	Description varchar(500),
 	constraint primary key (WardID)
 );
 
@@ -44,8 +45,13 @@ create table Patient(
 	PatientNIC varchar(10),
 	PatientDOB varchar(20),
 	PatientGender varchar(10),
+	BloodGroup varchar(5),
 	AlergyDetails varchar(500),
 	SpecialNotes varchar(500),
+	PatientPostalCode varchar(10),
+	PatientStreet varchar(200),
+	PatientCity varchar(50),
+	PatientDistrict varchar(50),
 	constraint primary key (PatientID)
 );
 
@@ -158,6 +164,17 @@ create table PatientContact(
 	PatientID varchar(10),
 	Residence varchar(15),
 	Mobile varchar(15),
+	constraint primary key (PatientID),
+	constraint foreign key (PatientID) references Patient (PatientID)
+	on delete cascade on update cascade
+);
+
+create table EmergencyContact(
+	PatientID varchar(10),
+	Relationship varchar(50),
+	Name varchar(100),
+	Mobile varchar(15),
+	Residence varchar(15),
 	constraint primary key (PatientID),
 	constraint foreign key (PatientID) references Patient (PatientID)
 	on delete cascade on update cascade
