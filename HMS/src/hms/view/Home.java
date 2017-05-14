@@ -100,7 +100,7 @@ public class Home extends javax.swing.JFrame {
                 departmentButtonActionPerformed(evt);
             }
         });
-        navBar.add(departmentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 250, 40));
+        navBar.add(departmentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 250, 40));
 
         doctorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doctorDefault.png"))); // NOI18N
         doctorButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -121,7 +121,7 @@ public class Home extends javax.swing.JFrame {
                 doctorButtonActionPerformed(evt);
             }
         });
-        navBar.add(doctorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 40));
+        navBar.add(doctorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 250, 40));
 
         dashboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashboardDefault.png"))); // NOI18N
         dashboardButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -163,7 +163,7 @@ public class Home extends javax.swing.JFrame {
                 nurseButtonActionPerformed(evt);
             }
         });
-        navBar.add(nurseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 250, 40));
+        navBar.add(nurseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 250, 40));
 
         pharmacistButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PharmacistDefault.png"))); // NOI18N
         pharmacistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -184,7 +184,7 @@ public class Home extends javax.swing.JFrame {
                 pharmacistButtonActionPerformed(evt);
             }
         });
-        navBar.add(pharmacistButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 250, 40));
+        navBar.add(pharmacistButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 250, 40));
 
         mStaffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MstaffDefault.png"))); // NOI18N
         mStaffButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -205,7 +205,7 @@ public class Home extends javax.swing.JFrame {
                 mStaffButtonActionPerformed(evt);
             }
         });
-        navBar.add(mStaffButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 250, 40));
+        navBar.add(mStaffButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 250, 40));
 
         reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TestReportDefault.png"))); // NOI18N
         reportButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -226,7 +226,7 @@ public class Home extends javax.swing.JFrame {
                 reportButtonActionPerformed(evt);
             }
         });
-        navBar.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 250, 40));
+        navBar.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 250, 40));
 
         patientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PatientDefault.png"))); // NOI18N
         patientButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -247,9 +247,9 @@ public class Home extends javax.swing.JFrame {
                 patientButtonActionPerformed(evt);
             }
         });
-        navBar.add(patientButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 250, 40));
+        navBar.add(patientButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 40));
 
-        admissionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PatientDefault.png"))); // NOI18N
+        admissionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/AdmissionDefault.png"))); // NOI18N
         admissionButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         admissionButton.setPreferredSize(new java.awt.Dimension(250, 40));
         admissionButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -494,15 +494,21 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_admissionButtonMouseClicked
 
     private void admissionButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admissionButtonMouseEntered
-        // TODO add your handling code here:
+        admissionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/AdmissionClicked.png")));
     }//GEN-LAST:event_admissionButtonMouseEntered
 
     private void admissionButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admissionButtonMouseExited
-        // TODO add your handling code here:
+        admissionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/AdmissionDefault.png")));
     }//GEN-LAST:event_admissionButtonMouseExited
 
     private void admissionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionButtonActionPerformed
-        // TODO add your handling code here:
+        PatientDetails patientDetails = new PatientDetails();
+        patientDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(patientDetails);
+        homePanel.validate();
+        homePanel.repaint();
     }//GEN-LAST:event_admissionButtonActionPerformed
 
     /**

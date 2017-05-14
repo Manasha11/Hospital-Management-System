@@ -64,7 +64,6 @@ public class PharmacistDetails extends javax.swing.JPanel {
         districtText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        updatePharmacist = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -323,17 +322,6 @@ public class PharmacistDetails extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pharmacist-slider-trans_2.png"))); // NOI18N
 
-        updatePharmacist.setBackground(new java.awt.Color(36, 208, 124));
-        updatePharmacist.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        updatePharmacist.setForeground(new java.awt.Color(255, 255, 255));
-        updatePharmacist.setText("Update");
-        updatePharmacist.setBorder(null);
-        updatePharmacist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updatePharmacistActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -344,11 +332,7 @@ public class PharmacistDetails extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(updatePharmacist, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107))))
+                .addComponent(jLabel2))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -367,10 +351,8 @@ public class PharmacistDetails extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(updatePharmacist, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -397,48 +379,6 @@ public class PharmacistDetails extends javax.swing.JPanel {
     private void districtTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_districtTextActionPerformed
-
-    private void updatePharmacistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePharmacistActionPerformed
-        String pharmacistId = pharmacistIdText.getText();
-        String employeeId = "E002";
-        String firstName = firstNameText.getText();
-        String lastName = lastNameText.getText();
-        String nic = nicText.getText();
-        String dob = dobText.getText();
-        String gender = genderText.getText();
-        String contatctNo = contactNoText.getText();
-        String postalCode = codeText.getText();
-        String street = streetText.getText();
-        String city = cityText.getText();
-        String district = districtText.getText();
-        String email = emailText.getText();
-        
-        Pharmacist pharmacist = new Pharmacist(pharmacistId, employeeId, firstName, lastName, nic, dob, gender, contatctNo, postalCode, street, city, district, email);
-        
-        try {
-            boolean updatePharmacist = PharmacistController.updatePharmacist(pharmacist);
-            if(updatePharmacist){
-                JOptionPane.showMessageDialog(this, "Successfull!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Failed");
-            }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PharmacistDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-        firstNameText.setText("");
-        lastNameText.setText("");
-        dobText.setText("");
-        nicText.setText("");
-        genderText.setText("");
-        contactNoText.setText("");
-        emailText.setText("");
-        codeText.setText("");
-        streetText.setText("");
-        cityText.setText("");
-        districtText.setText("");
-        
-    }//GEN-LAST:event_updatePharmacistActionPerformed
 
     private void dobTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTextActionPerformed
         // TODO add your handling code here:
@@ -518,7 +458,6 @@ public class PharmacistDetails extends javax.swing.JPanel {
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField pharmacistIdText;
     private javax.swing.JTextField streetText;
-    private javax.swing.JButton updatePharmacist;
     // End of variables declaration//GEN-END:variables
 
     
