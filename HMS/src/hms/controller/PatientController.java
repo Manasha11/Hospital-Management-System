@@ -51,19 +51,19 @@ public class PatientController {
         }
     }
 
-    public static Patient searchPatient(String patientId) throws ClassNotFoundException, SQLException {
-        String sql = "Select * from Patient where PatientID = ?";
-        Connection connection = DBConnection.getDBConnection().getConnection();
-        PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setObject(1, patientId);
-        ResultSet rst = stm.executeQuery();
-        if (rst.next()) {
-            Patient patient = new Patient(rst.getString("PatientID"), rst.getString("PatientFirstName"), rst.getString("PatientLastName"), rst.getString("PatientNIC"), rst.getString("PatientDOB"), rst.getString("PatientGender"), rst.getString("AlergyDetails"), rst.getString("SpecialNotes"));
-            return patient;
-        } else {
-            return null;
-        }
-    }
+//    public static Patient searchPatient(String patientId) throws ClassNotFoundException, SQLException {
+//        String sql = "Select * from Patient where PatientID = ?";
+//        Connection connection = DBConnection.getDBConnection().getConnection();
+//        PreparedStatement stm = connection.prepareStatement(sql);
+//        stm.setObject(1, patientId);
+//        ResultSet rst = stm.executeQuery();
+//        if (rst.next()) {
+//            Patient patient = new Patient(rst.getString("PatientID"), rst.getString("PatientFirstName"), rst.getString("PatientLastName"), rst.getString("PatientNIC"), rst.getString("PatientDOB"), rst.getString("PatientGender"), rst.getString("AlergyDetails"), rst.getString("SpecialNotes"));
+//            return patient;
+//        } else {
+//            return null;
+//        }
+//    }
 
     public static boolean updatePatient(Patient patient, PatientContact patientContact) throws ClassNotFoundException, SQLException {
         String sql = "Update Patient set PatientFirstName = ?, PatientLastName = ?, PatientNIC = ?, PatientDOB = ?, PatientGender = ?, AlergyDetails = ?, SpecialNotes = ? where PatientId = ?";

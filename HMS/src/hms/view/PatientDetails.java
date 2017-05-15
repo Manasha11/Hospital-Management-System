@@ -5,7 +5,6 @@
  */
 package hms.view;
 
-import hms.model.Patient;
 import hms.other.IDGenerator;
 import static hms.view.Home.homePanel;
 import java.awt.BorderLayout;
@@ -59,7 +58,7 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         lastNameText = new javax.swing.JTextField();
-        residenceText = new javax.swing.JTextField();
+        bloodGroupTest = new javax.swing.JTextField();
         yearComboBox = new javax.swing.JComboBox<>();
         firstNameText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -73,8 +72,8 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        contactNoText = new javax.swing.JTextField();
-        emailText = new javax.swing.JTextField();
+        mobileTest = new javax.swing.JTextField();
+        residenceTest = new javax.swing.JTextField();
         cityText = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -86,12 +85,12 @@ public class PatientDetails extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        contactNoText1 = new javax.swing.JTextField();
-        emailText1 = new javax.swing.JTextField();
-        contactNoText2 = new javax.swing.JTextField();
+        relationshipTest = new javax.swing.JTextField();
+        nameTest = new javax.swing.JTextField();
+        eMobileTest = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        emailText2 = new javax.swing.JTextField();
+        eResidenceTest = new javax.swing.JTextField();
         nextButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
@@ -187,10 +186,10 @@ public class PatientDetails extends javax.swing.JPanel {
             }
         });
 
-        residenceText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        residenceText.addActionListener(new java.awt.event.ActionListener() {
+        bloodGroupTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        bloodGroupTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                residenceTextActionPerformed(evt);
+                bloodGroupTestActionPerformed(evt);
             }
         });
 
@@ -276,7 +275,7 @@ public class PatientDetails extends javax.swing.JPanel {
                                 .addComponent(jLabel19)))
                         .addGap(68, 68, 68)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(residenceText, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloodGroupTest, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -323,7 +322,7 @@ public class PatientDetails extends javax.swing.JPanel {
                             .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(68, 68, 68)
-                        .addComponent(residenceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bloodGroupTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -349,17 +348,17 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel15.setForeground(new java.awt.Color(57, 67, 92));
         jLabel15.setText("Mobile: ");
 
-        contactNoText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        contactNoText.addActionListener(new java.awt.event.ActionListener() {
+        mobileTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        mobileTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactNoTextActionPerformed(evt);
+                mobileTestActionPerformed(evt);
             }
         });
 
-        emailText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        emailText.addActionListener(new java.awt.event.ActionListener() {
+        residenceTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        residenceTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextActionPerformed(evt);
+                residenceTestActionPerformed(evt);
             }
         });
 
@@ -418,7 +417,7 @@ public class PatientDetails extends javax.swing.JPanel {
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(contactNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mobileTest, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addGap(50, 50, 50)
@@ -436,7 +435,7 @@ public class PatientDetails extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(districtText)
                     .addComponent(streetText)
-                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(residenceTest, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -444,32 +443,28 @@ public class PatientDetails extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(residenceTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mobileTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel22)
+                        .addComponent(streetText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10))
+                        .addComponent(districtText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contactNoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(streetText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(districtText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel24)
-                                    .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel21)
-                                    .addComponent(cityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(jLabel24)
+                            .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(cityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -485,24 +480,24 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel26.setForeground(new java.awt.Color(57, 67, 92));
         jLabel26.setText("Next if kin: ");
 
-        contactNoText1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        contactNoText1.addActionListener(new java.awt.event.ActionListener() {
+        relationshipTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        relationshipTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactNoText1ActionPerformed(evt);
+                relationshipTestActionPerformed(evt);
             }
         });
 
-        emailText1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        emailText1.addActionListener(new java.awt.event.ActionListener() {
+        nameTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailText1ActionPerformed(evt);
+                nameTestActionPerformed(evt);
             }
         });
 
-        contactNoText2.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        contactNoText2.addActionListener(new java.awt.event.ActionListener() {
+        eMobileTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        eMobileTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactNoText2ActionPerformed(evt);
+                eMobileTestActionPerformed(evt);
             }
         });
 
@@ -514,10 +509,10 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(57, 67, 92));
         jLabel17.setText("Residence: ");
 
-        emailText2.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        emailText2.addActionListener(new java.awt.event.ActionListener() {
+        eResidenceTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        eResidenceTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailText2ActionPerformed(evt);
+                eResidenceTestActionPerformed(evt);
             }
         });
 
@@ -534,17 +529,17 @@ public class PatientDetails extends javax.swing.JPanel {
                             .addComponent(jLabel23))
                         .addGap(7, 7, 7)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(emailText1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(contactNoText1))
+                            .addComponent(nameTest, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(relationshipTest))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(contactNoText2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eMobileTest, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailText2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eResidenceTest, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -553,18 +548,18 @@ public class PatientDetails extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(contactNoText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(relationshipTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(emailText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel16)
-                        .addComponent(emailText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(contactNoText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eResidenceTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eMobileTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -660,10 +655,10 @@ public class PatientDetails extends javax.swing.JPanel {
         String gender = (String) genderComboBox.getSelectedItem();
         String alergyDetails = alergyDetailsText.getText();
         String specialNotes = specialNotesText.getText();
-        String residence = residenceText.getText();
+        String residence = bloodGroupTest.getText();
 //        String mobile = mobileText.getText();
-        
-        Patient patient = new Patient(patientID, firstName, lastName, nic, dob, gender, alergyDetails, specialNotes);
+//        
+//        Patient patient = new Patient(patientID, firstName, lastName, nic, dob, gender, alergyDetails, specialNotes);
 //        PatientContact patientContact = new PatientContact(patientID, residence, mobile);
         
 //        try {
@@ -688,7 +683,7 @@ public class PatientDetails extends javax.swing.JPanel {
         nicText.setText("");
         specialNotesText.setText("");
         alergyDetailsText.setText("");
-        residenceText.setText("");
+        bloodGroupTest.setText("");
 //        mobileText.setText("");
         
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -709,21 +704,21 @@ public class PatientDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameTextActionPerformed
 
-    private void residenceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_residenceTextActionPerformed
+    private void bloodGroupTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloodGroupTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_residenceTextActionPerformed
+    }//GEN-LAST:event_bloodGroupTestActionPerformed
 
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTextActionPerformed
 
-    private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
+    private void mobileTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contactNoTextActionPerformed
+    }//GEN-LAST:event_mobileTestActionPerformed
 
-    private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
+    private void residenceTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_residenceTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextActionPerformed
+    }//GEN-LAST:event_residenceTestActionPerformed
 
     private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
         // TODO add your handling code here:
@@ -741,13 +736,13 @@ public class PatientDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_districtTextActionPerformed
 
-    private void contactNoText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoText1ActionPerformed
+    private void relationshipTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relationshipTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contactNoText1ActionPerformed
+    }//GEN-LAST:event_relationshipTestActionPerformed
 
-    private void emailText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailText1ActionPerformed
+    private void nameTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailText1ActionPerformed
+    }//GEN-LAST:event_nameTestActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         Admission admission = new Admission();
@@ -763,28 +758,25 @@ public class PatientDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void contactNoText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoText2ActionPerformed
+    private void eMobileTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobileTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contactNoText2ActionPerformed
+    }//GEN-LAST:event_eMobileTestActionPerformed
 
-    private void emailText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailText2ActionPerformed
+    private void eResidenceTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eResidenceTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailText2ActionPerformed
+    }//GEN-LAST:event_eResidenceTestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JTextArea alergyDetailsText;
+    private javax.swing.JTextField bloodGroupTest;
     private javax.swing.JTextField cityText;
     private javax.swing.JTextField codeText;
-    private javax.swing.JTextField contactNoText;
-    private javax.swing.JTextField contactNoText1;
-    private javax.swing.JTextField contactNoText2;
     private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JTextField districtText;
-    private javax.swing.JTextField emailText;
-    private javax.swing.JTextField emailText1;
-    private javax.swing.JTextField emailText2;
+    private javax.swing.JTextField eMobileTest;
+    private javax.swing.JTextField eResidenceTest;
     private javax.swing.JTextField firstNameText;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JLabel jLabel1;
@@ -818,11 +810,14 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameText;
+    private javax.swing.JTextField mobileTest;
     private javax.swing.JComboBox<String> monthComboBox;
+    private javax.swing.JTextField nameTest;
     private javax.swing.JButton nextButton;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField patientIdText;
-    private javax.swing.JTextField residenceText;
+    private javax.swing.JTextField relationshipTest;
+    private javax.swing.JTextField residenceTest;
     private javax.swing.JTextArea specialNotesText;
     private javax.swing.JTextField streetText;
     private javax.swing.JButton updateButton;

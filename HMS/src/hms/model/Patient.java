@@ -16,21 +16,31 @@ public class Patient {
     private String nic;
     private String dob;
     private String gender;
+    private String bloodGroup;
     private String alergyDetails;
     private String specialNotes;
+    private String postalCode;
+    private String street;
+    private String city;
+    private String district;
 
     public Patient() {
     }
 
-    public Patient(String patientId, String firstName, String lastName, String nic, String dob, String gender, String alergyDetails, String specialNotes) {
+    public Patient(String patientId, String firstName, String lastName, String nic, String dob, String gender, String bloodGroup, String alergyDetails, String specialNotes, String postalCode, String street, String city, String district) {
         this.patientId = patientId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nic = nic;
         this.dob = dob;
         this.gender = gender;
+        this.bloodGroup = bloodGroup;
         this.alergyDetails = alergyDetails;
         this.specialNotes = specialNotes;
+        this.postalCode = postalCode;
+        this.street = street;
+        this.city = city;
+        this.district = district;
     }
 
     /**
@@ -118,6 +128,20 @@ public class Patient {
     }
 
     /**
+     * @return the bloodGroup
+     */
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    /**
+     * @param bloodGroup the bloodGroup to set
+     */
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    /**
      * @return the alergyDetails
      */
     public String getAlergyDetails() {
@@ -143,6 +167,62 @@ public class Patient {
      */
     public void setSpecialNotes(String specialNotes) {
         this.specialNotes = specialNotes;
+    }
+
+    /**
+     * @return the postalCode
+     */
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    /**
+     * @param postalCode the postalCode to set
+     */
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    /**
+     * @return the street
+     */
+    public String getStreet() {
+        return street;
+    }
+
+    /**
+     * @param street the street to set
+     */
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    /**
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the district
+     */
+    public String getDistrict() {
+        return district;
+    }
+
+    /**
+     * @param district the district to set
+     */
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     
