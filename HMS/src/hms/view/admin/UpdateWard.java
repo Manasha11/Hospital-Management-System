@@ -5,6 +5,13 @@
  */
 package hms.view.admin;
 
+import hms.controller.WardController;
+import hms.model.Ward;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manasha
@@ -29,12 +36,12 @@ public class UpdateWard extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        doctorIdText = new javax.swing.JTextField();
+        wardIdTest = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        firstNameText = new javax.swing.JTextField();
+        wardTypeTest = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        alergyDetailsText = new javax.swing.JTextArea();
+        descriptionTest = new javax.swing.JTextArea();
         updateButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -48,11 +55,10 @@ public class UpdateWard extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(57, 67, 92));
         jLabel21.setText("Ward ID: ");
 
-        doctorIdText.setEditable(false);
-        doctorIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        doctorIdText.addActionListener(new java.awt.event.ActionListener() {
+        wardIdTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        wardIdTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doctorIdTextActionPerformed(evt);
+                wardIdTestActionPerformed(evt);
             }
         });
 
@@ -60,21 +66,21 @@ public class UpdateWard extends javax.swing.JPanel {
         jLabel20.setForeground(new java.awt.Color(57, 67, 92));
         jLabel20.setText("Ward Type: ");
 
-        firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        firstNameText.addActionListener(new java.awt.event.ActionListener() {
+        wardTypeTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        wardTypeTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameTextActionPerformed(evt);
+                wardTypeTestActionPerformed(evt);
             }
         });
 
         jLabel12.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel12.setText("Alergy Details: ");
+        jLabel12.setText("Description: ");
 
-        alergyDetailsText.setColumns(20);
-        alergyDetailsText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        alergyDetailsText.setRows(5);
-        jScrollPane2.setViewportView(alergyDetailsText);
+        descriptionTest.setColumns(20);
+        descriptionTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        descriptionTest.setRows(5);
+        jScrollPane2.setViewportView(descriptionTest);
 
         updateButton.setBackground(new java.awt.Color(36, 208, 124));
         updateButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
@@ -94,18 +100,14 @@ public class UpdateWard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(54, 54, 54)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel20))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel12))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wardTypeTest, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wardIdTest, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(518, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,11 +127,11 @@ public class UpdateWard extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(wardIdTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(wardTypeTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
@@ -140,28 +142,64 @@ public class UpdateWard extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void doctorIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorIdTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_doctorIdTextActionPerformed
+    private void wardIdTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardIdTestActionPerformed
+        String wardId = wardIdTest.getText();
 
-    private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
+        try {
+            Ward ward = WardController.searchWard(wardId);
+            if (ward != null) {
+                wardTypeTest.setText(ward.getWardType());
+                descriptionTest.setText(ward.getDescription());
+            } else {
+                JOptionPane.showMessageDialog(this, "No ward found!");
+                wardTypeTest.setText("");
+                descriptionTest.setText("");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UpdateWard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateWard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_wardIdTestActionPerformed
+
+    private void wardTypeTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardTypeTestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameTextActionPerformed
+    }//GEN-LAST:event_wardTypeTestActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        String wardId = wardIdTest.getText();
+        String wardType = wardTypeTest.getText();
+        String description = descriptionTest.getText();
 
+        Ward ward = new Ward(wardId, wardType, description);
+
+        try {
+            boolean updateWard = WardController.updateWard(ward);
+            if (updateWard) {
+                JOptionPane.showMessageDialog(this, "Successfull");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UpdateWard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateWard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        wardTypeTest.setText("");
+        descriptionTest.setText("");
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea alergyDetailsText;
-    private javax.swing.JTextField doctorIdText;
-    private javax.swing.JTextField firstNameText;
+    private javax.swing.JTextArea descriptionTest;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton updateButton;
+    private javax.swing.JTextField wardIdTest;
+    private javax.swing.JTextField wardTypeTest;
     // End of variables declaration//GEN-END:variables
 }
