@@ -906,19 +906,19 @@
                               </Group>
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="nameTest" pref="139" max="32767" attributes="0"/>
-                                  <Component id="relationshipTest" max="32767" attributes="0"/>
+                                  <Component id="nameText" pref="139" max="32767" attributes="0"/>
+                                  <Component id="relationshipText" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="29" max="32767" attributes="0"/>
-                              <Component id="eMobileTest" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="eMobileText" min="-2" pref="139" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="eResidenceTest" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="eResidenceText" min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -931,20 +931,20 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="relationshipTest" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="relationshipText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameTest" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="eResidenceTest" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="eMobileTest" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="eResidenceText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="eMobileText" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -975,34 +975,34 @@
                 <Property name="text" type="java.lang.String" value="Next if kin: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="relationshipTest">
+            <Component class="javax.swing.JTextField" name="relationshipText">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Cuprum" size="16" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relationshipTestActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relationshipTextActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="nameTest">
+            <Component class="javax.swing.JTextField" name="nameText">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Cuprum" size="16" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTestActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="eMobileTest">
+            <Component class="javax.swing.JTextField" name="eMobileText">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Cuprum" size="16" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eMobileTestActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eMobileTextActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
@@ -1027,14 +1027,14 @@
                 <Property name="text" type="java.lang.String" value="Residence: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="eResidenceTest">
+            <Component class="javax.swing.JTextField" name="eResidenceText">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Cuprum" size="16" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eResidenceTestActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eResidenceTextActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

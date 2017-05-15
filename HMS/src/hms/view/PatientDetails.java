@@ -5,12 +5,17 @@
  */
 package hms.view;
 
+import hms.controller.PatientController;
+import hms.model.EmergencyContact;
+import hms.model.Patient;
+import hms.model.PatientContact;
 import hms.other.IDGenerator;
 import static hms.view.Home.homePanel;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -85,12 +90,12 @@ public class PatientDetails extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        relationshipTest = new javax.swing.JTextField();
-        nameTest = new javax.swing.JTextField();
-        eMobileTest = new javax.swing.JTextField();
+        relationshipText = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
+        eMobileText = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        eResidenceTest = new javax.swing.JTextField();
+        eResidenceText = new javax.swing.JTextField();
         nextButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
@@ -480,24 +485,24 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel26.setForeground(new java.awt.Color(57, 67, 92));
         jLabel26.setText("Next if kin: ");
 
-        relationshipTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        relationshipTest.addActionListener(new java.awt.event.ActionListener() {
+        relationshipText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        relationshipText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                relationshipTestActionPerformed(evt);
+                relationshipTextActionPerformed(evt);
             }
         });
 
-        nameTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        nameTest.addActionListener(new java.awt.event.ActionListener() {
+        nameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTestActionPerformed(evt);
+                nameTextActionPerformed(evt);
             }
         });
 
-        eMobileTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        eMobileTest.addActionListener(new java.awt.event.ActionListener() {
+        eMobileText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        eMobileText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eMobileTestActionPerformed(evt);
+                eMobileTextActionPerformed(evt);
             }
         });
 
@@ -509,10 +514,10 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(57, 67, 92));
         jLabel17.setText("Residence: ");
 
-        eResidenceTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        eResidenceTest.addActionListener(new java.awt.event.ActionListener() {
+        eResidenceText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        eResidenceText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eResidenceTestActionPerformed(evt);
+                eResidenceTextActionPerformed(evt);
             }
         });
 
@@ -529,17 +534,17 @@ public class PatientDetails extends javax.swing.JPanel {
                             .addComponent(jLabel23))
                         .addGap(7, 7, 7)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameTest, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(relationshipTest))
+                            .addComponent(nameText, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(relationshipText))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(eMobileTest, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eMobileText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(eResidenceTest, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eResidenceText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -548,18 +553,18 @@ public class PatientDetails extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(relationshipTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(relationshipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(nameTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel16)
-                        .addComponent(eResidenceTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(eMobileTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eResidenceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eMobileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -651,7 +656,7 @@ public class PatientDetails extends javax.swing.JPanel {
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
         String nic = nicText.getText();
-        String dob = (String) yearComboBox.getSelectedItem()+"-"+ (String) monthComboBox.getSelectedItem() +"-"+ (String) dateComboBox.getSelectedItem();
+        String dob = (String) yearComboBox.getSelectedItem() + "-" + (String) monthComboBox.getSelectedItem() + "-" + (String) dateComboBox.getSelectedItem();
         String gender = (String) genderComboBox.getSelectedItem();
         String alergyDetails = alergyDetailsText.getText();
         String specialNotes = specialNotesText.getText();
@@ -660,7 +665,7 @@ public class PatientDetails extends javax.swing.JPanel {
 //        
 //        Patient patient = new Patient(patientID, firstName, lastName, nic, dob, gender, alergyDetails, specialNotes);
 //        PatientContact patientContact = new PatientContact(patientID, residence, mobile);
-        
+
 //        try {
 //            boolean addPatient = PatientController.addPatient(patient, patientContact);
 //            if(addPatient){
@@ -671,13 +676,12 @@ public class PatientDetails extends javax.swing.JPanel {
 //        } catch (ClassNotFoundException | SQLException ex) {
 //            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
 //      }
-       
         try {
             fillPatientIdText();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         firstNameText.setText("");
         lastNameText.setText("");
         nicText.setText("");
@@ -685,7 +689,7 @@ public class PatientDetails extends javax.swing.JPanel {
         alergyDetailsText.setText("");
         bloodGroupTest.setText("");
 //        mobileText.setText("");
-        
+
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void dateComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBoxActionPerformed
@@ -736,13 +740,13 @@ public class PatientDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_districtTextActionPerformed
 
-    private void relationshipTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relationshipTestActionPerformed
+    private void relationshipTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relationshipTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_relationshipTestActionPerformed
+    }//GEN-LAST:event_relationshipTextActionPerformed
 
-    private void nameTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTestActionPerformed
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTestActionPerformed
+    }//GEN-LAST:event_nameTextActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         Admission admission = new Admission();
@@ -755,16 +759,55 @@ public class PatientDetails extends javax.swing.JPanel {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        String patientId = patientIdText.getText();
+        String firstName = firstNameText.getText();
+        String lastName = lastNameText.getText();
+        String nic = nicText.getText();
+        String dob = (String) yearComboBox.getSelectedItem() + "-" + monthComboBox.getSelectedItem() + "-" + dateComboBox.getSelectedItem();
+        String gender = (String) genderComboBox.getSelectedItem();
+        String bloodGroup = bloodGroupTest.getText();
+        String alergyDetails = alergyDetailsText.getText();
+        String specialNotes = specialNotesText.getText();
+        String postalCode = codeText.getText();
+        String street = streetText.getText();
+        String city = cityText.getText();
+        String district = districtText.getText();
+
+        Patient patient = new Patient(patientId, firstName, lastName, nic, dob, gender, bloodGroup, alergyDetails, specialNotes, postalCode, street, city, district);
+
+        String residence = residenceTest.getText();
+        String mobile = mobileTest.getText();
+
+        PatientContact patientContact = new PatientContact(patientId, residence, mobile);
+
+        String relationship = relationshipText.getText();
+        String name = nameText.getText();
+        String eMobile = eMobileText.getText();
+        String eResidence = eResidenceText.getText();
+        
+        EmergencyContact emergencyContact = new EmergencyContact(patientId, relationship, name, mobile, residence);
+        
+        try {
+            boolean addPatient = PatientController.addPatient(patient, patientContact, emergencyContact);
+            if(addPatient){
+                JOptionPane.showMessageDialog(this, "Succssfull");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void eMobileTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobileTestActionPerformed
+    private void eMobileTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobileTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_eMobileTestActionPerformed
+    }//GEN-LAST:event_eMobileTextActionPerformed
 
-    private void eResidenceTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eResidenceTestActionPerformed
+    private void eResidenceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eResidenceTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_eResidenceTestActionPerformed
+    }//GEN-LAST:event_eResidenceTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -775,8 +818,8 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JTextField codeText;
     private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JTextField districtText;
-    private javax.swing.JTextField eMobileTest;
-    private javax.swing.JTextField eResidenceTest;
+    private javax.swing.JTextField eMobileText;
+    private javax.swing.JTextField eResidenceText;
     private javax.swing.JTextField firstNameText;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JLabel jLabel1;
@@ -812,11 +855,11 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameText;
     private javax.swing.JTextField mobileTest;
     private javax.swing.JComboBox<String> monthComboBox;
-    private javax.swing.JTextField nameTest;
+    private javax.swing.JTextField nameText;
     private javax.swing.JButton nextButton;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField patientIdText;
-    private javax.swing.JTextField relationshipTest;
+    private javax.swing.JTextField relationshipText;
     private javax.swing.JTextField residenceTest;
     private javax.swing.JTextArea specialNotesText;
     private javax.swing.JTextField streetText;
