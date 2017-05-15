@@ -116,10 +116,11 @@ create table Admission(
 	AdmissionID varchar(10),
 	PatientID varchar(10),
 	WardID varchar(10),
-	DoctorID varchar(10),
+	Date varchar(20),
 	RecommendedBy varchar(200),
 	ConfirmedBy varchar(200),
 	LeadingConsultant varchar(200),
+	LeadingConsultantID varchar(10),
 	constraint primary key (AdmissionID),
 	constraint foreign key (PatientID) references Patient (PatientID)
 	on update cascade on delete cascade,
