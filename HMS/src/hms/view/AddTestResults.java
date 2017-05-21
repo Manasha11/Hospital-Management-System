@@ -5,6 +5,20 @@
  */
 package hms.view;
 
+import hms.controller.TestResultController;
+import hms.model.TestResult;
+import hms.other.IDGenerator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manasha
@@ -16,6 +30,13 @@ public class AddTestResults extends javax.swing.JPanel {
      */
     public AddTestResults() {
         initComponents();
+        try {
+            fillTestResultId();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -27,19 +48,304 @@ public class AddTestResults extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        testResultIdText = new javax.swing.JTextField();
+        testIdText = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        patientIdText = new javax.swing.JTextField();
+        admissionIdText = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        reportText = new javax.swing.JTextArea();
+        browseButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        pathText = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Cuprum", 1, 34)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(36, 208, 124));
+        jLabel1.setText("Add Text Results");
+
+        jLabel3.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel3.setText("Test Result ID: ");
+
+        testResultIdText.setEditable(false);
+        testResultIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        testResultIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testResultIdTextActionPerformed(evt);
+            }
+        });
+
+        testIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        testIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testIdTextActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel4.setText("Patient ID: ");
+
+        jLabel5.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel5.setText("Test ID: ");
+
+        patientIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        patientIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientIdTextActionPerformed(evt);
+            }
+        });
+
+        admissionIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        admissionIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admissionIdTextActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel6.setText("Admission ID: ");
+
+        jLabel7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel7.setText("Report: ");
+
+        reportText.setEditable(false);
+        reportText.setColumns(20);
+        reportText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        reportText.setRows(5);
+        jScrollPane2.setViewportView(reportText);
+
+        browseButton.setBackground(new java.awt.Color(36, 208, 124));
+        browseButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        browseButton.setForeground(new java.awt.Color(255, 255, 255));
+        browseButton.setText("Browse");
+        browseButton.setBorder(null);
+        browseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseButtonActionPerformed(evt);
+            }
+        });
+
+        addButton.setBackground(new java.awt.Color(36, 208, 124));
+        addButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("Add");
+        addButton.setBorder(null);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        pathText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        pathText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pathTextActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel8.setText("Path: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 849, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(63, 63, 63))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(78, 78, 78)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(admissionIdText, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                    .addComponent(patientIdText)
+                                    .addComponent(testIdText)
+                                    .addComponent(testResultIdText)))
+                            .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pathText)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(testResultIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(6, 6, 6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(pathText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(testIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(88, 88, 88)
+                        .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(255, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2))
+                        .addGap(18, 18, 18)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void testResultIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testResultIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_testResultIdTextActionPerformed
+
+    private void testIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_testIdTextActionPerformed
+
+    private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientIdTextActionPerformed
+
+    private void admissionIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admissionIdTextActionPerformed
+
+    private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int showOpenDialog = fileChooser.showOpenDialog(this);
+        if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            pathText.setText(file.getAbsolutePath());
+            try {
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String line = "";
+                try {
+                    while ((line = bufferedReader.readLine()) != null) {
+                        reportText.setText(reportText.getText() + line + "\n");
+
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_browseButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String resultId = testResultIdText.getText();
+        String testId = testIdText.getText();
+        String patientId = patientIdText.getText();
+        String admissionId = admissionIdText.getText();
+        String path = pathText.getText();
+        
+        TestResult testResult = new TestResult(resultId, testId, patientId, admissionId, path);
+        
+        try {
+            boolean addResult = TestResultController.addResult(testResult);
+            if(addResult){
+                JOptionPane.showMessageDialog(this, "Successfull!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed!");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            fillTestResultId();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        testIdText.setText("");
+        patientIdText.setText("");
+        admissionIdText.setText("");
+        pathText.setText("");
+        reportText.setText("");
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void pathTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pathTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pathTextActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JTextField admissionIdText;
+    private javax.swing.JButton browseButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField pathText;
+    private javax.swing.JTextField patientIdText;
+    private javax.swing.JTextArea reportText;
+    private javax.swing.JTextField testIdText;
+    private javax.swing.JTextField testResultIdText;
     // End of variables declaration//GEN-END:variables
+
+    private void fillTestResultId() throws SQLException, ClassNotFoundException {
+        String newId = IDGenerator.getNewId("TestResult", "ResultID", "R");
+        testResultIdText.setText(newId);
+    }
 }
