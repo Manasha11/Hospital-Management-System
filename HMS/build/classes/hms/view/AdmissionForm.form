@@ -36,7 +36,7 @@
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="updateButton" min="-2" pref="132" max="-2" attributes="0"/>
+                      <Component id="admitButton" min="-2" pref="132" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -54,7 +54,7 @@
                   <Component id="jPanel2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="updateButton" min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="admitButton" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -103,7 +103,7 @@
                   <EmptySpace pref="42" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="patientIdText" min="-2" pref="153" max="-2" attributes="0"/>
-                      <Component id="firstNameText" min="-2" pref="270" max="-2" attributes="0"/>
+                      <Component id="nameText" min="-2" pref="270" max="-2" attributes="0"/>
                       <Component id="nicText" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="firstNameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -155,6 +155,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdTextActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -167,7 +170,7 @@
             <Property name="text" type="java.lang.String" value="Name: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="firstNameText">
+        <Component class="javax.swing.JTextField" name="nameText">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -175,8 +178,11 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstNameTextActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
           <Properties>
@@ -196,6 +202,9 @@
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -229,10 +238,10 @@
                           </Group>
                           <EmptySpace pref="113" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="patientIdText4" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
-                              <Component id="patientIdText3" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
-                              <Component id="patientIdText2" alignment="1" min="-2" pref="153" max="-2" attributes="0"/>
-                              <Component id="patientIdText1" alignment="1" min="-2" pref="153" max="-2" attributes="0"/>
+                              <Component id="recommendedByText" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                              <Component id="dateText" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                              <Component id="wardIdText" alignment="1" min="-2" pref="153" max="-2" attributes="0"/>
+                              <Component id="admissionIdText" alignment="1" min="-2" pref="153" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -243,9 +252,9 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="patientIdText7" pref="153" max="32767" attributes="0"/>
-                              <Component id="patientIdText5" alignment="0" max="32767" attributes="0"/>
-                              <Component id="patientIdText6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="leadingIdText" pref="153" max="32767" attributes="0"/>
+                              <Component id="confirmedByText" alignment="0" max="32767" attributes="0"/>
+                              <Component id="leadingText" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -258,7 +267,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="patientIdText1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="admissionIdText" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -266,33 +275,33 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="patientIdText2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="wardIdText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="patientIdText3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dateText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="patientIdText4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="recommendedByText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="patientIdText5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmedByText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="patientIdText6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="leadingText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="patientIdText7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="leadingIdText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="115" max="32767" attributes="0"/>
               </Group>
@@ -311,7 +320,7 @@
             <Property name="text" type="java.lang.String" value="Admission ID: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText1">
+        <Component class="javax.swing.JTextField" name="admissionIdText">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -319,7 +328,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admissionIdTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -333,14 +342,14 @@
             <Property name="text" type="java.lang.String" value="Ward ID: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText2">
+        <Component class="javax.swing.JTextField" name="wardIdText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wardIdTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -354,14 +363,14 @@
             <Property name="text" type="java.lang.String" value="Date: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText3">
+        <Component class="javax.swing.JTextField" name="dateText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dateTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -375,14 +384,14 @@
             <Property name="text" type="java.lang.String" value="Recommended by: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText4">
+        <Component class="javax.swing.JTextField" name="recommendedByText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recommendedByTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -396,14 +405,14 @@
             <Property name="text" type="java.lang.String" value="Confirmed by: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText5">
+        <Component class="javax.swing.JTextField" name="confirmedByText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmedByTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -417,14 +426,14 @@
             <Property name="text" type="java.lang.String" value="Leading consultant: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText6">
+        <Component class="javax.swing.JTextField" name="leadingText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText6ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leadingTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -438,19 +447,19 @@
             <Property name="text" type="java.lang.String" value="Leading consultant ID: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="patientIdText7">
+        <Component class="javax.swing.JTextField" name="leadingIdText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cuprum" size="16" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientIdText7ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leadingIdTextActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="updateButton">
+    <Component class="javax.swing.JButton" name="admitButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="7c" green="d0" red="24" type="rgb"/>
@@ -467,7 +476,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admitButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

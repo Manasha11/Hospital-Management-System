@@ -5,6 +5,8 @@
  */
 package hms.view;
 
+import hms.controller.EmergencyContactController;
+import hms.controller.PatientContactController;
 import hms.controller.PatientController;
 import hms.model.EmergencyContact;
 import hms.model.Patient;
@@ -151,7 +153,6 @@ public class PatientDetails extends javax.swing.JPanel {
             }
         });
 
-        patientIdText.setEditable(false);
         patientIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         patientIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,43 +653,67 @@ public class PatientDetails extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        String patientID = patientIdText.getText();
+        String patientId = patientIdText.getText();
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
         String nic = nicText.getText();
         String dob = (String) yearComboBox.getSelectedItem() + "-" + (String) monthComboBox.getSelectedItem() + "-" + (String) dateComboBox.getSelectedItem();
         String gender = (String) genderComboBox.getSelectedItem();
+        String bloodGroup = bloodGroupTest.getText();
         String alergyDetails = alergyDetailsText.getText();
         String specialNotes = specialNotesText.getText();
-        String residence = bloodGroupTest.getText();
-//        String mobile = mobileText.getText();
-//        
-//        Patient patient = new Patient(patientID, firstName, lastName, nic, dob, gender, alergyDetails, specialNotes);
-//        PatientContact patientContact = new PatientContact(patientID, residence, mobile);
+        String code = codeText.getText();
+        String street = streetText.getText();
+        String city = cityText.getText();
+        String district = districtText.getText();
+        
+        Patient patient = new Patient(patientId, firstName, lastName, nic, dob, gender, bloodGroup, alergyDetails, specialNotes, code, street, city, district);
 
-//        try {
-//            boolean addPatient = PatientController.addPatient(patient, patientContact);
-//            if(addPatient){
-//                JOptionPane.showMessageDialog(this, "Successfull");
-//            }else{
-//                JOptionPane.showMessageDialog(this, "Failed");
-//            }
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
-//      }
+        String residence = residenceTest.getText();
+        String mobile = mobileTest.getText();
+
+        PatientContact patientContact = new PatientContact(patientId, residence, mobile);
+
+        String relationship = relationshipText.getText();
+        String name = nameText.getText();
+        String eMobile = eMobileText.getText();
+        String eResidence = eResidenceText.getText();
+
+        EmergencyContact emergencyContact = new EmergencyContact(patientId, relationship, name, mobile, residence);
+        
         try {
-            fillPatientIdText();
-        } catch (SQLException | ClassNotFoundException ex) {
+            boolean updatePatient = PatientController.updatePatient(patient, patientContact, emergencyContact);
+            if(updatePatient){
+                JOptionPane.showMessageDialog(this, "Successfull!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed!");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        firstNameText.setText("");
-        lastNameText.setText("");
-        nicText.setText("");
-        specialNotesText.setText("");
-        alergyDetailsText.setText("");
-        bloodGroupTest.setText("");
-//        mobileText.setText("");
+//        firstNameText.setText("");
+//        lastNameText.setText("");
+//        nicText.setText("");
+//        specialNotesText.setText("");
+//        alergyDetailsText.setText("");
+//        bloodGroupTest.setText("");
+
+        AdmissionForm admission = new AdmissionForm();
+        admission.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(admission);
+        homePanel.validate();
+        homePanel.repaint();
+
+        AdmissionForm.patientIdText.setText(patientIdText.getText());
+
+        AdmissionForm.nameText.setText(firstNameText.getText() + " " + lastNameText.getText());
+
+        AdmissionForm.nicText.setText(nicText.getText());
 
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -701,7 +726,46 @@ public class PatientDetails extends javax.swing.JPanel {
     }//GEN-LAST:event_monthComboBoxActionPerformed
 
     private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
-        // TODO add your handling code here:
+        String patientId = patientIdText.getText();
+        try {
+            Patient patient = PatientController.searchPatient(patientId);
+            PatientContact patientContact = PatientContactController.searchPatientContact(patientId);
+            EmergencyContact emergencyContact = EmergencyContactController.searchPatient(patientId);
+
+            if (patient != null) {
+                patientIdText.setText(patient.getPatientId());
+                firstNameText.setText(patient.getFirstName());
+                lastNameText.setText(patient.getLastName());
+                nicText.setText(patient.getNic());
+                bloodGroupTest.setText(patient.getBloodGroup());
+                alergyDetailsText.setText(patient.getAlergyDetails());
+                specialNotesText.setText(patient.getSpecialNotes());
+                codeText.setText(patient.getPostalCode());
+                streetText.setText(patient.getStreet());
+                cityText.setText(patient.getCity());
+                districtText.setText(patient.getDistrict());
+
+                if (patientContact != null) {
+                    mobileTest.setText(patientContact.getMobile());
+                    residenceTest.setText(patientContact.getResidence());
+                }
+                
+                if(emergencyContact != null){
+                    relationshipText.setText(emergencyContact.getRelationship());
+                    nameText.setText(emergencyContact.getName());
+                    eMobileText.setText(emergencyContact.getMobile());
+                    eResidenceText.setText(emergencyContact.getResidence());
+                }else{
+                    JOptionPane.showMessageDialog(this, "No such patient found!");
+                }
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_patientIdTextActionPerformed
 
     private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
@@ -749,13 +813,22 @@ public class PatientDetails extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTextActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        Admission admission = new Admission();
-        admission.setVisible(true);
-        homePanel.setLayout(new BorderLayout());
-        homePanel.removeAll();
-        homePanel.add(admission);
-        homePanel.validate();
-        homePanel.repaint();
+//        AdmissionForm admission = new AdmissionForm();
+//        admission.setVisible(true);
+//        homePanel.setLayout(new BorderLayout());
+//        homePanel.removeAll();
+//        homePanel.add(admission);
+//        homePanel.validate();
+//        homePanel.repaint();
+//
+//        String patientId = patientIdText.getText();
+//        AdmissionForm.patientIdText.setText(patientId);
+//
+//        String name = firstNameText.getText() + " " + lastNameText.getText();
+//        AdmissionForm.nameText.setText(name);
+//
+//        String nic = nicText.getText();
+//        AdmissionForm.nicText.setText(nic);
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -784,14 +857,14 @@ public class PatientDetails extends javax.swing.JPanel {
         String name = nameText.getText();
         String eMobile = eMobileText.getText();
         String eResidence = eResidenceText.getText();
-        
+
         EmergencyContact emergencyContact = new EmergencyContact(patientId, relationship, name, mobile, residence);
-        
+
         try {
             boolean addPatient = PatientController.addPatient(patient, patientContact, emergencyContact);
-            if(addPatient){
+            if (addPatient) {
                 JOptionPane.showMessageDialog(this, "Succssfull");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
         } catch (SQLException ex) {
@@ -799,6 +872,18 @@ public class PatientDetails extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        AdmissionForm admission = new AdmissionForm();
+        admission.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(admission);
+        homePanel.validate();
+        homePanel.repaint();
+
+        AdmissionForm.patientIdText.setText(patientIdText.getText());
+        AdmissionForm.nameText.setText(firstNameText.getText() + " " + lastNameText.getText());
+        AdmissionForm.nicText.setText(nicText.getText());
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void eMobileTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobileTextActionPerformed

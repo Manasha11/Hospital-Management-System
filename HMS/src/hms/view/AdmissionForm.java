@@ -5,17 +5,32 @@
  */
 package hms.view;
 
+import hms.controller.AdmissionController;
+import hms.model.Admission;
+import hms.other.IDGenerator;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manasha
  */
-public class Admission extends javax.swing.JPanel {
+public class AdmissionForm extends javax.swing.JPanel {
 
     /**
      * Creates new form Admission
      */
-    public Admission() {
+    public AdmissionForm() {
         initComponents();
+        try {
+            fillAdmissionId();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -32,25 +47,25 @@ public class Admission extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         patientIdText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        firstNameText = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         nicText = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        patientIdText1 = new javax.swing.JTextField();
+        admissionIdText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        patientIdText2 = new javax.swing.JTextField();
+        wardIdText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        patientIdText3 = new javax.swing.JTextField();
+        dateText = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        patientIdText4 = new javax.swing.JTextField();
+        recommendedByText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        patientIdText5 = new javax.swing.JTextField();
+        confirmedByText = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        patientIdText6 = new javax.swing.JTextField();
+        leadingText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        patientIdText7 = new javax.swing.JTextField();
-        updateButton = new javax.swing.JButton();
+        leadingIdText = new javax.swing.JTextField();
+        admitButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -78,11 +93,11 @@ public class Admission extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(57, 67, 92));
         jLabel10.setText("Name: ");
 
-        firstNameText.setEditable(false);
-        firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        firstNameText.addActionListener(new java.awt.event.ActionListener() {
+        nameText.setEditable(false);
+        nameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameTextActionPerformed(evt);
+                nameTextActionPerformed(evt);
             }
         });
 
@@ -106,7 +121,7 @@ public class Admission extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51))
         );
@@ -119,7 +134,7 @@ public class Admission extends javax.swing.JPanel {
                     .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -135,11 +150,11 @@ public class Admission extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(57, 67, 92));
         jLabel3.setText("Admission ID: ");
 
-        patientIdText1.setEditable(false);
-        patientIdText1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText1.addActionListener(new java.awt.event.ActionListener() {
+        admissionIdText.setEditable(false);
+        admissionIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        admissionIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText1ActionPerformed(evt);
+                admissionIdTextActionPerformed(evt);
             }
         });
 
@@ -147,10 +162,10 @@ public class Admission extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(57, 67, 92));
         jLabel4.setText("Ward ID: ");
 
-        patientIdText2.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText2.addActionListener(new java.awt.event.ActionListener() {
+        wardIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        wardIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText2ActionPerformed(evt);
+                wardIdTextActionPerformed(evt);
             }
         });
 
@@ -158,10 +173,10 @@ public class Admission extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(57, 67, 92));
         jLabel5.setText("Date: ");
 
-        patientIdText3.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText3.addActionListener(new java.awt.event.ActionListener() {
+        dateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dateText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText3ActionPerformed(evt);
+                dateTextActionPerformed(evt);
             }
         });
 
@@ -169,10 +184,10 @@ public class Admission extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(57, 67, 92));
         jLabel6.setText("Recommended by: ");
 
-        patientIdText4.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText4.addActionListener(new java.awt.event.ActionListener() {
+        recommendedByText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        recommendedByText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText4ActionPerformed(evt);
+                recommendedByTextActionPerformed(evt);
             }
         });
 
@@ -180,10 +195,10 @@ public class Admission extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(57, 67, 92));
         jLabel7.setText("Confirmed by: ");
 
-        patientIdText5.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText5.addActionListener(new java.awt.event.ActionListener() {
+        confirmedByText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        confirmedByText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText5ActionPerformed(evt);
+                confirmedByTextActionPerformed(evt);
             }
         });
 
@@ -191,10 +206,10 @@ public class Admission extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(57, 67, 92));
         jLabel8.setText("Leading consultant: ");
 
-        patientIdText6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText6.addActionListener(new java.awt.event.ActionListener() {
+        leadingText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        leadingText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText6ActionPerformed(evt);
+                leadingTextActionPerformed(evt);
             }
         });
 
@@ -202,10 +217,10 @@ public class Admission extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(57, 67, 92));
         jLabel9.setText("Leading consultant ID: ");
 
-        patientIdText7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText7.addActionListener(new java.awt.event.ActionListener() {
+        leadingIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        leadingIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText7ActionPerformed(evt);
+                leadingIdTextActionPerformed(evt);
             }
         });
 
@@ -224,10 +239,10 @@ public class Admission extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(patientIdText4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientIdText3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientIdText2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientIdText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(recommendedByText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(wardIdText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(admissionIdText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -235,9 +250,9 @@ public class Admission extends javax.swing.JPanel {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(patientIdText7, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                            .addComponent(patientIdText5)
-                            .addComponent(patientIdText6))))
+                            .addComponent(leadingIdText, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(confirmedByText)
+                            .addComponent(leadingText))))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -245,45 +260,45 @@ public class Admission extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(patientIdText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(6, 6, 6)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientIdText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wardIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(patientIdText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(patientIdText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(recommendedByText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(patientIdText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmedByText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(patientIdText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(leadingText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(patientIdText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(leadingIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
-        updateButton.setBackground(new java.awt.Color(36, 208, 124));
-        updateButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setText("Admit");
-        updateButton.setBorder(null);
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        admitButton.setBackground(new java.awt.Color(36, 208, 124));
+        admitButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        admitButton.setForeground(new java.awt.Color(255, 255, 255));
+        admitButton.setText("Admit");
+        admitButton.setBorder(null);
+        admitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                admitButtonActionPerformed(evt);
             }
         });
 
@@ -304,7 +319,7 @@ public class Admission extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(63, 63, 63))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
@@ -317,54 +332,78 @@ public class Admission extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(admitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+    private void admitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admitButtonActionPerformed
+        String admissionId = admissionIdText.getText();
+        String patientId = patientIdText.getText();
+        String wardId = wardIdText.getText();
+        String date = dateText.getText();
+        String recommemdedBy = recommendedByText.getText();
+        String confirmedBy = confirmedByText.getText();
+        String leading = leadingText.getText();
+        String leadingId = leadingIdText.getText();
         
-    }//GEN-LAST:event_updateButtonActionPerformed
+        Admission admission = new Admission(admissionId, patientId, wardId, date, recommemdedBy, confirmedBy, leading, leadingId);
+        try {
+            boolean addAdmission = AdmissionController.addAdmission(admission);
+            if(addAdmission){
+                JOptionPane.showMessageDialog(this, "Successfull");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_admitButtonActionPerformed
 
     private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_patientIdTextActionPerformed
 
-    private void patientIdText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText1ActionPerformed
+    private void admissionIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText1ActionPerformed
+    }//GEN-LAST:event_admissionIdTextActionPerformed
 
-    private void patientIdText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText2ActionPerformed
+    private void wardIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText2ActionPerformed
+    }//GEN-LAST:event_wardIdTextActionPerformed
 
-    private void patientIdText3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText3ActionPerformed
+    private void dateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText3ActionPerformed
+    }//GEN-LAST:event_dateTextActionPerformed
 
-    private void patientIdText4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText4ActionPerformed
+    private void recommendedByTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recommendedByTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText4ActionPerformed
+    }//GEN-LAST:event_recommendedByTextActionPerformed
 
-    private void patientIdText5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText5ActionPerformed
+    private void confirmedByTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmedByTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText5ActionPerformed
+    }//GEN-LAST:event_confirmedByTextActionPerformed
 
-    private void patientIdText6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText6ActionPerformed
+    private void leadingTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leadingTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText6ActionPerformed
+    }//GEN-LAST:event_leadingTextActionPerformed
 
-    private void patientIdText7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText7ActionPerformed
+    private void leadingIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leadingIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText7ActionPerformed
+    }//GEN-LAST:event_leadingIdTextActionPerformed
 
-    private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameTextActionPerformed
+    }//GEN-LAST:event_nameTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField firstNameText;
+    private javax.swing.JTextField admissionIdText;
+    private javax.swing.JButton admitButton;
+    private javax.swing.JTextField confirmedByText;
+    private javax.swing.JTextField dateText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel19;
@@ -378,15 +417,17 @@ public class Admission extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField nicText;
-    private javax.swing.JTextField patientIdText;
-    private javax.swing.JTextField patientIdText1;
-    private javax.swing.JTextField patientIdText2;
-    private javax.swing.JTextField patientIdText3;
-    private javax.swing.JTextField patientIdText4;
-    private javax.swing.JTextField patientIdText5;
-    private javax.swing.JTextField patientIdText6;
-    private javax.swing.JTextField patientIdText7;
-    private javax.swing.JButton updateButton;
+    private javax.swing.JTextField leadingIdText;
+    private javax.swing.JTextField leadingText;
+    public static javax.swing.JTextField nameText;
+    public static javax.swing.JTextField nicText;
+    public static javax.swing.JTextField patientIdText;
+    private javax.swing.JTextField recommendedByText;
+    private javax.swing.JTextField wardIdText;
     // End of variables declaration//GEN-END:variables
+
+    private void fillAdmissionId() throws SQLException, ClassNotFoundException {
+        String newId = IDGenerator.getNewId("Admission", "AdmissionID", "A");
+        admissionIdText.setText(newId);
+    }
 }

@@ -11,6 +11,7 @@ import hms.model.Patient;
 import hms.model.PatientContact;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -19,37 +20,37 @@ import java.sql.SQLException;
  */
 public class PatientController {
 
-    public static boolean addPatient(Patient patient, PatientContact patientContact) throws ClassNotFoundException, SQLException {
-        String sql = "Insert into patient values(?, ?, ?, ?, ?, ?, ?, ?)";
-        Connection connection = DBConnection.getDBConnection().getConnection();
-        connection.setAutoCommit(false);
-        try {
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setObject(1, patient.getPatientId());
-            stm.setObject(2, patient.getFirstName());
-            stm.setObject(3, patient.getLastName());
-            stm.setObject(4, patient.getNic());
-            stm.setObject(5, patient.getDob());
-            stm.setObject(6, patient.getGender());
-            stm.setObject(7, patient.getAlergyDetails());
-            stm.setObject(8, patient.getSpecialNotes());
-
-            int res = stm.executeUpdate();
-            if (res > 0) {
-                boolean addPatientContact = PatientContactController.addPatientContact(patientContact);
-                if (addPatientContact) {
-                    connection.commit();
-                    return true;
-                } else {
-                    connection.rollback();
-                }
-            }
-            return false;
-
-        } finally {
-            connection.setAutoCommit(true);
-        }
-    }
+//    public static boolean addPatient(Patient patient, PatientContact patientContact) throws ClassNotFoundException, SQLException {
+//        String sql = "Insert into patient values(?, ?, ?, ?, ?, ?, ?, ?)";
+//        Connection connection = DBConnection.getDBConnection().getConnection();
+//        connection.setAutoCommit(false);
+//        try {
+//            PreparedStatement stm = connection.prepareStatement(sql);
+//            stm.setObject(1, patient.getPatientId());
+//            stm.setObject(2, patient.getFirstName());
+//            stm.setObject(3, patient.getLastName());
+//            stm.setObject(4, patient.getNic());
+//            stm.setObject(5, patient.getDob());
+//            stm.setObject(6, patient.getGender());
+//            stm.setObject(7, patient.getAlergyDetails());
+//            stm.setObject(8, patient.getSpecialNotes());
+//
+//            int res = stm.executeUpdate();
+//            if (res > 0) {
+//                boolean addPatientContact = PatientContactController.addPatientContact(patientContact);
+//                if (addPatientContact) {
+//                    connection.commit();
+//                    return true;
+//                } else {
+//                    connection.rollback();
+//                }
+//            }
+//            return false;
+//
+//        } finally {
+//            connection.setAutoCommit(true);
+//        }
+//    }
 
 //    public static Patient searchPatient(String patientId) throws ClassNotFoundException, SQLException {
 //        String sql = "Select * from Patient where PatientID = ?";
@@ -64,7 +65,7 @@ public class PatientController {
 //            return null;
 //        }
 //    }
-    public static boolean updatePatient(Patient patient, PatientContact patientContact) throws ClassNotFoundException, SQLException {
+    public static boolean updatePatient(Patient patient, PatientContact patientContact, EmergencyContact emergencyContac) throws ClassNotFoundException, SQLException {
         String sql = "Update Patient set PatientFirstName = ?, PatientLastName = ?, PatientNIC = ?, PatientDOB = ?, PatientGender = ?, AlergyDetails = ?, SpecialNotes = ? where PatientId = ?";
         Connection connection = DBConnection.getDBConnection().getConnection();
         connection.setAutoCommit(false);
@@ -84,10 +85,16 @@ public class PatientController {
             if (res > 0) {
                 boolean updatePatientContact = PatientContactController.updatePatientContact(patientContact);
                 if (updatePatientContact) {
-                    connection.commit();
-                    return true;
+                    boolean updateEmergencyContact = EmergencyContactController.updateEmergencyContact(emergencyContac);
+                    if (updateEmergencyContact) {
+                        connection.commit();
+                        return true;
+                    } else {
+                        connection.rollback();
+                    }
                 } else {
                     connection.rollback();
+
                 }
             }
             return false;
@@ -135,6 +142,23 @@ public class PatientController {
 
         } finally {
             connection.setAutoCommit(true);
+        }
+    }
+
+    public static Patient searchPatient(String patientId) throws ClassNotFoundException, SQLException {
+        String sql = "Select * from Patient where PatientID = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setObject(1, patientId);
+
+        ResultSet rst = statement.executeQuery();
+        if (rst.next()) {
+            Patient patient = new Patient(rst.getString("PatientID"), rst.getString("PatientFirstName"), rst.getString("PatientLastName"), rst.getString("PatientNIC"), rst.getString("PatientDOB"),
+                    rst.getString("PatientGender"), rst.getString("BloodGroup"), rst.getString("AlergyDetails"), rst.getString("SpecialNotes"), rst.getString("PatientPostalCode"),
+                    rst.getString("PatientStreet"), rst.getString("PatientCity"), rst.getString("PatientDistrict"));
+            return patient;
+        } else {
+            return null;
         }
     }
 }

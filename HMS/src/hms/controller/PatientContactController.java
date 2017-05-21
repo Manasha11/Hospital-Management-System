@@ -6,7 +6,6 @@
 package hms.controller;
 
 import hms.db.DBConnection;
-import hms.model.Patient;
 import hms.model.PatientContact;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
