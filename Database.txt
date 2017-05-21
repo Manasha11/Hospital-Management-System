@@ -132,7 +132,7 @@ create table Admission(
 
 create table Test(
 	TestID varchar(10),
-	TeatName varchar(10),
+	TestName varchar(10),
 	constraint primary key (TestID)
 );
 
