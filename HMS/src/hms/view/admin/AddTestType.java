@@ -5,6 +5,14 @@
  */
 package hms.view.admin;
 
+import hms.controller.TestController;
+import hms.model.Test;
+import hms.other.IDGenerator;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manasha
@@ -16,6 +24,14 @@ public class AddTestType extends javax.swing.JPanel {
      */
     public AddTestType() {
         initComponents();
+        try {
+            fillTestIdText();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -28,6 +44,12 @@ public class AddTestType extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        testNameText = new javax.swing.JTextField();
+        testIdText = new javax.swing.JTextField();
+        updateButton = new javax.swing.JButton();
+        addButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -35,26 +57,192 @@ public class AddTestType extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(36, 208, 124));
         jLabel1.setText("Add Test Type");
 
+        jLabel21.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel21.setText("Test ID: ");
+
+        jLabel20.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel20.setText("Test name: ");
+
+        testNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        testNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testNameTextActionPerformed(evt);
+            }
+        });
+
+        testIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        testIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testIdTextActionPerformed(evt);
+            }
+        });
+
+        updateButton.setBackground(new java.awt.Color(36, 208, 124));
+        updateButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton.setText("Update");
+        updateButton.setBorder(null);
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        addButton1.setBackground(new java.awt.Color(36, 208, 124));
+        addButton1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        addButton1.setForeground(new java.awt.Color(255, 255, 255));
+        addButton1.setText("Add");
+        addButton1.setBorder(null);
+        addButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(828, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(48, 48, 48))
+                .addContainerGap(438, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(307, 307, 307))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(testIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(testNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addContainerGap(503, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(testIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(testNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void testNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_testNameTextActionPerformed
+
+    private void testIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testIdTextActionPerformed
+        String testId = testIdText.getText();
+        try {
+            Test test = TestController.searchTest(testId);
+            if(test != null){
+                testNameText.setText(test.getTestName());
+            }else{
+                JOptionPane.showMessageDialog(this, "No such test found!");
+                testNameText.setText("");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_testIdTextActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        String testId = testIdText.getText();
+        String testName = testNameText.getText();
+
+        Test test = new Test(testId, testName);
+
+        try {
+            boolean updateTest = TestController.updateTest(test);
+            if (updateTest) {
+                JOptionPane.showMessageDialog(this, "Successfull");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            fillTestIdText();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        testNameText.setText("");
+
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
+        String testId = testIdText.getText();
+        String testName = testNameText.getText();
+
+        Test test = new Test(testId, testName);
+
+        try {
+            boolean addTest = TestController.addTest(test);
+            if (addTest) {
+                JOptionPane.showMessageDialog(this, "Successfull");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            fillTestIdText();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddTestType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        testNameText.setText("");
+    }//GEN-LAST:event_addButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JTextField testIdText;
+    private javax.swing.JTextField testNameText;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    private void fillTestIdText() throws SQLException, ClassNotFoundException {
+        String newId = IDGenerator.getNewId("Test", "TestID", "T");
+        testIdText.setText(newId);
+    }
 }
