@@ -126,7 +126,7 @@ create table Admission(
 	on update cascade on delete cascade,
 	constraint foreign key (WardID) references Ward (WardID)
 	on update cascade on delete cascade,
-	constraint foreign key (DoctorID) references Doctor (DoctorID)
+	constraint foreign key (LeadingConsultantID) references Doctor (DoctorID)
 	on update cascade on delete cascade
 );
 
