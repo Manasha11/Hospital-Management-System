@@ -465,7 +465,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_reportButtonMouseExited
 
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
-        ViewTestResults testResults = new ViewTestResults();
+        AddTestResults testResults = new AddTestResults();
         testResults.setVisible(true);
         homePanel.setLayout(new BorderLayout());
         homePanel.removeAll();

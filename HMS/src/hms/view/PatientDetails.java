@@ -687,6 +687,7 @@ public class PatientDetails extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Successfull!");
             }else{
                 JOptionPane.showMessageDialog(this, "Failed!");
+                return;
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);

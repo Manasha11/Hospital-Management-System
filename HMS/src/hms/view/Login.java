@@ -5,6 +5,13 @@
  */
 package hms.view;
 
+import hms.controller.AccountController;
+import hms.model.Account;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manasha
@@ -35,6 +42,8 @@ public class Login extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         img = new javax.swing.JLabel();
+        usernameText = new javax.swing.JTextField();
+        passwordText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(57, 67, 92));
@@ -59,9 +68,9 @@ public class Login extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        loginPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 102, 20));
+        loginPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 102, 20));
         loginPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 271, 10));
-        loginPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 271, 10));
+        loginPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 236, 271, 10));
 
         jTextField2.setBackground(new java.awt.Color(57, 67, 92));
         jTextField2.setFont(new java.awt.Font("Cuprum", 0, 14)); // NOI18N
@@ -73,7 +82,7 @@ public class Login extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        loginPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, 20));
+        loginPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, 20));
 
         jButton1.setBackground(new java.awt.Color(36, 208, 124));
         jButton1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
@@ -84,10 +93,27 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        loginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 271, 40));
+        loginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 271, 40));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stethoscope-in-the-hands-of-a-doctor_1232-644.jpg"))); // NOI18N
         loginPanel.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 530));
+
+        usernameText.setBackground(new java.awt.Color(57, 67, 92));
+        usernameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        usernameText.setForeground(new java.awt.Color(255, 255, 255));
+        usernameText.setBorder(null);
+        loginPanel.add(usernameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 270, -1));
+
+        passwordText.setBackground(new java.awt.Color(57, 67, 92));
+        passwordText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        passwordText.setForeground(new java.awt.Color(255, 255, 255));
+        passwordText.setBorder(null);
+        passwordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextActionPerformed(evt);
+            }
+        });
+        loginPanel.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,9 +138,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Login.this.setVisible(false);
-        new Home().setVisible(true);
+        String username = usernameText.getText();
+        String password = passwordText.getText();
+        try {
+            Account account = AccountController.searchAccount(username);
+            if (account != null) {
+                if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
+                    Login.this.setVisible(false);
+                    new Home().setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Password is incorrect!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "No such user!");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,5 +209,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPanel;
+    private javax.swing.JPasswordField passwordText;
+    private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 }

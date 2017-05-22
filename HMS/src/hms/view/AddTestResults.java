@@ -148,6 +148,7 @@ public class AddTestResults extends javax.swing.JPanel {
             }
         });
 
+        pathText.setEditable(false);
         pathText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         pathText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
