@@ -32,5 +32,19 @@ public class AccountController {
             return null;
         }
     }
+
+    public static boolean addAccount(Account account) throws ClassNotFoundException, SQLException {
+        String sql = "Insert into Account values(?, ?)";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, account.getUsername());
+        preparedStatement.setObject(2, account.getPassword());
+        
+        int res = preparedStatement.executeUpdate();
+        if(res > 0){
+            return true;
+        }
+        return false;
+    }
     
 }
