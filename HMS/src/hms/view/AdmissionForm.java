@@ -8,7 +8,11 @@ package hms.view;
 import hms.controller.AdmissionController;
 import hms.model.Admission;
 import hms.other.IDGenerator;
+import static hms.view.Home.homePanel;
+import java.awt.BorderLayout;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,6 +35,8 @@ public class AdmissionForm extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        setDate();
     }
 
     /**
@@ -173,6 +179,7 @@ public class AdmissionForm extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(57, 67, 92));
         jLabel5.setText("Date: ");
 
+        dateText.setEditable(false);
         dateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         dateText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,20 +353,35 @@ public class AdmissionForm extends javax.swing.JPanel {
         String confirmedBy = confirmedByText.getText();
         String leading = leadingText.getText();
         String leadingId = leadingIdText.getText();
-        
+
         Admission admission = new Admission(admissionId, patientId, wardId, date, recommemdedBy, confirmedBy, leading, leadingId);
         try {
             boolean addAdmission = AdmissionController.addAdmission(admission);
-            if(addAdmission){
+            if (addAdmission) {
                 JOptionPane.showMessageDialog(this, "Successfull");
-            }else{
+                patientIdText.setText("");
+                wardIdText.setText("");
+                recommendedByText.setText("");
+                confirmedByText.setText("");
+                leadingText.setText("");
+                leadingIdText.setText("");
+
+                PatientDetails patientDetails = new PatientDetails();
+                patientDetails.setVisible(true);
+                homePanel.setLayout(new BorderLayout());
+                homePanel.removeAll();
+                homePanel.add(patientDetails);
+                homePanel.validate();
+                homePanel.repaint();
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_admitButtonActionPerformed
 
     private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
@@ -429,5 +451,12 @@ public class AdmissionForm extends javax.swing.JPanel {
     private void fillAdmissionId() throws SQLException, ClassNotFoundException {
         String newId = IDGenerator.getNewId("Admission", "AdmissionID", "A");
         admissionIdText.setText(newId);
+    }
+
+    private void setDate() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formatedDate = dateFormat.format(date);
+        dateText.setText(formatedDate);
     }
 }
