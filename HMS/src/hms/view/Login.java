@@ -138,27 +138,28 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username = usernameText.getText();
-        String password = passwordText.getText();
-        try {
-            Account account = AccountController.searchAccount(username);
-            if (account != null) {
-                if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
-                    Login.this.setVisible(false);
-                    new Home().setVisible(true);
-                }else{
-                    JOptionPane.showMessageDialog(this, "Password is incorrect!");
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "No such user!");
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        String username = usernameText.getText();
+//        String password = passwordText.getText();
+//        try {
+//            Account account = AccountController.searchAccount(username);
+//            if (account != null) {
+//                if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
+//                    Login.this.setVisible(false);
+//                    new Home().setVisible(true);
+//                }else{
+//                    JOptionPane.showMessageDialog(this, "Password is incorrect!");
+//                }
+//            }else{
+//                JOptionPane.showMessageDialog(this, "No such user!");
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
-
+        Login.this.setVisible(false);
+        new Home().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed

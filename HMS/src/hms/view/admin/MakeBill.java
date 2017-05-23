@@ -5,6 +5,14 @@
  */
 package hms.view.admin;
 
+import hms.controller.BillController;
+import hms.model.Bill;
+import hms.other.IDGenerator;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manasha
@@ -16,6 +24,14 @@ public class MakeBill extends javax.swing.JPanel {
      */
     public MakeBill() {
         initComponents();
+        
+        try {
+            fillBillIdText();
+        } catch (SQLException ex) {
+            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -28,7 +44,31 @@ public class MakeBill extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        updateButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        billIdText = new javax.swing.JTextField();
+        admissionIdText = new javax.swing.JTextField();
+        patientIdText = new javax.swing.JTextField();
+        medicalText = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        serviceText = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        roomText = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        hospitalText = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        totalText = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        netText = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        discountText = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        calculateTotal = new javax.swing.JButton();
+        updateButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -37,14 +77,155 @@ public class MakeBill extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(36, 208, 124));
         jLabel1.setText("Make Bill");
 
-        updateButton.setBackground(new java.awt.Color(36, 208, 124));
-        updateButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setText("Add Bill");
-        updateButton.setBorder(null);
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setBackground(new java.awt.Color(36, 208, 124));
+        addButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("Print Bill");
+        addButton.setBorder(null);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel3.setText("Bill ID: ");
+
+        billIdText.setEditable(false);
+        billIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        billIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                billIdTextActionPerformed(evt);
+            }
+        });
+
+        admissionIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        admissionIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admissionIdTextActionPerformed(evt);
+            }
+        });
+
+        patientIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        patientIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientIdTextActionPerformed(evt);
+            }
+        });
+
+        medicalText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        medicalText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicalTextActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel6.setText("Medical treatment charge: ");
+
+        jLabel4.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel4.setText("Patient ID: ");
+
+        jLabel5.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel5.setText("Admission ID: ");
+
+        jLabel7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel7.setText("Service treatment charge: ");
+
+        serviceText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        serviceText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviceTextActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel8.setText("Room charge: ");
+
+        roomText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        roomText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomTextActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel9.setText("Hospital charges: ");
+
+        hospitalText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        hospitalText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hospitalTextActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel10.setText("Total: ");
+
+        totalText.setEditable(false);
+        totalText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        totalText.setText("0.00");
+        totalText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalTextActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel11.setText("Net total: ");
+
+        netText.setEditable(false);
+        netText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        netText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                netTextActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel12.setText("Discount: ");
+
+        discountText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        discountText.setText("0");
+        discountText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountTextActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel13.setText("%");
+
+        calculateTotal.setBackground(new java.awt.Color(36, 208, 124));
+        calculateTotal.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        calculateTotal.setForeground(new java.awt.Color(255, 255, 255));
+        calculateTotal.setText("Calculate total");
+        calculateTotal.setBorder(null);
+        calculateTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateTotalActionPerformed(evt);
+            }
+        });
+
+        updateButton1.setBackground(new java.awt.Color(36, 208, 124));
+        updateButton1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        updateButton1.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton1.setText("Calculate net total");
+        updateButton1.setBorder(null);
+        updateButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButton1ActionPerformed(evt);
             }
         });
 
@@ -52,31 +233,264 @@ public class MakeBill extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(878, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(60, 60, 60))
+                    .addComponent(calculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(37, 37, 37)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(patientIdText)
+                                    .addComponent(admissionIdText)
+                                    .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(hospitalText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(roomText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                    .addComponent(serviceText, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(32, 32, 32)
+                            .addComponent(medicalText))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(108, 108, 108)
+                                .addComponent(netText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel12)
+                                    .addGap(108, 108, 108)
+                                    .addComponent(discountText, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel13)
+                                    .addGap(4, 4, 4)))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(updateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(60, 60, 60))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(108, 108, 108))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(discountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13)
+                                    .addComponent(updateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(netText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(medicalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(3, 3, 3)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(serviceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(31, 31, 31)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(roomText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(hospitalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String billId = billIdText.getText();
+        String admissionId = admissionIdText.getText();
+        String patientId = patientIdText.getText(); //Can be retrieved from admissionId
+        double medicalCharge = Double.parseDouble(medicalText.getText());
+        double serviceCharge = Double.parseDouble(serviceText.getText());
+        double roomCharge = Double.parseDouble(roomText.getText());
+        double hospitalCharge = Double.parseDouble(hospitalText.getText());
+        double total = Double.parseDouble(totalText.getText());
+        double discount = Double.parseDouble(discountText.getText());
+        double netTotal = Double.parseDouble(netText.getText());
+        
+        Bill bill = new Bill(billId, admissionId, patientId, medicalCharge, serviceCharge, roomCharge, hospitalCharge, total, discount, netTotal);
+        try {
+            boolean addBill = BillController.addBill(bill);
+            if(addBill){
+                JOptionPane.showMessageDialog(this, "Successfull!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        admissionIdText.setText("");
+        patientIdText.setText("");
+        medicalText.setText("");
+        serviceText.setText("");
+        roomText.setText("");
+        hospitalText.setText("");
+        totalText.setText("");
+        discountText.setText("0");
+        netText.setText("");
+        
+        try {
+            fillBillIdText();
+        } catch (SQLException ex) {
+            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    }//GEN-LAST:event_updateButtonActionPerformed
+    private void billIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billIdTextActionPerformed
+
+    private void admissionIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admissionIdTextActionPerformed
+
+    private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientIdTextActionPerformed
+
+    private void medicalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalTextActionPerformed
+        
+    }//GEN-LAST:event_medicalTextActionPerformed
+
+    private void serviceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceTextActionPerformed
+        
+    }//GEN-LAST:event_serviceTextActionPerformed
+
+    private void roomTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomTextActionPerformed
+        
+    }//GEN-LAST:event_roomTextActionPerformed
+
+    private void hospitalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalTextActionPerformed
+        
+    }//GEN-LAST:event_hospitalTextActionPerformed
+
+    private void totalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalTextActionPerformed
+
+    private void netTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_netTextActionPerformed
+
+    private void discountTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discountTextActionPerformed
+
+    private void calculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateTotalActionPerformed
+        double total = Double.parseDouble(medicalText.getText()) + Double.parseDouble(serviceText.getText()) + Double.parseDouble(roomText.getText()) + Double.parseDouble(hospitalText.getText());
+        totalText.setText(Double.toString(total));
+    }//GEN-LAST:event_calculateTotalActionPerformed
+
+    private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
+        double total = Double.parseDouble(totalText.getText());
+        double discount = Double.parseDouble(discountText.getText())/100.0;
+        double netTotal = total - total*discount;
+        netText.setText(Double.toString(netTotal));
+    }//GEN-LAST:event_updateButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JTextField admissionIdText;
+    private javax.swing.JTextField billIdText;
+    private javax.swing.JButton calculateTotal;
+    private javax.swing.JTextField discountText;
+    private javax.swing.JTextField hospitalText;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton updateButton;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField medicalText;
+    private javax.swing.JTextField netText;
+    private javax.swing.JTextField patientIdText;
+    private javax.swing.JTextField roomText;
+    private javax.swing.JTextField serviceText;
+    private javax.swing.JTextField totalText;
+    private javax.swing.JButton updateButton1;
     // End of variables declaration//GEN-END:variables
+
+    private void fillBillIdText() throws SQLException, ClassNotFoundException {
+        String newId = IDGenerator.getNewId("Bill", "BillID", "B");
+        billIdText.setText(newId);
+    }
 }
