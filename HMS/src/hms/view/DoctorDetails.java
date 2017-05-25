@@ -24,7 +24,6 @@ public class DoctorDetails extends javax.swing.JPanel {
      */
     public DoctorDetails() {
         initComponents();
-        
     }
 
     /**
@@ -59,6 +58,7 @@ public class DoctorDetails extends javax.swing.JPanel {
         doctorIdText = new javax.swing.JTextField();
         genderText = new javax.swing.JTextField();
         dobText = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -249,6 +249,13 @@ public class DoctorDetails extends javax.swing.JPanel {
             }
         });
 
+        searchButton.setText("jButton1");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,8 +272,7 @@ public class DoctorDetails extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
@@ -275,7 +281,11 @@ public class DoctorDetails extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(searchButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -284,7 +294,8 @@ public class DoctorDetails extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(doctorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -482,35 +493,35 @@ public class DoctorDetails extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void specialtyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyTextActionPerformed
-        // TODO add your handling code here:
+        degreesText.requestFocus();
     }//GEN-LAST:event_specialtyTextActionPerformed
 
     private void titleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextActionPerformed
-        // TODO add your handling code here:
+        specialtyText.requestFocus();
     }//GEN-LAST:event_titleTextActionPerformed
 
     private void regNumTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNumTextActionPerformed
-        // TODO add your handling code here:
+        titleText.requestFocus();
     }//GEN-LAST:event_regNumTextActionPerformed
 
     private void codeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextActionPerformed
-        // TODO add your handling code here:
+        streetText.requestFocus();
     }//GEN-LAST:event_codeTextActionPerformed
 
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
-        // TODO add your handling code here:
+        lastNameText.requestFocus();
     }//GEN-LAST:event_firstNameTextActionPerformed
 
     private void nicTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicTextActionPerformed
-        // TODO add your handling code here:
+        genderText.requestFocus();
     }//GEN-LAST:event_nicTextActionPerformed
 
     private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
-        // TODO add your handling code here:
+        districtText.requestFocus();
     }//GEN-LAST:event_cityTextActionPerformed
 
     private void streetTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextActionPerformed
-        // TODO add your handling code here:
+        cityText.requestFocus();
     }//GEN-LAST:event_streetTextActionPerformed
 
     private void districtTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtTextActionPerformed
@@ -518,22 +529,35 @@ public class DoctorDetails extends javax.swing.JPanel {
     }//GEN-LAST:event_districtTextActionPerformed
 
     private void degreesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_degreesTextActionPerformed
-        // TODO add your handling code here:
+        contactNoText.requestFocus();
     }//GEN-LAST:event_degreesTextActionPerformed
 
     private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
-        // TODO add your handling code here:
+        emailText.requestFocus();
     }//GEN-LAST:event_contactNoTextActionPerformed
 
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
-        // TODO add your handling code here:
+        codeText.requestFocus();
     }//GEN-LAST:event_emailTextActionPerformed
 
     private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
-        // TODO add your handling code here:
+        nicText.requestFocus();
     }//GEN-LAST:event_lastNameTextActionPerformed
 
     private void doctorIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorIdTextActionPerformed
+        searchButton.doClick();
+        firstNameText.requestFocus();
+    }//GEN-LAST:event_doctorIdTextActionPerformed
+
+    private void genderTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderTextActionPerformed
+        dobText.requestFocus();
+    }//GEN-LAST:event_genderTextActionPerformed
+
+    private void dobTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTextActionPerformed
+        regNumText.requestFocus();
+    }//GEN-LAST:event_dobTextActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String doctorId = doctorIdText.getText();
         Doctor doctor;
         try {
@@ -576,15 +600,7 @@ public class DoctorDetails extends javax.swing.JPanel {
             Logger.getLogger(DoctorDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_doctorIdTextActionPerformed
-
-    private void genderTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_genderTextActionPerformed
-
-    private void dobTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dobTextActionPerformed
+    }//GEN-LAST:event_searchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -623,10 +639,10 @@ public class DoctorDetails extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameText;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField regNumText;
+    private javax.swing.JButton searchButton;
     private javax.swing.JTextField specialtyText;
     private javax.swing.JTextField streetText;
     private javax.swing.JTextField titleText;
     // End of variables declaration//GEN-END:variables
 
-    
 }

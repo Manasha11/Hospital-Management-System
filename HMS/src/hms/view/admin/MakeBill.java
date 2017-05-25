@@ -159,7 +159,9 @@ public class MakeBill extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(57, 67, 92));
         jLabel9.setText("Hospital charges: ");
 
+        hospitalText.setEditable(false);
         hospitalText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        hospitalText.setText("3000.00");
         hospitalText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hospitalTextActionPerformed(evt);

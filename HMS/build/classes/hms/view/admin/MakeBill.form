@@ -363,9 +363,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="hospitalText">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Cuprum" size="16" style="0"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="3000.00"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hospitalTextActionPerformed"/>

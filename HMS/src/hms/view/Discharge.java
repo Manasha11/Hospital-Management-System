@@ -5,6 +5,19 @@
  */
 package hms.view;
 
+import hms.controller.AdmissionController;
+import hms.controller.BillController;
+import hms.controller.PatientController;
+import hms.model.Admission;
+import hms.model.Bill;
+import hms.model.Patient;
+import hms.other.IDGenerator;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Manasha
@@ -16,6 +29,13 @@ public class Discharge extends javax.swing.JPanel {
      */
     public Discharge() {
         initComponents();
+        try {
+            fillInvoiceIdText();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        setDate();
     }
 
     /**
@@ -29,22 +49,35 @@ public class Discharge extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        patientIdText1 = new javax.swing.JTextField();
-        patientIdText2 = new javax.swing.JTextField();
+        admissionIdText = new javax.swing.JTextField();
+        billIdText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        patientIdText3 = new javax.swing.JTextField();
+        patientIdText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        patientIdText4 = new javax.swing.JTextField();
+        admissionDateText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        patientIdText5 = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        patientIdText6 = new javax.swing.JTextField();
+        amountText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        patientIdText7 = new javax.swing.JTextField();
+        descriptionText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        patientIdText8 = new javax.swing.JTextField();
+        totalText = new javax.swing.JTextField();
         updateButton = new javax.swing.JButton();
+        invoiceIdText = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        paymentTable = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        dateText = new javax.swing.JTextField();
+        dischargeDateText = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        aditionalNotesText = new javax.swing.JTextArea();
+        toBePaidText = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -56,31 +89,30 @@ public class Discharge extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(57, 67, 92));
         jLabel3.setText("Admission ID: ");
 
-        patientIdText1.setEditable(false);
-        patientIdText1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText1.addActionListener(new java.awt.event.ActionListener() {
+        admissionIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        admissionIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText1ActionPerformed(evt);
+                admissionIdTextActionPerformed(evt);
             }
         });
 
-        patientIdText2.setEditable(false);
-        patientIdText2.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText2.addActionListener(new java.awt.event.ActionListener() {
+        billIdText.setEditable(false);
+        billIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        billIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText2ActionPerformed(evt);
+                billIdTextActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel4.setText("Payment ID: ");
+        jLabel4.setText("Bill ID: ");
 
-        patientIdText3.setEditable(false);
-        patientIdText3.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText3.addActionListener(new java.awt.event.ActionListener() {
+        patientIdText.setEditable(false);
+        patientIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        patientIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText3ActionPerformed(evt);
+                patientIdTextActionPerformed(evt);
             }
         });
 
@@ -90,45 +122,47 @@ public class Discharge extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel6.setText("Date: ");
+        jLabel6.setText("Admission date: ");
 
-        patientIdText4.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText4.addActionListener(new java.awt.event.ActionListener() {
+        admissionDateText.setEditable(false);
+        admissionDateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        admissionDateText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText4ActionPerformed(evt);
+                admissionDateTextActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel7.setText("Charges: ");
+        jLabel7.setText("Name: ");
 
-        patientIdText5.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText5.addActionListener(new java.awt.event.ActionListener() {
+        nameText.setEditable(false);
+        nameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText5ActionPerformed(evt);
+                nameTextActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel8.setText("Charges: ");
+        jLabel8.setText("Description: ");
 
-        patientIdText6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText6.addActionListener(new java.awt.event.ActionListener() {
+        amountText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        amountText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText6ActionPerformed(evt);
+                amountTextActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel9.setText("Charges: ");
+        jLabel9.setText("Paying amount: ");
 
-        patientIdText7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText7.addActionListener(new java.awt.event.ActionListener() {
+        descriptionText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        descriptionText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText7ActionPerformed(evt);
+                descriptionTextActionPerformed(evt);
             }
         });
 
@@ -136,10 +170,11 @@ public class Discharge extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(57, 67, 92));
         jLabel10.setText("Full amount: ");
 
-        patientIdText8.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        patientIdText8.addActionListener(new java.awt.event.ActionListener() {
+        totalText.setEditable(false);
+        totalText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        totalText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIdText8ActionPerformed(evt);
+                totalTextActionPerformed(evt);
             }
         });
 
@@ -154,131 +189,297 @@ public class Discharge extends javax.swing.JPanel {
             }
         });
 
+        invoiceIdText.setEditable(false);
+        invoiceIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        invoiceIdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoiceIdTextActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel11.setText("Invoice ID: ");
+
+        paymentTable.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        paymentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Amount", "Description"
+            }
+        ));
+        paymentTable.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(paymentTable);
+
+        jLabel12.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel12.setText("Aditional notes: ");
+
+        dateText.setEditable(false);
+        dateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dateText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateTextActionPerformed(evt);
+            }
+        });
+
+        dischargeDateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dischargeDateText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dischargeDateTextActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel13.setText("Discharge date: ");
+
+        jLabel14.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel14.setText("Date: ");
+
+        aditionalNotesText.setColumns(20);
+        aditionalNotesText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        aditionalNotesText.setRows(5);
+        jScrollPane2.setViewportView(aditionalNotesText);
+
+        toBePaidText.setEditable(false);
+        toBePaidText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        toBePaidText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toBePaidTextActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel15.setText("To be paid: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel10))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(patientIdText8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(patientIdText4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(patientIdText3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(patientIdText1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(105, 105, 105)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(patientIdText2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(patientIdText7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(patientIdText6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(patientIdText5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(399, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel14))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(214, 214, 214)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(invoiceIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel15)
+                                                .addGap(43, 43, 43)
+                                                .addComponent(toBePaidText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel8)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addGap(32, 32, 32)
+                                                .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1)
+                                        .addGap(47, 47, 47))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(32, 32, 32)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(40, 40, 40)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(admissionDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(dischargeDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(65, 65, 65)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(descriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel11))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel1))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(patientIdText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(patientIdText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(patientIdText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(patientIdText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(patientIdText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientIdText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientIdText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientIdText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                    .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(invoiceIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(toBePaidText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(admissionDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(dischargeDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(121, 121, 121)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void patientIdText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText1ActionPerformed
+    private void admissionIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionIdTextActionPerformed
+        try {
+            Admission admission = AdmissionController.searchAdmission(admissionIdText.getText());
+            if (admission != null){
+                patientIdText.setText(admission.getPatientId());
+                admissionDateText.setText(admission.getDate());
+                
+                Patient patient = PatientController.searchPatient(patientIdText.getText());
+                nameText.setText(patient.getFirstName()+" "+patient.getLastName());
+                
+                Bill bill = BillController.searchBill(admissionIdText.getText());
+                if(bill != null){
+                    billIdText.setText(bill.getBillId());
+                    totalText.setText(Double.toString(bill.getNetTotal()));
+                    //billIdText.setText(bill.getBillId());
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_admissionIdTextActionPerformed
 
-    private void patientIdText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText2ActionPerformed
+    private void billIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText2ActionPerformed
+    }//GEN-LAST:event_billIdTextActionPerformed
 
-    private void patientIdText3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText3ActionPerformed
+    private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText3ActionPerformed
+    }//GEN-LAST:event_patientIdTextActionPerformed
 
-    private void patientIdText4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText4ActionPerformed
+    private void admissionDateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionDateTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText4ActionPerformed
+    }//GEN-LAST:event_admissionDateTextActionPerformed
 
-    private void patientIdText5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText5ActionPerformed
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText5ActionPerformed
+    }//GEN-LAST:event_nameTextActionPerformed
 
-    private void patientIdText6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText6ActionPerformed
+    private void amountTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText6ActionPerformed
+    }//GEN-LAST:event_amountTextActionPerformed
 
-    private void patientIdText7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText7ActionPerformed
+    private void descriptionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText7ActionPerformed
+    }//GEN-LAST:event_descriptionTextActionPerformed
 
-    private void patientIdText8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdText8ActionPerformed
+    private void totalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientIdText8ActionPerformed
+    }//GEN-LAST:event_totalTextActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
 
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    private void invoiceIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceIdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invoiceIdTextActionPerformed
+
+    private void dateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateTextActionPerformed
+
+    private void dischargeDateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dischargeDateTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dischargeDateTextActionPerformed
+
+    private void toBePaidTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toBePaidTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toBePaidTextActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea aditionalNotesText;
+    private javax.swing.JTextField admissionDateText;
+    private javax.swing.JTextField admissionIdText;
+    private javax.swing.JTextField amountText;
+    private javax.swing.JTextField billIdText;
+    private javax.swing.JTextField dateText;
+    private javax.swing.JTextField descriptionText;
+    private javax.swing.JTextField dischargeDateText;
+    private javax.swing.JTextField invoiceIdText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -286,14 +487,25 @@ public class Discharge extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField patientIdText1;
-    private javax.swing.JTextField patientIdText2;
-    private javax.swing.JTextField patientIdText3;
-    private javax.swing.JTextField patientIdText4;
-    private javax.swing.JTextField patientIdText5;
-    private javax.swing.JTextField patientIdText6;
-    private javax.swing.JTextField patientIdText7;
-    private javax.swing.JTextField patientIdText8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField nameText;
+    private javax.swing.JTextField patientIdText;
+    private javax.swing.JTable paymentTable;
+    private javax.swing.JTextField toBePaidText;
+    private javax.swing.JTextField totalText;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    private void setDate() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formatedDate = dateFormat.format(date);
+        dateText.setText(formatedDate);
+    }
+
+    private void fillInvoiceIdText() throws SQLException, ClassNotFoundException {
+        String newId = IDGenerator.getNewId("Payment", "InvoiceId", "I");
+        invoiceIdText.setText(newId);
+    }
 }
