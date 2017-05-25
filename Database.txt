@@ -151,16 +151,6 @@ create table TestResult(
 	on update cascade on delete cascade
 );
 
-create table Payment(
-	PaymentID varchar(10),
-	AdmissionID varchar(10),
-	PaymentDate varchar(10),
-	Amount decimal (10,2),
-	constraint primary key (PaymentID),
-	constraint foreign key (AdmissionID) references Admission (AdmissionID)
-	on update cascade on delete cascade
-);
-
 create table PatientContact(
 	PatientID varchar(10),
 	Residence varchar(15),
@@ -185,6 +175,48 @@ create table Account(
 	UserName varchar(50),
 	Password varchar(50),
 	Constraint primary key (Username)
+);
+
+create table Bill(
+	BillID varchar(10),
+	AdmissionID varchar(10),
+	PatientID varchar(10),
+	MedicalCharge float(10,2),
+	ServiceCharge float(10,2),
+	RoomCharge float(10,2),
+	HospitalCharge float(10,2),
+	Total float(10,2),
+	Discount float(5,2),
+	NetTotal float(10,2),
+	constraint primary key (BillID),
+	constraint foreign key (AdmissionID) references Admission (AdmissionID)
+	on delete cascade on update cascade,
+	constraint foreign key (PatientID) references Patient (PatientID)
+	on delete cascade on update cascade
+);
+
+create table Payment(
+	InvoiceID varchar(10),
+	AdmissionID varchar(10),
+	BillID varchar(10),
+	PaymentDate varchar(10),
+	PaidAmount decimal (10,2),
+	Description varchar(100),
+	constraint primary key (InvoiceID),
+	constraint foreign key (AdmissionID) references Admission (AdmissionID)
+	on update cascade on delete cascade,
+	constraint foreign key (BillID) references Bill (BillID)
+	on delete cascade on update cascade
+);
+
+create table Discharge(
+	AdmissionID varchar(10),
+	BillID varchar(10),
+	Date varchar(10),
+	AditionalNotes varchar(500),
+	Constraint primary key (AdmissionID),
+	constraint foreign key (BillID) references Bill (BillID)
+	on delete cascade on update cascade
 );
 
 insert into Employee values("E001","Doctor");
