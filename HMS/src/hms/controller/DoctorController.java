@@ -7,7 +7,6 @@ package hms.controller;
 
 import hms.db.DBConnection;
 import hms.model.Doctor;
-import hms.model.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -133,6 +132,44 @@ public class DoctorController {
             doctorId = resultSet.getString("DoctorID");
         }
         return doctorId;
+    }
+
+    public static ArrayList<Doctor> searchDoctorByName(String lastName) throws ClassNotFoundException, SQLException {
+        String sql = "Select * from Doctor where DoctorLastName = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, lastName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ArrayList<Doctor> doctorList = new ArrayList();
+        while (resultSet.next()) {
+            doctorList.add(new Doctor(resultSet.getString("DoctorID"), resultSet.getString("EmployeeID"),
+                    resultSet.getString("DoctorFirstName"), resultSet.getString("DoctorLastName"), resultSet.getString("DoctorNIC"),
+                    resultSet.getString("DoctorDOB"), resultSet.getString("DoctorGender"), resultSet.getString("Specialization"),
+                    resultSet.getString("Degrees"), resultSet.getString("RegistrationNo"), resultSet.getString("Title"),
+                    resultSet.getString("DoctorContactNo"), resultSet.getString("DoctorPostalCode"),
+                    resultSet.getString("DoctorStreet"), resultSet.getString("DoctorCity"), resultSet.getString("DoctorDistrict"),
+                    resultSet.getString("DoctorEmail")));
+        }
+        return doctorList;
+    }
+
+    public static ArrayList<Doctor> searchDoctorBySpecialty(String specialty) throws ClassNotFoundException, SQLException {
+        String sql = "Select * from Doctor where Specialization = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, specialty);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ArrayList<Doctor> doctorList = new ArrayList();
+        while (resultSet.next()) {
+            doctorList.add(new Doctor(resultSet.getString("DoctorID"), resultSet.getString("EmployeeID"),
+                    resultSet.getString("DoctorFirstName"), resultSet.getString("DoctorLastName"), resultSet.getString("DoctorNIC"),
+                    resultSet.getString("DoctorDOB"), resultSet.getString("DoctorGender"), resultSet.getString("Specialization"),
+                    resultSet.getString("Degrees"), resultSet.getString("RegistrationNo"), resultSet.getString("Title"),
+                    resultSet.getString("DoctorContactNo"), resultSet.getString("DoctorPostalCode"),
+                    resultSet.getString("DoctorStreet"), resultSet.getString("DoctorCity"), resultSet.getString("DoctorDistrict"),
+                    resultSet.getString("DoctorEmail")));
+        }
+        return doctorList;
     }
 
 }

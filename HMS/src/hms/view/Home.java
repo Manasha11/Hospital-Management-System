@@ -487,11 +487,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_patientButtonMouseExited
 
     private void patientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientButtonActionPerformed
-        PatientDetails patientDetails = new PatientDetails();
-        patientDetails.setVisible(true);
+        PatientRecord patientRecord = new PatientRecord();
+        patientRecord.setVisible(true);
         homePanel.setLayout(new BorderLayout());
         homePanel.removeAll();
-        homePanel.add(patientDetails);
+        homePanel.add(patientRecord);
         homePanel.validate();
         homePanel.repaint();
     }//GEN-LAST:event_patientButtonActionPerformed

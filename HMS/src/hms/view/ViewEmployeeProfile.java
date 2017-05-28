@@ -59,8 +59,8 @@ public class ViewEmployeeProfile extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(43, 43, 43))
             .addGroup(layout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

@@ -610,7 +610,7 @@ public class DoctorDetails extends javax.swing.JPanel {
     private javax.swing.JTextField degreesText;
     private javax.swing.JTextField districtText;
     private javax.swing.JTextField dobText;
-    private javax.swing.JTextField doctorIdText;
+    public static javax.swing.JTextField doctorIdText;
     private javax.swing.JTextField emailText;
     private javax.swing.JTextField firstNameText;
     private javax.swing.JTextField genderText;
@@ -639,7 +639,7 @@ public class DoctorDetails extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameText;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField regNumText;
-    private javax.swing.JButton searchButton;
+    public static javax.swing.JButton searchButton;
     private javax.swing.JTextField specialtyText;
     private javax.swing.JTextField streetText;
     private javax.swing.JTextField titleText;

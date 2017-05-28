@@ -6,6 +6,7 @@
 package hms.controller;
 
 import hms.db.DBConnection;
+import hms.model.Doctor;
 import hms.model.EmergencyContact;
 import hms.model.Patient;
 import hms.model.PatientContact;
@@ -13,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -160,5 +163,33 @@ public class PatientController {
         } else {
             return null;
         }
+    }
+
+    public static ArrayList<Patient> getAllPatients() throws ClassNotFoundException, SQLException {
+        String sql = "Select * From Patient";
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        Statement statement = conn.createStatement();
+        ResultSet rst = statement.executeQuery(sql);
+        ArrayList<Patient> patientList = new ArrayList();
+        while (rst.next()) {
+            patientList.add(new Patient(rst.getString("PatientID"), rst.getString("PatientFirstName"), rst.getString("PatientLastName"), rst.getString("PatientNIC"), rst.getString("PatientDOB"),
+                    rst.getString("PatientGender"), rst.getString("BloodGroup"), rst.getString("AlergyDetails"), rst.getString("SpecialNotes"), rst.getString("PatientPostalCode"),
+                    rst.getString("PatientStreet"), rst.getString("PatientCity"), rst.getString("PatientDistrict")));
+        }
+        return patientList;
+    }
+
+    public static String getPatientId(String name, String name0) throws ClassNotFoundException, SQLException {
+        String sql = "Select PatientID from Patient where PatientFirstName = ? and PatientLastName = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, name);
+        preparedStatement.setObject(2, name0);
+        String patientId = "";
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            patientId = resultSet.getString("PatientID");
+        }
+        return patientId;
     }
 }

@@ -6,6 +6,9 @@
 package hms;
 
 import hms.view.Login;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -18,6 +21,21 @@ public class HMS {
      */
     public static void main(String[] args) {
         new Login().setVisible(true);
+//        UIManager.setLookAndFeel(be);
+
+
+        
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    try {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                        Logger.getLogger(HMS.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        
     }
     
 }

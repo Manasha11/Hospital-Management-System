@@ -8,10 +8,13 @@ package hms.controller;
 import hms.db.DBConnection;
 import hms.model.Admission;
 import hms.model.Doctor;
+import hms.model.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -54,6 +57,21 @@ public class AdmissionController {
         } else {
             return null;
         }
+    }
+
+    public static ArrayList<Admission> getAllAdmissions(String patientId) throws ClassNotFoundException, SQLException {
+        String sql = "Select * From Admission where PatientId = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, patientId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ArrayList<Admission> admissionList = new ArrayList();
+        while (resultSet.next()) {
+            admissionList.add(new Admission(resultSet.getString("AdmissionID"), resultSet.getString("PatientID"), resultSet.getString("WardID"), 
+                    resultSet.getString("Date"), resultSet.getString("RecommendedBy"), resultSet.getString("ConfirmedBy"), 
+                    resultSet.getString("LeadingConsultant"), resultSet.getString("LeadingConsultantID")));
+        }
+        return admissionList;
     }
     
 }

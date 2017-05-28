@@ -5,17 +5,34 @@
  */
 package hms.view;
 
+import hms.controller.DoctorController;
+import hms.model.Doctor;
+import static hms.view.Home.homePanel;
+import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Manasha
  */
 public class SearchDoctor extends javax.swing.JPanel {
+    DefaultTableModel dtm;
+
 
     /**
      * Creates new form SearchDoctor
      */
     public SearchDoctor() {
         initComponents();
+        try {
+            fillNameCombo();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(SearchDoctor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -27,55 +44,215 @@ public class SearchDoctor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        viewButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        nameCombo = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        specialtyCombo = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        doctorDetailTable = new org.jdesktop.swingx.JXTable();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("jButton1");
+        viewButton.setBackground(new java.awt.Color(36, 208, 124));
+        viewButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        viewButton.setForeground(new java.awt.Color(255, 255, 255));
+        viewButton.setText("View Details");
+        viewButton.setBorder(null);
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(17, Short.MAX_VALUE))
+        jLabel1.setFont(new java.awt.Font("Cuprum", 1, 34)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(36, 208, 124));
+        jLabel1.setText("Search Doctor");
+
+        jLabel20.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel20.setText("Last Name: ");
+
+        nameCombo.setEditable(true);
+        nameCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameCombo.setBorder(null);
+        nameCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nameComboItemStateChanged(evt);
+            }
+        });
+        nameCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameComboActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel21.setText("Specialty: ");
+
+        specialtyCombo.setEditable(true);
+        specialtyCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        specialtyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Specialist Physician", "Obstetriian & Gynaecologist (VOG)", "Paediatrician", "Paediatric Surgeon", "Paediatric Cardiologist", "Cardiologist", "Cardiothoracic Surgeon", "Genito - Urinary Surgeon", "Oral & Maxillofacial Surgeon", "Restorative Dentistry", "General Surgeon", "Psychiatrist", "Rheumatologist", "Dermatologist", "Radiologist", "Orthopaedic surgeon", "Eye Surgeon", "Chest Physician", "E.N.T. Surgeon", "Onco Surgeon", "Oncologist", "Haematologist", "Neurologist", "Neuro Surgeon", "Histo Pathologist", "Microbiologist", "Gastro Intestinal Surgeon", "Nephrologist", "Endocrinologist", "audiometrist", "Physiotherapist", "Nutritioist", "Speach Therapist", "Psychological Counselor", "Occupational Therapist" }));
+        specialtyCombo.setBorder(null);
+        specialtyCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                specialtyComboItemStateChanged(evt);
+            }
+        });
+        specialtyCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specialtyComboActionPerformed(evt);
+            }
+        });
+
+        doctorDetailTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Doctor ID", "Name", "Gender", "Specialty", "Phone number"
+            }
+        ));
+        doctorDetailTable.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        doctorDetailTable.setGridColor(new java.awt.Color(255, 255, 255));
+        doctorDetailTable.setRowHeight(40);
+        doctorDetailTable.setSelectionBackground(new java.awt.Color(36, 208, 124));
+        doctorDetailTable.setVisibleRowCount(8);
+        jScrollPane1.setViewportView(doctorDetailTable);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 60, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(specialtyCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabel1)))))
+                .addGap(40, 40, 40))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(32, 32, 32))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel20)
+                    .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specialtyCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
+        dtm = (DefaultTableModel) doctorDetailTable.getModel();
+
+        if (!nameCombo.getSelectedItem().equals("")) {
+            String lastName = (String) nameCombo.getSelectedItem();
+
+            try {
+                ArrayList<Doctor> doctorList = DoctorController.searchDoctorByName(lastName);
+                //ArrayList<Admission> admissionList = AdmissionController.getAllAdmissions(patientId);
+                dtm.setRowCount(0);
+
+                for (Doctor doctor : doctorList) {
+                    Object[] rowData = {doctor.getDoctorId(), "Dr. "+doctor.getFirstName()+" "+doctor.getLastName(), doctor.getGender(), doctor.getSpecialty(), doctor.getContactNo()};
+                    dtm.addRow(rowData);
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SearchDoctor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_nameComboItemStateChanged
+
+    private void nameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameComboActionPerformed
+
+    }//GEN-LAST:event_nameComboActionPerformed
+
+    private void specialtyComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_specialtyComboItemStateChanged
+        dtm = (DefaultTableModel) doctorDetailTable.getModel();
+        
+        if (!specialtyCombo.getSelectedItem().equals("")) {
+            String specialty = (String) specialtyCombo.getSelectedItem();
+
+            try {
+                ArrayList<Doctor> doctorList = DoctorController.searchDoctorBySpecialty(specialty);
+                dtm.setRowCount(0);
+
+                for (Doctor doctor : doctorList) {
+                    //System.out.println(doctor.getSpecialty());
+                    Object[] rowData = {doctor.getDoctorId(), "Dr. "+doctor.getFirstName()+" "+doctor.getLastName(), doctor.getGender(), doctor.getSpecialty(), doctor.getContactNo()};
+                    dtm.addRow(rowData);
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SearchDoctor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_specialtyComboItemStateChanged
+
+    private void specialtyComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_specialtyComboActionPerformed
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        String doctorId = (String) doctorDetailTable.getValueAt(doctorDetailTable.getSelectedRow(), 0);
+        System.out.println(doctorId);
+        DoctorDetails doctorDetails = new DoctorDetails();
+        doctorDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(doctorDetails);
+        homePanel.validate();
+        homePanel.repaint();
+        DoctorDetails.doctorIdText.setText(doctorId);
+        DoctorDetails.searchButton.doClick();
+    }//GEN-LAST:event_viewButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private org.jdesktop.swingx.JXTable doctorDetailTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> nameCombo;
+    private javax.swing.JComboBox<String> specialtyCombo;
+    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
+
+    private void fillNameCombo() throws SQLException, ClassNotFoundException {
+        ArrayList<Doctor> allDoctors = DoctorController.getAllDoctors();
+        nameCombo.addItem("");
+        for (Doctor doctor : allDoctors) {
+            nameCombo.addItem(doctor.getLastName());
+        }
+    }
 }
