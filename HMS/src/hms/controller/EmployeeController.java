@@ -5,14 +5,32 @@
  */
 package hms.controller;
 
+import hms.db.DBConnection;
+import hms.model.Admission;
+import hms.model.Employee;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Manasha
  */
 public class EmployeeController {
 
-    public static String getEmployeeId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static String getEmployeeId(String type) throws ClassNotFoundException, SQLException {
+        String sql = "Select EmployeeID from Employee where EmployeeType = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, type);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            String employeeId = resultSet.getString("EmployeeID");
+            return employeeId;
+        } else {
+            return null;
+        }
     }
     
 }

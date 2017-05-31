@@ -26,7 +26,8 @@ public class AccountController {
         
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
-            Account account = new Account(resultSet.getString("username"), resultSet.getString("password"));
+            Account account = new Account(resultSet.getString("FirstName"), resultSet.getString("LastName"), resultSet.getString("Email"), 
+                    resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("EmployeeID"));
             return account;
         }else{
             return null;
@@ -34,11 +35,15 @@ public class AccountController {
     }
 
     public static boolean addAccount(Account account) throws ClassNotFoundException, SQLException {
-        String sql = "Insert into Account values(?, ?)";
+        String sql = "Insert into Account values(?, ?, ?, ?, ?, ?)";
         Connection connection = DBConnection.getDBConnection().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setObject(1, account.getUsername());
-        preparedStatement.setObject(2, account.getPassword());
+        preparedStatement.setObject(1, account.getFirstName());
+        preparedStatement.setObject(2, account.getLastName());
+        preparedStatement.setObject(3, account.getEmail());
+        preparedStatement.setObject(4, account.getUsername());
+        preparedStatement.setObject(5, account.getPassword());
+        preparedStatement.setObject(6, account.getEmployeeId());
         
         int res = preparedStatement.executeUpdate();
         if(res > 0){
