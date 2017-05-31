@@ -172,9 +172,15 @@ create table EmergencyContact(
 );
 
 create table Account(
+	FirstName varchar(100),
+	LastName varchar(100),
+	Email varchar(200),
 	UserName varchar(50),
 	Password varchar(50),
-	Constraint primary key (Username)
+	EmployeeID varchar(10),
+	Constraint primary key (Username),
+	Constraint foreign key (EmployeeID) references Employee (EmployeeID)
+	on delete cascade on update cascade
 );
 
 create table Bill(
