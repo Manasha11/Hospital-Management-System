@@ -5,9 +5,12 @@
  */
 package hms.view;
 
+import hms.controller.DoctorController;
 import hms.controller.NurseController;
+import hms.model.Doctor;
 import hms.model.Nurse;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,7 +26,11 @@ public class NurseDetails extends javax.swing.JPanel {
      */
     public NurseDetails() {
         initComponents();
-
+        try {
+            fillNameCombo();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(NurseDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -49,6 +56,8 @@ public class NurseDetails extends javax.swing.JPanel {
         dobText = new javax.swing.JTextField();
         genderText = new javax.swing.JTextField();
         nurseIdText = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        nameCombo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -126,6 +135,24 @@ public class NurseDetails extends javax.swing.JPanel {
             }
         });
 
+        jLabel22.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel22.setText("Name: ");
+
+        nameCombo.setEditable(true);
+        nameCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameCombo.setBorder(null);
+        nameCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nameComboItemStateChanged(evt);
+            }
+        });
+        nameCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameComboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -138,7 +165,7 @@ public class NurseDetails extends javax.swing.JPanel {
                     .addComponent(jLabel19)
                     .addComponent(jLabel17))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
@@ -152,16 +179,25 @@ public class NurseDetails extends javax.swing.JPanel {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(nurseIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(nurseIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 34, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(nurseIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel22)
+                        .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(nurseIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -178,7 +214,7 @@ public class NurseDetails extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -330,9 +366,9 @@ public class NurseDetails extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
@@ -350,14 +386,14 @@ public class NurseDetails extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -433,6 +469,51 @@ public class NurseDetails extends javax.swing.JPanel {
 
     }//GEN-LAST:event_nurseIdTextActionPerformed
 
+    private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
+        if (!nameCombo.getSelectedItem().equals("")) {
+            String name = (String) nameCombo.getSelectedItem();
+
+            try {
+                Nurse nurse = NurseController.searchNurseByName(name);
+                if (nurse != null) {
+                    firstNameText.setText(nurse.getFirstName());
+                    lastNameText.setText(nurse.getLastName());
+                    nicText.setText(nurse.getNic());
+                    dobText.setText(nurse.getDob());
+                    genderText.setText(nurse.getGender());
+                    contactNoText.setText(nurse.getContatctNo());
+                    codeText.setText(nurse.getPostalCode());
+                    streetText.setText(nurse.getStreet());
+                    cityText.setText(nurse.getCity());
+                    districtText.setText(nurse.getDistrict());
+                    emailText.setText(nurse.getEmail());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No nurse found!");
+                    firstNameText.setText("");
+                    lastNameText.setText("");
+                    dobText.setText("");
+                    nicText.setText("");
+                    genderText.setText("");
+                    contactNoText.setText("");
+                    emailText.setText("");
+                    codeText.setText("");
+                    streetText.setText("");
+                    cityText.setText("");
+                    districtText.setText("");
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NurseDetails.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(NurseDetails.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_nameComboItemStateChanged
+
+    private void nameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameComboActionPerformed
+
+    }//GEN-LAST:event_nameComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cityText;
@@ -455,15 +536,24 @@ public class NurseDetails extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField lastNameText;
+    private javax.swing.JComboBox<String> nameCombo;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField nurseIdText;
     private javax.swing.JTextField streetText;
     // End of variables declaration//GEN-END:variables
 
+    private void fillNameCombo() throws SQLException, ClassNotFoundException {
+        ArrayList<Nurse> allNurses = NurseController.getAllNurses();
+        nameCombo.addItem("");
+        for (Nurse nurse : allNurses) {
+            nameCombo.addItem(nurse.getLastName());
+        }
+    }
 }
