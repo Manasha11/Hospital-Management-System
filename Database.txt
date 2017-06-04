@@ -116,11 +116,12 @@ create table Admission(
 	AdmissionID varchar(10),
 	PatientID varchar(10),
 	WardID varchar(10),
-	Date varchar(20),
+	AdmittedDate varchar(20),
 	RecommendedBy varchar(200),
 	ConfirmedBy varchar(200),
 	LeadingConsultant varchar(200),
 	LeadingConsultantID varchar(10),
+	AdvancePayment decimal(10,2),
 	constraint primary key (AdmissionID),
 	constraint foreign key (PatientID) references Patient (PatientID)
 	on update cascade on delete cascade,
@@ -202,25 +203,12 @@ create table Bill(
 );
 
 create table Payment(
-	InvoiceID varchar(10),
 	AdmissionID varchar(10),
 	BillID varchar(10),
 	PaymentDate varchar(10),
-	PaidAmount decimal (10,2),
-	Description varchar(100),
-	constraint primary key (InvoiceID),
-	constraint foreign key (AdmissionID) references Admission (AdmissionID)
-	on update cascade on delete cascade,
-	constraint foreign key (BillID) references Bill (BillID)
-	on delete cascade on update cascade
-);
-
-create table Discharge(
-	AdmissionID varchar(10),
-	BillID varchar(10),
-	Date varchar(10),
-	AditionalNotes varchar(500),
-	Constraint primary key (AdmissionID),
+	Amount decimal (10,2),
+	AditionalNotes varchar(100),
+	constraint primary key (AdmissionID),
 	constraint foreign key (BillID) references Bill (BillID)
 	on delete cascade on update cascade
 );
