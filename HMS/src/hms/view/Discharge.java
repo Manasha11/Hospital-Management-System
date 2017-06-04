@@ -8,15 +8,17 @@ package hms.view;
 import hms.controller.AdmissionController;
 import hms.controller.BillController;
 import hms.controller.PatientController;
+import hms.controller.PaymentController;
 import hms.model.Admission;
 import hms.model.Bill;
 import hms.model.Patient;
-import hms.other.IDGenerator;
+import hms.model.Payment;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,12 +31,6 @@ public class Discharge extends javax.swing.JPanel {
      */
     public Discharge() {
         initComponents();
-        try {
-            fillInvoiceIdText();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         setDate();
     }
 
@@ -58,26 +54,20 @@ public class Discharge extends javax.swing.JPanel {
         admissionDateText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         nameText = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         amountText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        descriptionText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         totalText = new javax.swing.JTextField();
         updateButton = new javax.swing.JButton();
-        invoiceIdText = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        paymentTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         dateText = new javax.swing.JTextField();
-        dischargeDateText = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         aditionalNotesText = new javax.swing.JTextArea();
         toBePaidText = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        advanceText = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -144,10 +134,6 @@ public class Discharge extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel8.setText("Description: ");
-
         amountText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         amountText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,13 +144,6 @@ public class Discharge extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(57, 67, 92));
         jLabel9.setText("Paying amount: ");
-
-        descriptionText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        descriptionText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descriptionTextActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(57, 67, 92));
@@ -189,30 +168,6 @@ public class Discharge extends javax.swing.JPanel {
             }
         });
 
-        invoiceIdText.setEditable(false);
-        invoiceIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        invoiceIdText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                invoiceIdTextActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel11.setText("Invoice ID: ");
-
-        paymentTable.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        paymentTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Date", "Amount", "Description"
-            }
-        ));
-        paymentTable.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(paymentTable);
-
         jLabel12.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(57, 67, 92));
         jLabel12.setText("Aditional notes: ");
@@ -225,20 +180,9 @@ public class Discharge extends javax.swing.JPanel {
             }
         });
 
-        dischargeDateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        dischargeDateText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dischargeDateTextActionPerformed(evt);
-            }
-        });
-
         jLabel13.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(57, 67, 92));
         jLabel13.setText("Discharge date: ");
-
-        jLabel14.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(57, 67, 92));
-        jLabel14.setText("Date: ");
 
         aditionalNotesText.setColumns(20);
         aditionalNotesText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
@@ -257,6 +201,18 @@ public class Discharge extends javax.swing.JPanel {
         jLabel15.setForeground(new java.awt.Color(57, 67, 92));
         jLabel15.setText("To be paid: ");
 
+        advanceText.setEditable(false);
+        advanceText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        advanceText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advanceTextActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel16.setText("Advance paid: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,32 +225,26 @@ public class Discharge extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel14))
+                                    .addComponent(jLabel6))
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(214, 214, 214)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(invoiceIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                        .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel15)
                                                 .addGap(43, 43, 43)
                                                 .addComponent(toBePaidText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel8)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel10)
                                                 .addGap(32, 32, 32)
@@ -305,42 +255,41 @@ public class Discharge extends javax.swing.JPanel {
                                         .addGap(47, 47, 47))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel7)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(32, 32, 32)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(40, 40, 40)
+                                                .addComponent(jLabel12)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(admissionDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(dischargeDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(65, 65, 65)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(descriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(32, 32, 32)
+                                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(40, 40, 40)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(admissionDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGap(65, 65, 65)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
-                                            .addComponent(jLabel11))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel16)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(advanceText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel9)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -353,8 +302,6 @@ public class Discharge extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(invoiceIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(toBePaidText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -366,25 +313,23 @@ public class Discharge extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(admissionDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(admissionDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(advanceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(dischargeDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(172, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(121, 121, 121)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                            .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))))
         );
@@ -396,6 +341,7 @@ public class Discharge extends javax.swing.JPanel {
             if (admission != null){
                 patientIdText.setText(admission.getPatientId());
                 admissionDateText.setText(admission.getDate());
+                advanceText.setText(Double.toString(admission.getAdvancePayment()));
                 
                 Patient patient = PatientController.searchPatient(patientIdText.getText());
                 nameText.setText(patient.getFirstName()+" "+patient.getLastName());
@@ -404,12 +350,10 @@ public class Discharge extends javax.swing.JPanel {
                 if(bill != null){
                     billIdText.setText(bill.getBillId());
                     totalText.setText(Double.toString(bill.getNetTotal()));
-                    //billIdText.setText(bill.getBillId());
+                    toBePaidText.setText(Double.toString(bill.getNetTotal() - admission.getAdvancePayment()));
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_admissionIdTextActionPerformed
@@ -434,64 +378,79 @@ public class Discharge extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_amountTextActionPerformed
 
-    private void descriptionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descriptionTextActionPerformed
-
     private void totalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_totalTextActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
+        String admissionId = admissionIdText.getText();
+        String billId = billIdText.getText();
+        String date = dateText.getText();
+        double amount = Double.parseDouble(totalText.getText());
+        String notes = aditionalNotesText.getText();
+        
+        Payment payment = new Payment(admissionId, billId, date, amount, notes);
+        try {
+            boolean addPayment = PaymentController.addPayment(payment);
+            if(addPayment){
+                JOptionPane.showMessageDialog(this, "Successfull!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed!");
+            }
+            
+            admissionIdText.setText("");
+            patientIdText.setText("");
+            nameText.setText("");
+            admissionDateText.setText("");
+            dateText.setText("");
+            aditionalNotesText.setText("");
+            billIdText.setText("");
+            amountText.setText("");
+            totalText.setText("");
+            toBePaidText.setText("");
+            advanceText.setText("");
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Discharge.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void invoiceIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceIdTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_invoiceIdTextActionPerformed
 
     private void dateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dateTextActionPerformed
 
-    private void dischargeDateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dischargeDateTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dischargeDateTextActionPerformed
-
     private void toBePaidTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toBePaidTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_toBePaidTextActionPerformed
+
+    private void advanceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advanceTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_advanceTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea aditionalNotesText;
     private javax.swing.JTextField admissionDateText;
     private javax.swing.JTextField admissionIdText;
+    private javax.swing.JTextField advanceText;
     private javax.swing.JTextField amountText;
     private javax.swing.JTextField billIdText;
     private javax.swing.JTextField dateText;
-    private javax.swing.JTextField descriptionText;
-    private javax.swing.JTextField dischargeDateText;
-    private javax.swing.JTextField invoiceIdText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nameText;
     private javax.swing.JTextField patientIdText;
-    private javax.swing.JTable paymentTable;
     private javax.swing.JTextField toBePaidText;
     private javax.swing.JTextField totalText;
     private javax.swing.JButton updateButton;
@@ -504,8 +463,5 @@ public class Discharge extends javax.swing.JPanel {
         dateText.setText(formatedDate);
     }
 
-    private void fillInvoiceIdText() throws SQLException, ClassNotFoundException {
-        String newId = IDGenerator.getNewId("Payment", "InvoiceId", "I");
-        invoiceIdText.setText(newId);
-    }
+    
 }

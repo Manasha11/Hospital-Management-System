@@ -18,11 +18,12 @@ public class Admission {
     private String confirmedBy;
     private String leadingConsultant;
     private String leadingConsultantId;
+    private double advancePayment;
 
     public Admission() {
     }
 
-    public Admission(String admissionId, String patientId, String wardId, String date, String recommendedBy, String confirmedBy, String leadingConsultant, String leadingConsultantId) {
+    public Admission(String admissionId, String patientId, String wardId, String date, String recommendedBy, String confirmedBy, String leadingConsultant, String leadingConsultantId, double advancePayment) {
         this.admissionId = admissionId;
         this.patientId = patientId;
         this.wardId = wardId;
@@ -31,6 +32,7 @@ public class Admission {
         this.confirmedBy = confirmedBy;
         this.leadingConsultant = leadingConsultant;
         this.leadingConsultantId = leadingConsultantId;
+        this.advancePayment = advancePayment;
     }
 
     /**
@@ -144,6 +146,20 @@ public class Admission {
     public void setLeadingConsultantId(String leadingConsultantId) {
         this.leadingConsultantId = leadingConsultantId;
     }
-    
+
+    /**
+     * @return the advancePayment
+     */
+    public double getAdvancePayment() {
+        return advancePayment;
+    }
+
+    /**
+     * @param advancePayment the advancePayment to set
+     */
+    public void setAdvancePayment(double advancePayment) {
+        this.advancePayment = advancePayment;
+    }
+
     
 }

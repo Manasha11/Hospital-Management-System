@@ -7,13 +7,10 @@ package hms.controller;
 
 import hms.db.DBConnection;
 import hms.model.Admission;
-import hms.model.Doctor;
-import hms.model.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +20,7 @@ import java.util.ArrayList;
 public class AdmissionController {
 
     public static boolean addAdmission(Admission admission) throws ClassNotFoundException, SQLException {
-        String sql = "Insert into Admission values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "Insert into Admission values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DBConnection.getDBConnection().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setObject(1, admission.getAdmissionId());
@@ -34,6 +31,8 @@ public class AdmissionController {
         preparedStatement.setObject(6, admission.getConfirmedBy());
         preparedStatement.setObject(7, admission.getLeadingConsultant());
         preparedStatement.setObject(8, admission.getLeadingConsultantId());
+        preparedStatement.setObject(9, admission.getAdvancePayment());
+        
         
         int res = preparedStatement.executeUpdate();
         if(res > 0){
@@ -51,8 +50,8 @@ public class AdmissionController {
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             Admission admission = new Admission(resultSet.getString("AdmissionID"), resultSet.getString("PatientID"), resultSet.getString("WardID"), 
-                    resultSet.getString("Date"), resultSet.getString("RecommendedBy"), resultSet.getString("ConfirmedBy"), 
-                    resultSet.getString("LeadingConsultant"), resultSet.getString("LeadingConsultantID"));
+                    resultSet.getString("AdmittedDate"), resultSet.getString("RecommendedBy"), resultSet.getString("ConfirmedBy"), 
+                    resultSet.getString("LeadingConsultant"), resultSet.getString("LeadingConsultantID"), resultSet.getDouble("AdvancePayment"));
             return admission;
         } else {
             return null;
@@ -68,8 +67,8 @@ public class AdmissionController {
         ArrayList<Admission> admissionList = new ArrayList();
         while (resultSet.next()) {
             admissionList.add(new Admission(resultSet.getString("AdmissionID"), resultSet.getString("PatientID"), resultSet.getString("WardID"), 
-                    resultSet.getString("Date"), resultSet.getString("RecommendedBy"), resultSet.getString("ConfirmedBy"), 
-                    resultSet.getString("LeadingConsultant"), resultSet.getString("LeadingConsultantID")));
+                    resultSet.getString("AdmittedDate"), resultSet.getString("RecommendedBy"), resultSet.getString("ConfirmedBy"), 
+                    resultSet.getString("LeadingConsultant"), resultSet.getString("LeadingConsultantID"), resultSet.getDouble("AdvancePayment")));
         }
         return admissionList;
     }
