@@ -6,12 +6,15 @@
 package hms.controller;
 
 import hms.db.DBConnection;
+import hms.model.Admission;
+import hms.model.Doctor;
 import hms.model.Test;
-import hms.model.Ward;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -60,6 +63,33 @@ public class TestController {
         } else {
             return null;
         }
+    }
+
+    public static String getTestId(String testType) throws ClassNotFoundException, SQLException {
+        String sql = "Select TestID from Test where TestName = ?";
+        Connection connection = DBConnection.getDBConnection().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, testType);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        if (resultSet.next()) {
+            String testName = resultSet.getString("TestID");
+            return testName;
+        } else {
+            return null;
+        }
+    }
+
+    public static ArrayList<Test> getAllTests() throws ClassNotFoundException, SQLException {
+        String sql = "Select * From Test";
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        ArrayList<Test> testList = new ArrayList();
+        while (resultSet.next()) {
+            testList.add(new Test(resultSet.getString("TestID"), resultSet.getString("TestName")));
+        }
+        return testList;
     }
     
 }
