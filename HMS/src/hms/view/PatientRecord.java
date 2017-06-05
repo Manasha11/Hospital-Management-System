@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -33,6 +34,8 @@ public class PatientRecord extends javax.swing.JPanel {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PatientRecord.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        AutoCompleteDecorator.decorate(nameCombo);
     }
 
     /**

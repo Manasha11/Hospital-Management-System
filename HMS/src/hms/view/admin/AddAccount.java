@@ -8,10 +8,12 @@ package hms.view.admin;
 import hms.controller.AccountController;
 import hms.controller.EmployeeController;
 import hms.model.Account;
+import hms.other.Validation;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,11 +21,21 @@ import javax.swing.JOptionPane;
  */
 public class AddAccount extends javax.swing.JPanel {
 
+    private JTextField[] textFields;
+
     /**
      * Creates new form AddAccount
      */
     public AddAccount() {
         initComponents();
+
+        textFields = new JTextField[6];
+        textFields[0] = firstNameText;
+        textFields[1] = lastNameText;
+        textFields[2] = emailText;
+        textFields[3] = usernameText;
+        textFields[4] = passwordText1;
+        textFields[5] = passwordText2;
     }
 
     /**
@@ -70,6 +82,11 @@ public class AddAccount extends javax.swing.JPanel {
                 usernameTextActionPerformed(evt);
             }
         });
+        usernameText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                usernameTextKeyReleased(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(57, 67, 92));
@@ -84,6 +101,7 @@ public class AddAccount extends javax.swing.JPanel {
         addButton.setForeground(new java.awt.Color(255, 255, 255));
         addButton.setText("Create Account");
         addButton.setBorder(null);
+        addButton.setEnabled(false);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -91,8 +109,18 @@ public class AddAccount extends javax.swing.JPanel {
         });
 
         passwordText1.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        passwordText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordText1KeyReleased(evt);
+            }
+        });
 
         passwordText2.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        passwordText2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordText2KeyReleased(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(57, 67, 92));
@@ -120,6 +148,11 @@ public class AddAccount extends javax.swing.JPanel {
                 firstNameTextActionPerformed(evt);
             }
         });
+        firstNameText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                firstNameTextKeyReleased(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(57, 67, 92));
@@ -135,11 +168,21 @@ public class AddAccount extends javax.swing.JPanel {
                 emailTextActionPerformed(evt);
             }
         });
+        emailText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                emailTextKeyReleased(evt);
+            }
+        });
 
         lastNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         lastNameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lastNameTextActionPerformed(evt);
+            }
+        });
+        lastNameText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lastNameTextKeyReleased(evt);
             }
         });
 
@@ -256,34 +299,34 @@ public class AddAccount extends javax.swing.JPanel {
 //            if (account.getUsername() == null) {
 //                
 //            }
-                if (account != null && account.getUsername().equals(username)) {
-                    JOptionPane.showMessageDialog(this, "The entered username already exists! Please try again!");
-                    usernameText.setText("");
-                    passwordText1.setText(null);
-                    passwordText1.setText(null);
-                    return;
-                } else if (!password1.equals(password2)) {
-                    JOptionPane.showMessageDialog(this, "Passwords don't match!");
-                    passwordText1.setText(null);
-                    passwordText1.setText(null);
-                    return;
+            if (account != null && account.getUsername().equals(username)) {
+                JOptionPane.showMessageDialog(this, "The entered username already exists! Please try again!");
+                usernameText.setText("");
+                passwordText1.setText(null);
+                passwordText2.setText(null);
+                return;
+            } else if (!password1.equals(password2)) {
+                JOptionPane.showMessageDialog(this, "Passwords don't match!");
+                passwordText1.setText(null);
+                passwordText2.setText(null);
+                return;
+            } else {
+                Account account1 = new Account(firstName, lastName, email, username, password1, employeeId);
+                boolean addAccount = AccountController.addAccount(account1);
+                if (addAccount) {
+                    JOptionPane.showMessageDialog(this, "Successfull!");
                 } else {
-                    Account account1 = new Account(firstName, lastName, email, username, password1, employeeId);
-                    boolean addAccount = AccountController.addAccount(account1);
-                    if (addAccount) {
-                        JOptionPane.showMessageDialog(this, "Successfull!");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Failed!");
-                    }
-                    firstNameText.setText("");
-                    lastNameText.setText("");
-                    emailText.setText("");
-                    usernameText.setText("");
-                    passwordText1.setText(null);
-                    passwordText1.setText(null);
+                    JOptionPane.showMessageDialog(this, "Failed!");
                 }
-            
-            }catch (ClassNotFoundException | SQLException ex) {
+                firstNameText.setText("");
+                lastNameText.setText("");
+                emailText.setText("");
+                usernameText.setText("");
+                passwordText1.setText(null);
+                passwordText2.setText(null);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -314,6 +357,30 @@ public class AddAccount extends javax.swing.JPanel {
     private void employeeIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeIdTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeIdTextActionPerformed
+
+    private void firstNameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstNameTextKeyReleased
+        Validation.buttonEnable(addButton, textFields);
+    }//GEN-LAST:event_firstNameTextKeyReleased
+
+    private void lastNameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lastNameTextKeyReleased
+        Validation.buttonEnable(addButton, textFields);
+    }//GEN-LAST:event_lastNameTextKeyReleased
+
+    private void emailTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailTextKeyReleased
+        Validation.buttonEnable(addButton, textFields);
+    }//GEN-LAST:event_emailTextKeyReleased
+
+    private void usernameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTextKeyReleased
+        Validation.buttonEnable(addButton, textFields);
+    }//GEN-LAST:event_usernameTextKeyReleased
+
+    private void passwordText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordText1KeyReleased
+        Validation.buttonEnable(addButton, textFields);
+    }//GEN-LAST:event_passwordText1KeyReleased
+
+    private void passwordText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordText2KeyReleased
+        Validation.buttonEnable(addButton, textFields);
+    }//GEN-LAST:event_passwordText2KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

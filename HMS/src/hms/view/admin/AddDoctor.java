@@ -545,23 +545,23 @@ public class AddDoctor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void specialtyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyTextActionPerformed
-        // TODO add your handling code here:
+        degreesText.requestFocus();
     }//GEN-LAST:event_specialtyTextActionPerformed
 
     private void titleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextActionPerformed
-        // TODO add your handling code here:
+        streetText.requestFocus();
     }//GEN-LAST:event_titleTextActionPerformed
 
     private void regNumTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNumTextActionPerformed
-        // TODO add your handling code here:
+        titleText.requestFocus();
     }//GEN-LAST:event_regNumTextActionPerformed
 
     private void codeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextActionPerformed
-        // TODO add your handling code here:
+        streetText.requestFocus();
     }//GEN-LAST:event_codeTextActionPerformed
 
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
-        // TODO add your handling code here:
+        lastNameText.requestFocus();
     }//GEN-LAST:event_firstNameTextActionPerformed
 
     private void nicTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicTextActionPerformed
@@ -569,11 +569,11 @@ public class AddDoctor extends javax.swing.JPanel {
     }//GEN-LAST:event_nicTextActionPerformed
 
     private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
-        // TODO add your handling code here:
+        districtText.requestFocus();
     }//GEN-LAST:event_cityTextActionPerformed
 
     private void streetTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextActionPerformed
-        // TODO add your handling code here:
+        cityText.requestFocus();
     }//GEN-LAST:event_streetTextActionPerformed
 
     private void districtTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtTextActionPerformed
@@ -581,19 +581,19 @@ public class AddDoctor extends javax.swing.JPanel {
     }//GEN-LAST:event_districtTextActionPerformed
 
     private void degreesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_degreesTextActionPerformed
-        // TODO add your handling code here:
+        contactNoText.requestFocus();
     }//GEN-LAST:event_degreesTextActionPerformed
 
     private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
-        // TODO add your handling code here:
+        emailText.requestFocus();
     }//GEN-LAST:event_contactNoTextActionPerformed
 
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
-        // TODO add your handling code here:
+        codeText.requestFocus();
     }//GEN-LAST:event_emailTextActionPerformed
 
     private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
-        // TODO add your handling code here:
+        nicText.requestFocus();
     }//GEN-LAST:event_lastNameTextActionPerformed
 
     private void doctorIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorIdTextActionPerformed
@@ -609,14 +609,14 @@ public class AddDoctor extends javax.swing.JPanel {
     }//GEN-LAST:event_dateComboBoxActionPerformed
 
     private void addDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorActionPerformed
-        
+
         String doctorId = doctorIdText.getText();
         String employeeId = "E001";
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
         String nic = nicText.getText();
-        String dob = (String) yearComboBox.getSelectedItem()+"-"+ (String) monthComboBox.getSelectedItem() +"-"+ (String) dateComboBox.getSelectedItem();
-        String gender = (String)genderComboBox.getSelectedItem();
+        String dob = (String) yearComboBox.getSelectedItem() + "-" + (String) monthComboBox.getSelectedItem() + "-" + (String) dateComboBox.getSelectedItem();
+        String gender = (String) genderComboBox.getSelectedItem();
         String specialty = specialtyText.getText();
         String degree = degreesText.getText();
         String regNum = regNumText.getText();
@@ -627,25 +627,38 @@ public class AddDoctor extends javax.swing.JPanel {
         String city = cityText.getText();
         String district = degreesText.getText();
         String email = emailText.getText();
-        
+
         Doctor doctor = new Doctor(doctorId, employeeId, firstName, lastName, nic, dob, gender, specialty, degree, regNum, title, contactNo, postalCode, street, city, district, email);
         try {
             boolean addDoctor = DoctorController.addDoctor(doctor);
-            if(addDoctor){
+            if (addDoctor) {
                 JOptionPane.showMessageDialog(this, "Successful");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
+            firstNameText.setText("");
+            lastNameText.setText("");
+            nicText.setText("");
+            specialtyText.setText("");
+            degreesText.setText("");
+            regNumText.setText("");
+            titleText.setText("");
+            contactNoText.setText("");
+            codeText.setText("");
+            streetText.setText("");
+            cityText.setText("");
+            districtText.setText("");
+            emailText.setText("");
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             fillDoctorIdText();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_addDoctorActionPerformed
 
     private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
@@ -700,7 +713,7 @@ public class AddDoctor extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> yearComboBox;
     // End of variables declaration//GEN-END:variables
 
-    private void fillDoctorIdText() throws ClassNotFoundException, SQLException{
+    private void fillDoctorIdText() throws ClassNotFoundException, SQLException {
         String newId = IDGenerator.getNewId("doctor", "doctorId", "D");
         doctorIdText.setText(newId);
     }

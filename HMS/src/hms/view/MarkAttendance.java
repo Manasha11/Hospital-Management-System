@@ -39,6 +39,8 @@ public class MarkAttendance extends javax.swing.JPanel {
             Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
         }
         AutoCompleteDecorator.decorate(nameCombo);
+        
+        //fillAttendanceTableForCurrentDay
     }
 
     /**
@@ -55,7 +57,7 @@ public class MarkAttendance extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         attendanceTable = new org.jdesktop.swingx.JXTable();
         jLabel9 = new javax.swing.JLabel();
-        IdText = new javax.swing.JTextField();
+        idText = new javax.swing.JTextField();
         nameCombo = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -91,11 +93,11 @@ public class MarkAttendance extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(57, 67, 92));
         jLabel9.setText("ID: ");
 
-        IdText.setEditable(false);
-        IdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        IdText.addActionListener(new java.awt.event.ActionListener() {
+        idText.setEditable(false);
+        idText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        idText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdTextActionPerformed(evt);
+                idTextActionPerformed(evt);
             }
         });
 
@@ -185,7 +187,7 @@ public class MarkAttendance extends javax.swing.JPanel {
                                     .addComponent(jLabel20))
                                 .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IdText, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +230,7 @@ public class MarkAttendance extends javax.swing.JPanel {
                             .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(IdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addGap(84, 84, 84)
                         .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,9 +242,9 @@ public class MarkAttendance extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void IdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdTextActionPerformed
+    private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IdTextActionPerformed
+    }//GEN-LAST:event_idTextActionPerformed
 
     private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
         DefaultComboBoxModel model = (DefaultComboBoxModel) nameCombo.getModel();
@@ -253,7 +255,7 @@ public class MarkAttendance extends javax.swing.JPanel {
             String id;
             try {
                 id = DoctorController.getDoctorId(names[0], names[1]);
-                IdText.setText(id);
+                idText.setText(id);
 
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
@@ -274,29 +276,44 @@ public class MarkAttendance extends javax.swing.JPanel {
     }//GEN-LAST:event_timeTextActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        boolean isExist = false;
+        int row = -1;
+        for (int i = 0; i < attendanceTable.getRowCount(); i++) {
+            if (!idText.getText().equals(attendanceTable.getValueAt(i, 0).toString())) {
+                isExist = false;
+            } else {
+                isExist = true;
+                row = i;
+                break;
+            }
+        }
+        if (!isExist) {
 //        Calendar calendar = Calendar.getInstance();
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-        DefaultTableModel dtm = (DefaultTableModel) attendanceTable.getModel();
-        String id = IdText.getText();
-        String name = (String) nameCombo.getSelectedItem();
-        String date = dateText.getText();
+            DefaultTableModel dtm = (DefaultTableModel) attendanceTable.getModel();
+            String id = idText.getText();
+            String name = (String) nameCombo.getSelectedItem();
+            String date = dateText.getText();
 //        String time = dateFormat.format(calendar.getTime());
-        String time = timeText.getText() + " " + (String) timeCombo.getSelectedItem();
+            String time = timeText.getText() + " " + (String) timeCombo.getSelectedItem();
 
-        Attendance attendance = new Attendance(id, date, time);
+            Attendance attendance = new Attendance(id, date, time);
 
-        try {
-            boolean addAttendance = AttendanceController.addAttendance(attendance);
-            if (addAttendance) {
-                JOptionPane.showMessageDialog(this, "Successfull!");
-                Object[] rowData = {id, name, time};
-                dtm.addRow(rowData);
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed!");
+            try {
+                boolean addAttendance = AttendanceController.addAttendance(attendance);
+                if (addAttendance) {
+                    JOptionPane.showMessageDialog(this, "Successfull!");
+                    Object[] rowData = {id, name, time};
+                    dtm.addRow(rowData);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed!");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }else{
+            JOptionPane.showMessageDialog(this, "Already marked attendance for this employee!");
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -310,11 +327,11 @@ public class MarkAttendance extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IdText;
     private javax.swing.JButton addButton;
     private org.jdesktop.swingx.JXTable attendanceTable;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField dateText;
+    private javax.swing.JTextField idText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel5;

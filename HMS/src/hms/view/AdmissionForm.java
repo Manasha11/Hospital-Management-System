@@ -12,6 +12,7 @@ import hms.model.Admission;
 import hms.model.Doctor;
 import hms.model.Ward;
 import hms.other.IDGenerator;
+import hms.other.Validation;
 import static hms.view.Home.homePanel;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
@@ -21,12 +22,16 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
  * @author Manasha
  */
 public class AdmissionForm extends javax.swing.JPanel {
+
+    private JTextField[] textFields;
 
     /**
      * Creates new form Admission
@@ -42,7 +47,12 @@ public class AdmissionForm extends javax.swing.JPanel {
         }
 
         setDate();
-        
+        AutoCompleteDecorator.decorate(leadingCombo);
+
+        textFields = new JTextField[3];
+        textFields[0] = recommendedByText;
+        textFields[1] = confirmedByText;
+        textFields[2] = advanceText;
     }
 
     /**
@@ -198,6 +208,11 @@ public class AdmissionForm extends javax.swing.JPanel {
                 recommendedByTextActionPerformed(evt);
             }
         });
+        recommendedByText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                recommendedByTextKeyReleased(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(57, 67, 92));
@@ -207,6 +222,11 @@ public class AdmissionForm extends javax.swing.JPanel {
         confirmedByText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmedByTextActionPerformed(evt);
+            }
+        });
+        confirmedByText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                confirmedByTextKeyReleased(evt);
             }
         });
 
@@ -262,6 +282,11 @@ public class AdmissionForm extends javax.swing.JPanel {
         advanceText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 advanceTextActionPerformed(evt);
+            }
+        });
+        advanceText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                advanceTextKeyReleased(evt);
             }
         });
 
@@ -353,6 +378,7 @@ public class AdmissionForm extends javax.swing.JPanel {
         admitButton.setForeground(new java.awt.Color(255, 255, 255));
         admitButton.setText("Admit");
         admitButton.setBorder(null);
+        admitButton.setEnabled(false);
         admitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 admitButtonActionPerformed(evt);
@@ -465,7 +491,7 @@ public class AdmissionForm extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTextActionPerformed
 
     private void leadingComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leadingComboActionPerformed
-        
+
     }//GEN-LAST:event_leadingComboActionPerformed
 
     private void leadingComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_leadingComboItemStateChanged
@@ -492,6 +518,18 @@ public class AdmissionForm extends javax.swing.JPanel {
     private void advanceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advanceTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_advanceTextActionPerformed
+
+    private void recommendedByTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_recommendedByTextKeyReleased
+        Validation.buttonEnable(admitButton, textFields);
+    }//GEN-LAST:event_recommendedByTextKeyReleased
+
+    private void confirmedByTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmedByTextKeyReleased
+        Validation.buttonEnable(admitButton, textFields);
+    }//GEN-LAST:event_confirmedByTextKeyReleased
+
+    private void advanceTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_advanceTextKeyReleased
+        Validation.buttonEnable(admitButton, textFields);
+    }//GEN-LAST:event_advanceTextKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -538,7 +576,7 @@ public class AdmissionForm extends javax.swing.JPanel {
     private void fillLeadingCombo() throws ClassNotFoundException, SQLException {
         ArrayList<Doctor> allDoctors = DoctorController.getAllDoctors();
         for (Doctor doctor : allDoctors) {
-            leadingCombo.addItem(doctor.getFirstName()+ " " + doctor.getLastName());
+            leadingCombo.addItem(doctor.getFirstName() + " " + doctor.getLastName());
         }
     }
 

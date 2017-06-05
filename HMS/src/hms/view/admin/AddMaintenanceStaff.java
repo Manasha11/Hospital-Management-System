@@ -26,9 +26,7 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         initComponents();
         try {
             fillMaintenanceStaffId();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddMaintenanceStaff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddMaintenanceStaff.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -259,8 +257,18 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         mStaffIdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
 
         lastNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        lastNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastNameTextActionPerformed(evt);
+            }
+        });
 
         firstNameText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        firstNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstNameTextActionPerformed(evt);
+            }
+        });
 
         nicText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
 
@@ -424,23 +432,23 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
-        // TODO add your handling code here:
+        emailText.requestFocus();
     }//GEN-LAST:event_contactNoTextActionPerformed
 
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
-        // TODO add your handling code here:
+        codeText.requestFocus();
     }//GEN-LAST:event_emailTextActionPerformed
 
     private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
-        // TODO add your handling code here:
+        districtText.requestFocus();
     }//GEN-LAST:event_cityTextActionPerformed
 
     private void codeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextActionPerformed
-        // TODO add your handling code here:
+        streetText.requestFocus();
     }//GEN-LAST:event_codeTextActionPerformed
 
     private void streetTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextActionPerformed
-        // TODO add your handling code here:
+        cityText.requestFocus();
     }//GEN-LAST:event_streetTextActionPerformed
 
     private void districtTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtTextActionPerformed
@@ -478,17 +486,13 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AddNurse.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
             fillMaintenanceStaffId();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddMaintenanceStaff.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddMaintenanceStaff.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -503,6 +507,14 @@ public class AddMaintenanceStaff extends javax.swing.JPanel {
         districtText.setText("");
 
     }//GEN-LAST:event_addMaintenantActionPerformed
+
+    private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
+        lastNameText.requestFocus();
+    }//GEN-LAST:event_firstNameTextActionPerformed
+
+    private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
+        nicText.requestFocus();
+    }//GEN-LAST:event_lastNameTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
