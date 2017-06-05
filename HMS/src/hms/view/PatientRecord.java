@@ -9,6 +9,8 @@ import hms.controller.AdmissionController;
 import hms.controller.PatientController;
 import hms.model.Admission;
 import hms.model.Patient;
+import static hms.view.Home.homePanel;
+import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -199,7 +201,16 @@ public class PatientRecord extends javax.swing.JPanel {
     }//GEN-LAST:event_patientIdTextActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
+        String patientId = patientIdText.getText();
+        PatientDetails patientDetails = new PatientDetails();
+        patientDetails.setVisible(true);
+        homePanel.setLayout(new BorderLayout());
+        homePanel.removeAll();
+        homePanel.add(patientDetails);
+        homePanel.validate();
+        homePanel.repaint();
+        PatientDetails.patientIdText.setText(patientId);
+        PatientDetails.searchButton.doClick();
     }//GEN-LAST:event_updateButtonActionPerformed
 
 

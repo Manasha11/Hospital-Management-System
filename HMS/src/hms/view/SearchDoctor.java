@@ -224,7 +224,6 @@ public class SearchDoctor extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         String doctorId = (String) doctorDetailTable.getValueAt(doctorDetailTable.getSelectedRow(), 0);
-        System.out.println(doctorId);
         DoctorDetails doctorDetails = new DoctorDetails();
         doctorDetails.setVisible(true);
         homePanel.setLayout(new BorderLayout());

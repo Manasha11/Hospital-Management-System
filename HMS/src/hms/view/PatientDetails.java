@@ -75,6 +75,7 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         genderComboBox = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
+        searchButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -234,6 +235,13 @@ public class PatientDetails extends javax.swing.JPanel {
         jLabel19.setForeground(new java.awt.Color(57, 67, 92));
         jLabel19.setText("NIC: ");
 
+        searchButton.setText("jButton1");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -259,9 +267,12 @@ public class PatientDetails extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13))
                     .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(firstNameText, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(patientIdText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(firstNameText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(patientIdText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +336,9 @@ public class PatientDetails extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(searchButton))
                                         .addGap(18, 18, 18)
                                         .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(88, 88, 88))
@@ -671,7 +684,7 @@ public class PatientDetails extends javax.swing.JPanel {
         String street = streetText.getText();
         String city = cityText.getText();
         String district = districtText.getText();
-        
+
         Patient patient = new Patient(patientId, firstName, lastName, nic, dob, gender, bloodGroup, alergyDetails, specialNotes, code, street, city, district);
 
         String residence = residenceTest.getText();
@@ -685,12 +698,12 @@ public class PatientDetails extends javax.swing.JPanel {
         String eResidence = eResidenceText.getText();
 
         EmergencyContact emergencyContact = new EmergencyContact(patientId, relationship, name, mobile, residence);
-        
+
         try {
             boolean updatePatient = PatientController.updatePatient(patient, patientContact, emergencyContact);
-            if(updatePatient){
+            if (updatePatient) {
                 JOptionPane.showMessageDialog(this, "Successfull!");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed!");
                 return;
             }
@@ -706,7 +719,6 @@ public class PatientDetails extends javax.swing.JPanel {
 //        specialNotesText.setText("");
 //        alergyDetailsText.setText("");
 //        bloodGroupTest.setText("");
-
         AdmissionForm admission = new AdmissionForm();
         admission.setVisible(true);
         homePanel.setLayout(new BorderLayout());
@@ -755,13 +767,13 @@ public class PatientDetails extends javax.swing.JPanel {
                     mobileTest.setText(patientContact.getMobile());
                     residenceTest.setText(patientContact.getResidence());
                 }
-                
-                if(emergencyContact != null){
+
+                if (emergencyContact != null) {
                     relationshipText.setText(emergencyContact.getRelationship());
                     nameText.setText(emergencyContact.getName());
                     eMobileText.setText(emergencyContact.getMobile());
                     eResidenceText.setText(emergencyContact.getResidence());
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(this, "No such patient found!");
                 }
 
@@ -900,6 +912,46 @@ public class PatientDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_eResidenceTextActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        String patientId = patientIdText.getText();
+        try {
+            Patient patient = PatientController.searchPatient(patientId);
+            PatientContact patientContact = PatientContactController.searchPatientContact(patientId);
+            EmergencyContact emergencyContact = EmergencyContactController.searchPatient(patientId);
+
+            if (patient != null) {
+                patientIdText.setText(patient.getPatientId());
+                firstNameText.setText(patient.getFirstName());
+                lastNameText.setText(patient.getLastName());
+                nicText.setText(patient.getNic());
+                bloodGroupTest.setText(patient.getBloodGroup());
+                alergyDetailsText.setText(patient.getAlergyDetails());
+                specialNotesText.setText(patient.getSpecialNotes());
+                codeText.setText(patient.getPostalCode());
+                streetText.setText(patient.getStreet());
+                cityText.setText(patient.getCity());
+                districtText.setText(patient.getDistrict());
+
+                if (patientContact != null) {
+                    mobileTest.setText(patientContact.getMobile());
+                    residenceTest.setText(patientContact.getResidence());
+                }
+
+                if (emergencyContact != null) {
+                    relationshipText.setText(emergencyContact.getRelationship());
+                    nameText.setText(emergencyContact.getName());
+                    eMobileText.setText(emergencyContact.getMobile());
+                    eResidenceText.setText(emergencyContact.getResidence());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No such patient found!");
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PatientDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -949,9 +1001,10 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JTextField nameText;
     private javax.swing.JButton nextButton;
     private javax.swing.JTextField nicText;
-    private javax.swing.JTextField patientIdText;
+    public static javax.swing.JTextField patientIdText;
     private javax.swing.JTextField relationshipText;
     private javax.swing.JTextField residenceTest;
+    public static javax.swing.JButton searchButton;
     private javax.swing.JTextArea specialNotesText;
     private javax.swing.JTextField streetText;
     private javax.swing.JButton updateButton;
