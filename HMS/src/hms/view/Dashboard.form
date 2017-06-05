@@ -65,6 +65,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton10" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton16" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="jButton18" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -103,17 +104,16 @@
               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton16" pref="71" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton11" pref="71" max="32767" attributes="0"/>
-                      <Component id="jButton13" max="32767" attributes="0"/>
-                      <Component id="jButton14" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jButton11" pref="71" max="32767" attributes="0"/>
+                  <Component id="jButton13" max="32767" attributes="0"/>
+                  <Component id="jButton14" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton15" pref="74" max="32767" attributes="0"/>
                   <Component id="jButton12" max="32767" attributes="0"/>
-                  <Component id="jButton17" max="32767" attributes="0"/>
+                  <Component id="jButton17" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jButton18" alignment="1" min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="92" max="32767" attributes="0"/>
           </Group>
@@ -227,7 +227,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton16">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton16"/>
+        <Property name="text" type="java.lang.String" value="Search Doctor"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
@@ -239,6 +239,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton18">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Attendance"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

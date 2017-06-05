@@ -5,6 +5,22 @@
  */
 package hms.view;
 
+import hms.controller.AttendanceController;
+import hms.controller.DoctorController;
+import hms.model.Attendance;
+import hms.model.Doctor;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 /**
  *
  * @author Manasha
@@ -16,6 +32,13 @@ public class MarkAttendance extends javax.swing.JPanel {
      */
     public MarkAttendance() {
         initComponents();
+        setDate();
+        try {
+            fillNameCombo();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AutoCompleteDecorator.decorate(nameCombo);
     }
 
     /**
@@ -27,19 +50,300 @@ public class MarkAttendance extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        attendanceTable = new org.jdesktop.swingx.JXTable();
+        jLabel9 = new javax.swing.JLabel();
+        IdText = new javax.swing.JTextField();
+        nameCombo = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        dateText = new javax.swing.JTextField();
+        timeText = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        addButton = new javax.swing.JButton();
+        timeCombo = new javax.swing.JComboBox<>();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Cuprum", 1, 34)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(36, 208, 124));
+        jLabel1.setText("Attendance");
+
+        attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Arriving time"
+            }
+        ));
+        attendanceTable.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        attendanceTable.setGridColor(new java.awt.Color(255, 255, 255));
+        attendanceTable.setRowHeight(40);
+        attendanceTable.setSelectionBackground(new java.awt.Color(36, 208, 124));
+        attendanceTable.setVisibleRowCount(8);
+        jScrollPane1.setViewportView(attendanceTable);
+
+        jLabel9.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel9.setText("ID: ");
+
+        IdText.setEditable(false);
+        IdText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        IdText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdTextActionPerformed(evt);
+            }
+        });
+
+        nameCombo.setEditable(true);
+        nameCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        nameCombo.setBorder(null);
+        nameCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nameComboItemStateChanged(evt);
+            }
+        });
+        nameCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameComboActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel20.setText("Name: ");
+
+        jLabel5.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel5.setText("Date: ");
+
+        dateText.setEditable(false);
+        dateText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        dateText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateTextActionPerformed(evt);
+            }
+        });
+
+        timeText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        timeText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeTextActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(57, 67, 92));
+        jLabel6.setText("Time: ");
+
+        addButton.setBackground(new java.awt.Color(36, 208, 124));
+        addButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("Add");
+        addButton.setBorder(null);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        timeCombo.setEditable(true);
+        timeCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        timeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
+        timeCombo.setBorder(null);
+        timeCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                timeComboItemStateChanged(evt);
+            }
+        });
+        timeCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeComboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel20))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(IdText, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(timeText, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(timeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(timeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(IdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(84, 84, 84)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(172, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void IdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdTextActionPerformed
+
+    private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
+        DefaultComboBoxModel model = (DefaultComboBoxModel) nameCombo.getModel();
+        if (model.getIndexOf(nameCombo.getSelectedItem()) != -1) {
+            String name = (String) nameCombo.getSelectedItem();
+            String[] names = name.split(" ");
+
+            String id;
+            try {
+                id = DoctorController.getDoctorId(names[0], names[1]);
+                IdText.setText(id);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_nameComboItemStateChanged
+
+    private void nameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameComboActionPerformed
+
+    }//GEN-LAST:event_nameComboActionPerformed
+
+    private void dateTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateTextActionPerformed
+
+    private void timeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeTextActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+//        Calendar calendar = Calendar.getInstance();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+        DefaultTableModel dtm = (DefaultTableModel) attendanceTable.getModel();
+        String id = IdText.getText();
+        String name = (String) nameCombo.getSelectedItem();
+        String date = dateText.getText();
+//        String time = dateFormat.format(calendar.getTime());
+        String time = timeText.getText() + " " + (String) timeCombo.getSelectedItem();
+
+        Attendance attendance = new Attendance(id, date, time);
+
+        try {
+            boolean addAttendance = AttendanceController.addAttendance(attendance);
+            if (addAttendance) {
+                JOptionPane.showMessageDialog(this, "Successfull!");
+                Object[] rowData = {id, name, time};
+                dtm.addRow(rowData);
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed!");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MarkAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void timeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_timeComboItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeComboItemStateChanged
+
+    private void timeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IdText;
+    private javax.swing.JButton addButton;
+    private org.jdesktop.swingx.JXTable attendanceTable;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField dateText;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> nameCombo;
+    private javax.swing.JComboBox<String> timeCombo;
+    private javax.swing.JTextField timeText;
     // End of variables declaration//GEN-END:variables
+
+    private void setDate() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formatedDate = dateFormat.format(date);
+        dateText.setText(formatedDate);
+    }
+
+    private void setTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String formatedTime = dateFormat.format(calendar.getTime());
+        timeText.setText(formatedTime);
+    }
+
+    private void fillNameCombo() throws ClassNotFoundException, SQLException {
+        ArrayList<Doctor> allDoctors = DoctorController.getAllDoctors();
+        for (Doctor doctor : allDoctors) {
+            nameCombo.addItem(doctor.getFirstName() + " " + doctor.getLastName());
+        }
+    }
 }
