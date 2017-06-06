@@ -8,10 +8,12 @@ package hms.view.admin;
 import hms.controller.DoctorController;
 import hms.model.Doctor;
 import hms.other.IDGenerator;
+import hms.other.Validation;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -29,6 +31,7 @@ public class AddDoctor extends javax.swing.JPanel {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        AutoCompleteDecorator.decorate(specialtyCombo);
     }
 
     /**
@@ -44,12 +47,12 @@ public class AddDoctor extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         regNumText = new javax.swing.JTextField();
-        specialtyText = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         titleText = new javax.swing.JTextField();
         degreesText = new javax.swing.JTextField();
+        specialtyCombo = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -106,13 +109,6 @@ public class AddDoctor extends javax.swing.JPanel {
             }
         });
 
-        specialtyText.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        specialtyText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                specialtyTextActionPerformed(evt);
-            }
-        });
-
         jLabel14.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(57, 67, 92));
         jLabel14.setText("Specialty:");
@@ -139,6 +135,21 @@ public class AddDoctor extends javax.swing.JPanel {
             }
         });
 
+        specialtyCombo.setEditable(true);
+        specialtyCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        specialtyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Specialist Physician", "Obstetriian & Gynaecologist (VOG)", "Paediatrician", "Paediatric Surgeon", "Paediatric Cardiologist", "Cardiologist", "Cardiothoracic Surgeon", "Genito - Urinary Surgeon", "Oral & Maxillofacial Surgeon", "Restorative Dentistry", "General Surgeon", "Psychiatrist", "Rheumatologist", "Dermatologist", "Radiologist", "Orthopaedic surgeon", "Eye Surgeon", "Chest Physician", "E.N.T. Surgeon", "Onco Surgeon", "Oncologist", "Haematologist", "Neurologist", "Neuro Surgeon", "Histo Pathologist", "Microbiologist", "Gastro Intestinal Surgeon", "Nephrologist", "Endocrinologist", "audiometrist", "Physiotherapist", "Nutritioist", "Speach Therapist", "Psychological Counselor", "Occupational Therapist" }));
+        specialtyCombo.setBorder(null);
+        specialtyCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                specialtyComboItemStateChanged(evt);
+            }
+        });
+        specialtyCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specialtyComboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,10 +160,13 @@ public class AddDoctor extends javax.swing.JPanel {
                     .addComponent(jLabel16)
                     .addComponent(jLabel14))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(regNumText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(specialtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(regNumText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(specialtyCombo, 0, 0, Short.MAX_VALUE)
+                        .addGap(31, 31, 31)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jLabel17))
@@ -171,13 +185,13 @@ public class AddDoctor extends javax.swing.JPanel {
                         .addComponent(regNumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(titleText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17)
-                        .addComponent(degreesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(specialtyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel14)))
+                        .addComponent(degreesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14)
+                    .addComponent(specialtyCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -211,6 +225,11 @@ public class AddDoctor extends javax.swing.JPanel {
         nicText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nicTextActionPerformed(evt);
+            }
+        });
+        nicText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nicTextKeyReleased(evt);
             }
         });
 
@@ -370,6 +389,11 @@ public class AddDoctor extends javax.swing.JPanel {
         contactNoText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactNoTextActionPerformed(evt);
+            }
+        });
+        contactNoText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                contactNoTextKeyReleased(evt);
             }
         });
 
@@ -533,7 +557,7 @@ public class AddDoctor extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(114, Short.MAX_VALUE))
+                        .addContainerGap(121, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -543,10 +567,6 @@ public class AddDoctor extends javax.swing.JPanel {
                         .addGap(66, 66, 66))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void specialtyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyTextActionPerformed
-        degreesText.requestFocus();
-    }//GEN-LAST:event_specialtyTextActionPerformed
 
     private void titleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextActionPerformed
         streetText.requestFocus();
@@ -609,7 +629,7 @@ public class AddDoctor extends javax.swing.JPanel {
     }//GEN-LAST:event_dateComboBoxActionPerformed
 
     private void addDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorActionPerformed
-
+        
         String doctorId = doctorIdText.getText();
         String employeeId = "E001";
         String firstName = firstNameText.getText();
@@ -617,7 +637,7 @@ public class AddDoctor extends javax.swing.JPanel {
         String nic = nicText.getText();
         String dob = (String) yearComboBox.getSelectedItem() + "-" + (String) monthComboBox.getSelectedItem() + "-" + (String) dateComboBox.getSelectedItem();
         String gender = (String) genderComboBox.getSelectedItem();
-        String specialty = specialtyText.getText();
+        String specialty = (String) specialtyCombo.getSelectedItem();
         String degree = degreesText.getText();
         String regNum = regNumText.getText();
         String title = titleText.getText();
@@ -627,7 +647,7 @@ public class AddDoctor extends javax.swing.JPanel {
         String city = cityText.getText();
         String district = degreesText.getText();
         String email = emailText.getText();
-
+        
         Doctor doctor = new Doctor(doctorId, employeeId, firstName, lastName, nic, dob, gender, specialty, degree, regNum, title, contactNo, postalCode, street, city, district, email);
         try {
             boolean addDoctor = DoctorController.addDoctor(doctor);
@@ -639,7 +659,6 @@ public class AddDoctor extends javax.swing.JPanel {
             firstNameText.setText("");
             lastNameText.setText("");
             nicText.setText("");
-            specialtyText.setText("");
             degreesText.setText("");
             regNumText.setText("");
             titleText.setText("");
@@ -652,7 +671,7 @@ public class AddDoctor extends javax.swing.JPanel {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         try {
             fillDoctorIdText();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -664,6 +683,22 @@ public class AddDoctor extends javax.swing.JPanel {
     private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderComboBoxActionPerformed
+
+    private void nicTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicTextKeyReleased
+        Validation.validateNIC(nicText);
+    }//GEN-LAST:event_nicTextKeyReleased
+
+    private void contactNoTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactNoTextKeyReleased
+        Validation.validatePhoneNumber(contactNoText);
+    }//GEN-LAST:event_contactNoTextKeyReleased
+
+    private void specialtyComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_specialtyComboItemStateChanged
+        
+    }//GEN-LAST:event_specialtyComboItemStateChanged
+
+    private void specialtyComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_specialtyComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -707,7 +742,7 @@ public class AddDoctor extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField regNumText;
-    private javax.swing.JTextField specialtyText;
+    private javax.swing.JComboBox<String> specialtyCombo;
     private javax.swing.JTextField streetText;
     private javax.swing.JTextField titleText;
     private javax.swing.JComboBox<String> yearComboBox;

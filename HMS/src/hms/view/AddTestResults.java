@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -300,7 +301,7 @@ public class AddTestResults extends javax.swing.JPanel {
         String admissionId = admissionIdText.getText();
         try {
             Admission admission = AdmissionController.searchAdmission(admissionId);
-            if(admission != null){
+            if (admission != null) {
                 patientIdText.setText(admission.getPatientId());
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -372,20 +373,24 @@ public class AddTestResults extends javax.swing.JPanel {
     }//GEN-LAST:event_pathTextActionPerformed
 
     private void testComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_testComboItemStateChanged
-        String testType = (String) testCombo.getSelectedItem();
-        try {
-            String testId = TestController.getTestId(testType);
-            if (testId != null) {
-                testIdText.setText(testId);
+        DefaultComboBoxModel model = (DefaultComboBoxModel) testCombo.getModel();
+        if (model.getIndexOf(testCombo.getSelectedItem()) != -1) {
+
+            String testType = (String) testCombo.getSelectedItem();
+            try {
+                String testId = TestController.getTestId(testType);
+                if (testId != null) {
+                    testIdText.setText(testId);
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_testComboItemStateChanged
 
     private void testComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testComboActionPerformed
-        admissionIdText.requestFocus();
+        
     }//GEN-LAST:event_testComboActionPerformed
 
 

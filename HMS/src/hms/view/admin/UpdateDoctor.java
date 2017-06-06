@@ -5,10 +5,8 @@
  */
 package hms.view.admin;
 
-import hms.view.*;
 import hms.controller.DoctorController;
 import hms.model.Doctor;
-import hms.other.IDGenerator;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +23,7 @@ public class UpdateDoctor extends javax.swing.JPanel {
      */
     public UpdateDoctor() {
         initComponents();
-        
+
     }
 
     /**
@@ -538,35 +536,35 @@ public class UpdateDoctor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void specialtyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyTextActionPerformed
-        // TODO add your handling code here:
+        degreesText.requestFocus();
     }//GEN-LAST:event_specialtyTextActionPerformed
 
     private void titleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextActionPerformed
-        // TODO add your handling code here:
+        specialtyText.requestFocus();
     }//GEN-LAST:event_titleTextActionPerformed
 
     private void regNumTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNumTextActionPerformed
-        // TODO add your handling code here:
+        titleText.requestFocus();
     }//GEN-LAST:event_regNumTextActionPerformed
 
     private void codeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeTextActionPerformed
-        // TODO add your handling code here:
+        streetText.requestFocus();
     }//GEN-LAST:event_codeTextActionPerformed
 
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
-        // TODO add your handling code here:
+        lastNameText.requestFocus();
     }//GEN-LAST:event_firstNameTextActionPerformed
 
     private void nicTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicTextActionPerformed
-        // TODO add your handling code here:
+        genderText.requestFocus();
     }//GEN-LAST:event_nicTextActionPerformed
 
     private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
-        // TODO add your handling code here:
+        districtText.requestFocus();
     }//GEN-LAST:event_cityTextActionPerformed
 
     private void streetTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextActionPerformed
-        // TODO add your handling code here:
+        cityText.requestFocus();
     }//GEN-LAST:event_streetTextActionPerformed
 
     private void districtTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtTextActionPerformed
@@ -574,19 +572,19 @@ public class UpdateDoctor extends javax.swing.JPanel {
     }//GEN-LAST:event_districtTextActionPerformed
 
     private void degreesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_degreesTextActionPerformed
-        // TODO add your handling code here:
+        contactNoText.requestFocus();
     }//GEN-LAST:event_degreesTextActionPerformed
 
     private void contactNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNoTextActionPerformed
-        // TODO add your handling code here:
+        emailText.requestFocus();
     }//GEN-LAST:event_contactNoTextActionPerformed
 
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
-        // TODO add your handling code here:
+        codeText.requestFocus();
     }//GEN-LAST:event_emailTextActionPerformed
 
     private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
-        // TODO add your handling code here:
+        nicText.requestFocus();
     }//GEN-LAST:event_lastNameTextActionPerformed
 
     private void doctorIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorIdTextActionPerformed
@@ -644,7 +642,7 @@ public class UpdateDoctor extends javax.swing.JPanel {
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
         String nic = nicText.getText();
-        String dob = (String) yearComboBox.getSelectedItem()+"-"+ (String) monthComboBox.getSelectedItem() +"-"+ (String) dateComboBox.getSelectedItem();
+        String dob = (String) yearComboBox.getSelectedItem() + "-" + (String) monthComboBox.getSelectedItem() + "-" + (String) dateComboBox.getSelectedItem();
         String gender = genderText.getText();
         String specialty = specialtyText.getText();
         String degree = degreesText.getText();
@@ -747,5 +745,4 @@ public class UpdateDoctor extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> yearComboBox;
     // End of variables declaration//GEN-END:variables
 
-    
 }

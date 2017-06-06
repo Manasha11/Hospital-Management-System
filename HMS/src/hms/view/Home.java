@@ -43,6 +43,7 @@ public class Home extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         navBar = new javax.swing.JPanel();
         dischargeButton = new javax.swing.JButton();
         doctorButton = new javax.swing.JButton();
@@ -66,15 +67,26 @@ public class Home extends javax.swing.JFrame {
 
         header.setBackground(new java.awt.Color(57, 67, 92));
 
+        jLabel1.setFont(new java.awt.Font("Cuprum", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(189, 195, 199));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Lumiere Hospitals");
+
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
+                .addContainerGap())
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         background.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 60));
@@ -101,7 +113,7 @@ public class Home extends javax.swing.JFrame {
                 dischargeButtonActionPerformed(evt);
             }
         });
-        navBar.add(dischargeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 250, 40));
+        navBar.add(dischargeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 250, 40));
 
         doctorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doctorDefault.png"))); // NOI18N
         doctorButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -122,7 +134,7 @@ public class Home extends javax.swing.JFrame {
                 doctorButtonActionPerformed(evt);
             }
         });
-        navBar.add(doctorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 250, 40));
+        navBar.add(doctorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 250, 40));
 
         dashboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashboardDefault.png"))); // NOI18N
         dashboardButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -143,7 +155,7 @@ public class Home extends javax.swing.JFrame {
                 dashboardButtonActionPerformed(evt);
             }
         });
-        navBar.add(dashboardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 250, 40));
+        navBar.add(dashboardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 250, 40));
 
         nurseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NurseDefault.png"))); // NOI18N
         nurseButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -164,7 +176,7 @@ public class Home extends javax.swing.JFrame {
                 nurseButtonActionPerformed(evt);
             }
         });
-        navBar.add(nurseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 250, 40));
+        navBar.add(nurseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 250, 40));
 
         pharmacistButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PharmacistDefault.png"))); // NOI18N
         pharmacistButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -185,7 +197,7 @@ public class Home extends javax.swing.JFrame {
                 pharmacistButtonActionPerformed(evt);
             }
         });
-        navBar.add(pharmacistButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 250, 40));
+        navBar.add(pharmacistButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 250, 40));
 
         mStaffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MstaffDefault.png"))); // NOI18N
         mStaffButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -206,7 +218,7 @@ public class Home extends javax.swing.JFrame {
                 mStaffButtonActionPerformed(evt);
             }
         });
-        navBar.add(mStaffButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 250, 40));
+        navBar.add(mStaffButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 250, 40));
 
         reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TestReportDefault.png"))); // NOI18N
         reportButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -227,7 +239,7 @@ public class Home extends javax.swing.JFrame {
                 reportButtonActionPerformed(evt);
             }
         });
-        navBar.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 250, 40));
+        navBar.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 250, 40));
 
         patientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PatientDefault.png"))); // NOI18N
         patientButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -248,7 +260,7 @@ public class Home extends javax.swing.JFrame {
                 patientButtonActionPerformed(evt);
             }
         });
-        navBar.add(patientButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 40));
+        navBar.add(patientButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 250, 40));
 
         admissionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/AdmissionDefault.png"))); // NOI18N
         admissionButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -269,7 +281,7 @@ public class Home extends javax.swing.JFrame {
                 admissionButtonActionPerformed(evt);
             }
         });
-        navBar.add(admissionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 250, 40));
+        navBar.add(admissionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 250, 40));
 
         background.add(navBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 250, 690));
 
@@ -399,11 +411,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_nurseButtonActionPerformed
 
     private void doctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorButtonActionPerformed
-        DoctorDetails doctorDetails = new DoctorDetails();
-        doctorDetails.setVisible(true);
+        SearchDoctor searchDoctor = new SearchDoctor();
+        searchDoctor.setVisible(true);
         homePanel.setLayout(new BorderLayout());
         homePanel.removeAll();
-        homePanel.add(doctorDetails);
+        homePanel.add(searchDoctor);
         homePanel.validate();
         homePanel.repaint();
     }//GEN-LAST:event_doctorButtonActionPerformed
@@ -562,6 +574,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel green;
     private javax.swing.JPanel header;
     public static javax.swing.JPanel homePanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton mStaffButton;
     private javax.swing.JPanel navBar;
     private javax.swing.JButton nurseButton;

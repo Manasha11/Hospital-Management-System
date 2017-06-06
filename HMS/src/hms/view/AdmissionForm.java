@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -48,6 +49,7 @@ public class AdmissionForm extends javax.swing.JPanel {
 
         setDate();
         AutoCompleteDecorator.decorate(leadingCombo);
+        AutoCompleteDecorator.decorate(wardIdCombo);
 
         textFields = new JTextField[3];
         textFields[0] = recommendedByText;
@@ -495,15 +497,19 @@ public class AdmissionForm extends javax.swing.JPanel {
     }//GEN-LAST:event_leadingComboActionPerformed
 
     private void leadingComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_leadingComboItemStateChanged
-        String name = (String) leadingCombo.getSelectedItem();
-        String[] names = name.split(" ");
+        DefaultComboBoxModel model = (DefaultComboBoxModel) leadingCombo.getModel();
+        if (model.getIndexOf(leadingCombo.getSelectedItem()) != -1) {
+
+            String name = (String) leadingCombo.getSelectedItem();
+            String[] names = name.split(" ");
 //        System.out.println(names[0]);
 //        System.out.println(names[1]);
-        try {
-            String doctorId = DoctorController.getDoctorId(names[0], names[1]);
-            leadingIdText.setText(doctorId);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                String doctorId = DoctorController.getDoctorId(names[0], names[1]);
+                leadingIdText.setText(doctorId);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(AdmissionForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_leadingComboItemStateChanged
 

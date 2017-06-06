@@ -133,7 +133,7 @@ create table Admission(
 
 create table Test(
 	TestID varchar(10),
-	TestName varchar(10),
+	TestName varchar(100),
 	constraint primary key (TestID)
 );
 
@@ -223,3 +223,4 @@ insert into Employee values("E001","Doctor");
 insert into Employee values("E002","Nurse");
 insert into Employee values("E003","Pharmacist");
 insert into Employee values("E004","Maintenance Staff");
+insert into Employee values("E005","Admin");

@@ -82,7 +82,7 @@ public class Login extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        loginPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, 20));
+        loginPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, 30));
 
         loginButton.setBackground(new java.awt.Color(36, 208, 124));
         loginButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
@@ -144,28 +144,28 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-//        String username = usernameText.getText();
-//        String password = passwordText.getText();
-//        try {
-//            Account account = AccountController.searchAccount(username);
-//            if (account != null) {
-//                if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
-//                    Login.this.setVisible(false);
-//                    new Home().setVisible(true);
-//                }else{
-//                    JOptionPane.showMessageDialog(this, "Password is incorrect!");
-//                }
-//            }else{
-//                JOptionPane.showMessageDialog(this, "No such user!");
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        String username = usernameText.getText();
+        String password = passwordText.getText();
+        try {
+            Account account = AccountController.searchAccount(username);
+            if (account != null) {
+                if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
+                    Login.this.setVisible(false);
+                    new Home().setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Password is incorrect!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "No such user!");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        Login.this.setVisible(false);
-        new Home().setVisible(true);
+//        Login.this.setVisible(false);
+//        new Home().setVisible(true);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed

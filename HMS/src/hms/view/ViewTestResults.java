@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -36,7 +37,7 @@ public class ViewTestResults extends javax.swing.JPanel {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ViewTestResults.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         AutoCompleteDecorator.decorate(nameCombo);
     }
 
@@ -176,27 +177,31 @@ public class ViewTestResults extends javax.swing.JPanel {
     private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
         DefaultTableModel dtm = (DefaultTableModel) testDetailTable.getModel();
 
-        if (!nameCombo.getSelectedItem().equals("")) {
-            String name = (String) nameCombo.getSelectedItem();
-            String[] names = name.split(" ");
+        DefaultComboBoxModel model = (DefaultComboBoxModel) nameCombo.getModel();
+        if (model.getIndexOf(nameCombo.getSelectedItem()) != -1) {
 
-            String patientId;
-            try {
-                patientId = PatientController.getPatientId(names[0], names[1]);
-                patientIdText.setText(patientId);
-                ArrayList<TestResult> resultList = TestResultController.getAllResults(patientId);
-                dtm.setRowCount(0);
+            if (!nameCombo.getSelectedItem().equals("")) {
+                String name = (String) nameCombo.getSelectedItem();
+                String[] names = name.split(" ");
 
-                for (TestResult testResult : resultList) {
-                    Object[] rowData = {testResult.getAdmissionId(), testResult.getResultId(), testResult.getTestId()};
-                    dtm.addRow(rowData);
+                String patientId;
+                try {
+                    patientId = PatientController.getPatientId(names[0], names[1]);
+                    patientIdText.setText(patientId);
+                    ArrayList<TestResult> resultList = TestResultController.getAllResults(patientId);
+                    dtm.setRowCount(0);
+
+                    for (TestResult testResult : resultList) {
+                        Object[] rowData = {testResult.getAdmissionId(), testResult.getResultId(), testResult.getTestId()};
+                        dtm.addRow(rowData);
+                    }
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(PatientRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(PatientRecord.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                dtm.setRowCount(0);
+                patientIdText.setText("");
             }
-        } else {
-            dtm.setRowCount(0);
-            patientIdText.setText("");
         }
     }//GEN-LAST:event_nameComboItemStateChanged
 

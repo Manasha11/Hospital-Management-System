@@ -59,7 +59,7 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace pref="121" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -110,15 +110,20 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="regNumText" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Component id="specialtyText" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="regNumText" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="specialtyCombo" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -143,14 +148,14 @@
                       <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="titleText" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="degreesText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="specialtyText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="specialtyCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -176,16 +181,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regNumTextActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="specialtyText">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cuprum" size="16" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="specialtyTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
@@ -240,6 +235,63 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="degreesTextActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="specialtyCombo">
+          <Properties>
+            <Property name="editable" type="boolean" value="true"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cuprum" size="16" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="35">
+                <StringItem index="0" value="Specialist Physician"/>
+                <StringItem index="1" value="Obstetriian &amp; Gynaecologist (VOG)"/>
+                <StringItem index="2" value="Paediatrician"/>
+                <StringItem index="3" value="Paediatric Surgeon"/>
+                <StringItem index="4" value="Paediatric Cardiologist"/>
+                <StringItem index="5" value="Cardiologist"/>
+                <StringItem index="6" value="Cardiothoracic Surgeon"/>
+                <StringItem index="7" value="Genito - Urinary Surgeon"/>
+                <StringItem index="8" value="Oral &amp; Maxillofacial Surgeon"/>
+                <StringItem index="9" value="Restorative Dentistry"/>
+                <StringItem index="10" value="General Surgeon"/>
+                <StringItem index="11" value="Psychiatrist"/>
+                <StringItem index="12" value="Rheumatologist"/>
+                <StringItem index="13" value="Dermatologist"/>
+                <StringItem index="14" value="Radiologist"/>
+                <StringItem index="15" value="Orthopaedic surgeon"/>
+                <StringItem index="16" value="Eye Surgeon"/>
+                <StringItem index="17" value="Chest Physician"/>
+                <StringItem index="18" value="E.N.T. Surgeon"/>
+                <StringItem index="19" value="Onco Surgeon"/>
+                <StringItem index="20" value="Oncologist"/>
+                <StringItem index="21" value="Haematologist"/>
+                <StringItem index="22" value="Neurologist"/>
+                <StringItem index="23" value="Neuro Surgeon"/>
+                <StringItem index="24" value="Histo Pathologist"/>
+                <StringItem index="25" value="Microbiologist"/>
+                <StringItem index="26" value="Gastro Intestinal Surgeon"/>
+                <StringItem index="27" value="Nephrologist"/>
+                <StringItem index="28" value="Endocrinologist"/>
+                <StringItem index="29" value="audiometrist"/>
+                <StringItem index="30" value="Physiotherapist"/>
+                <StringItem index="31" value="Nutritioist"/>
+                <StringItem index="32" value="Speach Therapist"/>
+                <StringItem index="33" value="Psychological Counselor"/>
+                <StringItem index="34" value="Occupational Therapist"/>
+              </StringArray>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="specialtyComboItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="specialtyComboActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -409,6 +461,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nicTextActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nicTextKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
@@ -778,6 +831,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="contactNoTextActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contactNoTextKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="emailText">

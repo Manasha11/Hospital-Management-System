@@ -5,9 +5,12 @@
  */
 package hms.view.admin;
 
+import hms.controller.AdmissionController;
 import hms.controller.BillController;
+import hms.model.Admission;
 import hms.model.Bill;
 import hms.other.IDGenerator;
+import hms.view.AddTestResults;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,12 +27,14 @@ public class MakeBill extends javax.swing.JPanel {
      */
     public MakeBill() {
         initComponents();
-        
+
         try {
             fillBillIdText();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        admissionIdText.requestFocus();
     }
 
     /**
@@ -78,7 +83,7 @@ public class MakeBill extends javax.swing.JPanel {
         addButton.setBackground(new java.awt.Color(36, 208, 124));
         addButton.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         addButton.setForeground(new java.awt.Color(255, 255, 255));
-        addButton.setText("Print Bill");
+        addButton.setText("Add Bill");
         addButton.setBorder(null);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,8 +311,6 @@ public class MakeBill extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(billIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,7 +336,9 @@ public class MakeBill extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(admissionIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(patientIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
@@ -372,21 +377,19 @@ public class MakeBill extends javax.swing.JPanel {
         double total = Double.parseDouble(totalText.getText());
         double discount = Double.parseDouble(discountText.getText());
         double netTotal = Double.parseDouble(netText.getText());
-        
+
         Bill bill = new Bill(billId, admissionId, patientId, medicalCharge, serviceCharge, roomCharge, hospitalCharge, total, discount, netTotal);
         try {
             boolean addBill = BillController.addBill(bill);
-            if(addBill){
+            if (addBill) {
                 JOptionPane.showMessageDialog(this, "Successfull!");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         admissionIdText.setText("");
         patientIdText.setText("");
         medicalText.setText("");
@@ -396,12 +399,10 @@ public class MakeBill extends javax.swing.JPanel {
         totalText.setText("");
         discountText.setText("0");
         netText.setText("");
-        
+
         try {
             fillBillIdText();
-        } catch (SQLException ex) {
-            Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakeBill.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -411,7 +412,16 @@ public class MakeBill extends javax.swing.JPanel {
     }//GEN-LAST:event_billIdTextActionPerformed
 
     private void admissionIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionIdTextActionPerformed
-        // TODO add your handling code here:
+        String admissionId = admissionIdText.getText();
+        try {
+            Admission admission = AdmissionController.searchAdmission(admissionId);
+            if (admission != null) {
+                patientIdText.setText(admission.getPatientId());
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddTestResults.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        medicalText.requestFocus();
     }//GEN-LAST:event_admissionIdTextActionPerformed
 
     private void patientIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIdTextActionPerformed
@@ -419,19 +429,19 @@ public class MakeBill extends javax.swing.JPanel {
     }//GEN-LAST:event_patientIdTextActionPerformed
 
     private void medicalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalTextActionPerformed
-        
+        serviceText.requestFocus();
     }//GEN-LAST:event_medicalTextActionPerformed
 
     private void serviceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceTextActionPerformed
-        
+        roomText.requestFocus();
     }//GEN-LAST:event_serviceTextActionPerformed
 
     private void roomTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomTextActionPerformed
-        
+
     }//GEN-LAST:event_roomTextActionPerformed
 
     private void hospitalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalTextActionPerformed
-        
+
     }//GEN-LAST:event_hospitalTextActionPerformed
 
     private void totalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextActionPerformed
@@ -453,8 +463,8 @@ public class MakeBill extends javax.swing.JPanel {
 
     private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
         double total = Double.parseDouble(totalText.getText());
-        double discount = Double.parseDouble(discountText.getText())/100.0;
-        double netTotal = total - total*discount;
+        double discount = Double.parseDouble(discountText.getText()) / 100.0;
+        double netTotal = total - total * discount;
         netText.setText(Double.toString(netTotal));
     }//GEN-LAST:event_updateButton1ActionPerformed
 
