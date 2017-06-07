@@ -57,6 +57,7 @@ public class Login extends javax.swing.JFrame {
         loginLabel.setText("Login");
         loginPanel.add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, 30));
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(57, 67, 92));
         jTextField1.setFont(new java.awt.Font("Cuprum", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,6 +73,7 @@ public class Login extends javax.swing.JFrame {
         loginPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 271, 10));
         loginPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 236, 271, 10));
 
+        jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(57, 67, 92));
         jTextField2.setFont(new java.awt.Font("Cuprum", 0, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));

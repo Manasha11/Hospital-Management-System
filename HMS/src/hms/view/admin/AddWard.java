@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -31,6 +32,7 @@ public class AddWard extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddWard.class.getName()).log(Level.SEVERE, null, ex);
         }
+        AutoCompleteDecorator.decorate(typeCombo);
     }
 
     /**
@@ -46,11 +48,11 @@ public class AddWard extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         wardIdText = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        wardTypeTest = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         descriptionTest = new javax.swing.JTextArea();
         addButton = new javax.swing.JButton();
+        typeCombo = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -75,13 +77,6 @@ public class AddWard extends javax.swing.JPanel {
         jLabel20.setForeground(new java.awt.Color(57, 67, 92));
         jLabel20.setText("Ward Type: ");
 
-        wardTypeTest.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
-        wardTypeTest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wardTypeTestActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(57, 67, 92));
         jLabel12.setText("Description: ");
@@ -102,6 +97,9 @@ public class AddWard extends javax.swing.JPanel {
             }
         });
 
+        typeCombo.setFont(new java.awt.Font("Cuprum", 0, 16)); // NOI18N
+        typeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Kids" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,8 +113,9 @@ public class AddWard extends javax.swing.JPanel {
                 .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wardTypeTest, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wardIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(typeCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(wardIdText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                 .addContainerGap(518, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +139,7 @@ public class AddWard extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(wardTypeTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
@@ -155,13 +154,9 @@ public class AddWard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_wardIdTextActionPerformed
 
-    private void wardTypeTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardTypeTestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wardTypeTestActionPerformed
-
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         String wardId = wardIdText.getText();
-        String wardType = wardTypeTest.getText();
+        String wardType = (String) typeCombo.getSelectedItem();
         String description = descriptionTest.getText();
 
         Ward ward = new Ward(wardId, wardType, description);
@@ -187,7 +182,6 @@ public class AddWard extends javax.swing.JPanel {
             Logger.getLogger(AddWard.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        wardTypeTest.setText("");
         descriptionTest.setText("");
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -200,8 +194,8 @@ public class AddWard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> typeCombo;
     private javax.swing.JTextField wardIdText;
-    private javax.swing.JTextField wardTypeTest;
     // End of variables declaration//GEN-END:variables
 
     private void fillWardIdTest() throws SQLException, ClassNotFoundException {
